@@ -44,6 +44,8 @@ defmodule TraysWeb.Router do
       pipe_through :browser
       live "/", TraysLive.Index
       live "/trays", TraysLive.Index
+
+      live "/admin/merchants", Admin.MerchantLive.Index
     end
   end
 

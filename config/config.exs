@@ -22,9 +22,7 @@ config :fun_with_flags, :persistence,
   adapter: FunWithFlags.Store.Persistent.Ecto,
   repo: Trays.Repo
 
-config :fun_with_flags, :cache_bust_notifications,
-       [enabled: false]
-
+config :fun_with_flags, :cache_bust_notifications, enabled: false
 
 config :trays,
   ecto_repos: [Trays.Repo],
