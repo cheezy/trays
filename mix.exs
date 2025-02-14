@@ -9,7 +9,8 @@ defmodule Trays.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: test_coverage()
     ]
   end
 
@@ -35,10 +36,12 @@ defmodule Trays.MixProject do
       {:phoenix, "~> 1.7.19"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
+      {:ecto_psql_extras, "~> 0.8"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.0.0"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
@@ -57,7 +60,11 @@ defmodule Trays.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:ex_cldr_plugs, "~> 1.3"},
+#      {:fun_with_flags, "~> 1.12.0"},
+#      {:fun_with_flags_ui, "~> 1.0"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -72,13 +79,29 @@ defmodule Trays.MixProject do
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "credo", "test --cover"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind trays", "esbuild trays"],
       "assets.deploy": [
         "tailwind trays --minify",
         "esbuild trays --minify",
         "phx.digest"
+      ]
+    ]
+  end
+
+  defp test_coverage do
+    [
+      ignore_modules: [
+        TraysWeb.Layouts,
+        TraysWeb.PageHTML,
+        TraysWeb.CoreComponents,
+        Trays.DataCase,
+        Trays.Repo,
+        TraysWeb.ErrorHTML,
+        TraysWeb.Router,
+        Trays.Application,
+        TraysWeb.Telemetry
       ]
     ]
   end
