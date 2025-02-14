@@ -4,12 +4,14 @@ defmodule TraysWeb.Router do
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
+
     plug Cldr.Plug.PutLocale,
       apps: [:cldr, :gettext],
       from: [:query, :path, :body, :cookie, :accept_language],
       param: "locale",
       gettext: TraysWeb.Gettext,
       cldr: TraysWeb.Cldr
+
     plug Cldr.Plug.PutSession, as: :string
     plug :fetch_live_flash
     plug :put_root_layout, html: {TraysWeb.Layouts, :root}
@@ -31,6 +33,14 @@ defmodule TraysWeb.Router do
   # scope "/api", TraysWeb do
   #   pipe_through :api
   # end
+
+  live_session :default, on_mount: TraysWeb.RestoreLocale do
+    scope "/:locale", TraysWeb do
+      pipe_through :browser
+      live "/", TraysLive.Index
+      live "/raffles", TraysLive.Index
+    end
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:trays, :dev_routes) do

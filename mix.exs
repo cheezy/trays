@@ -62,8 +62,8 @@ defmodule Trays.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:ex_cldr_plugs, "~> 1.3"},
-#      {:fun_with_flags, "~> 1.12.0"},
-#      {:fun_with_flags_ui, "~> 1.0"},
+      #      {:fun_with_flags, "~> 1.12.0"},
+      #      {:fun_with_flags_ui, "~> 1.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end

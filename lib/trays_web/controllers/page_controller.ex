@@ -4,6 +4,6 @@ defmodule TraysWeb.PageController do
   def home(conn, _params) do
     # The home page is often custom made,
     # so skip the default app layout.
-    render(conn, :home, layout: false)
+    conn |> redirect(to: ~p"/#{TraysWeb.Cldr.get_my_locale()}/") |> halt()
   end
 end
