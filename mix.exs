@@ -101,7 +101,10 @@ defmodule Trays.MixProject do
         TraysWeb.ErrorHTML,
         TraysWeb.Router,
         Trays.Application,
-        TraysWeb.Telemetry
+        TraysWeb.Telemetry,
+        TraysWeb.Cldr,
+        TraysWeb.Gettext,
+        TraysWeb.RestoreLocale
       ]
     ]
   end

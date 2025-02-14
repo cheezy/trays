@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Tests" type="MixExUnitRunConfigurationType" factoryName="Elixir Mix ExUnit">
+    <module name="trays" />
+    <module name="trays" />
+    <module-filters inherit-application-module-filters="true" />
+    <method v="2" />
+  </configuration>
+</component>
