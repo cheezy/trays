@@ -19,6 +19,11 @@ defmodule TraysWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :mounted_apps do
+    plug :accepts, ["html"]
+    plug :put_secure_browser_headers
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -40,6 +45,11 @@ defmodule TraysWeb.Router do
       live "/", TraysLive.Index
       live "/trays", TraysLive.Index
     end
+  end
+
+  scope "/feature-flags" do
+    pipe_through :mounted_apps
+    forward "/", FunWithFlags.UI.Router, namespace: "feature-flags"
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

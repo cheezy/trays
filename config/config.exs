@@ -12,7 +12,19 @@ config :ex_cldr,
   default_backend: TraysWeb.Cldr,
   json_library: Jason
 
-config :trays, TraysWeb.Cldr, locales: ["en", "fr", "de"]
+config :trays, TraysWeb.Cldr, locales: ["en", "fr-FR", "de-DE"]
+
+config :fun_with_flags, :cache,
+  enabled: true,
+  ttl: 900
+
+config :fun_with_flags, :persistence,
+  adapter: FunWithFlags.Store.Persistent.Ecto,
+  repo: Trays.Repo
+
+config :fun_with_flags, :cache_bust_notifications,
+       [enabled: false]
+
 
 config :trays,
   ecto_repos: [Trays.Repo],

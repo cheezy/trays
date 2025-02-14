@@ -57,7 +57,7 @@ msgstr ""
 msgid "Home"
 msgstr "Heim"
 
-#: lib/trays_web/components/layouts/app.html.heex:13
+#: lib/trays_web/components/layouts/app.html.heex:16
 #, elixir-autogen, elixir-format
 msgid "Telemetry"
 msgstr "Telemetrie"
@@ -66,3 +66,8 @@ msgstr "Telemetrie"
 #, elixir-autogen, elixir-format
 msgid "Trays"
 msgstr "Tabletts"
+
+#: lib/trays_web/components/layouts/app.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Feature Flags"
+msgstr "Funktionsflags"
