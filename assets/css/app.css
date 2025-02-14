@@ -7,8 +7,8 @@
 @layer components {
   /* TraysLive.Index */
   .trays-index h1 {
-      @apply text-4xl font-extrabold text-center mb-8;
-    }
+    @apply text-4xl font-extrabold text-center mb-8;
+  }
 
   /* Components and Utilities */
   .button {
