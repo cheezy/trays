@@ -38,7 +38,7 @@ defmodule TraysWeb.Router do
     scope "/:locale", TraysWeb do
       pipe_through :browser
       live "/", TraysLive.Index
-      live "/raffles", TraysLive.Index
+      live "/trays", TraysLive.Index
     end
   end
 
