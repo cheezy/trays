@@ -51,3 +51,18 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr ""
+
+#: lib/trays_web/components/layouts/app.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Home"
+msgstr ""
+
+#: lib/trays_web/components/layouts/app.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Telemetry"
+msgstr ""
+
+#: lib/trays_web/live/trays_live/index.ex:7
+#, elixir-autogen, elixir-format
+msgid "Trays"
+msgstr ""

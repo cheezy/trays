@@ -7,10 +7,10 @@
     </div>
     <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
       <.link navigate={~p"/#{TraysWeb.Cldr.get_my_locale()}/trays"}>
-        Home
+        {gettext("Home")}
       </.link>
       <.link navigate={~p"/dev/dashboard/home"}>
-        Telemetry
+        {gettext("Telemetry")}
       </.link>
     </div>
   </div>
