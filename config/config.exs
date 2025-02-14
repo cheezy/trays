@@ -7,6 +7,13 @@
 # General application configuration
 import Config
 
+config :ex_cldr,
+  default_locale: "en",
+  default_backend: TraysWeb.Cldr,
+  json_library: Jason
+
+config :trays, TraysWeb.Cldr, locales: ["en", "fr", "de"]
+
 config :trays,
   ecto_repos: [Trays.Repo],
   generators: [timestamp_type: :utc_datetime]
