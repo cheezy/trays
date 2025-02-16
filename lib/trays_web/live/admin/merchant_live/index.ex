@@ -3,10 +3,13 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
 
   @moduledoc false
 
+  alias Trays.Admin.Merchants
+
   def mount(_params, _session, socket) do
     socket =
       socket
       |> assign(:page_title, gettext("Listing Merchants"))
+      |> stream(:merchants, Merchants.list_merchants())
 
     {:ok, socket}
   end
@@ -16,8 +19,47 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
     <div class="merchants-index">
       <.header>
         {@page_title}
+        <:actions>
+          <.link navigate={~p"/#{@locale}/admin/merchants/new"} id="new_merchant_btn" class="button">
+            {gettext "New Merchant"}
+          </.link>
+        </:actions>
       </.header>
+      <.table id="merchants" rows={@streams.merchants}>
+        <:col :let={{_, merchant}}>
+          <img src={merchant.logo_path} width="60"/>
+        </:col>
+        <:col :let={{_, merchant}} label={gettext "Name"}>
+          <.link navigate={~p"/#{@locale}/merchants/#{merchant}"}>
+            {merchant.name}
+          </.link>
+        </:col>
+        <:col :let={{_, merchant}} label={gettext "Name"}>
+          {merchant.description}
+        </:col>
+        <:action :let={{_, merchant}}>
+          <.link navigate={~p"/#{@locale}/admin/merchants/#{merchant}/edit"} class="edit-merchant">
+            <.icon name="hero-pencil-square" class="h-4 w-4" />
+          </.link>
+        </:action>
+        <:action :let={{dom_id, merchant}}>
+          <.link
+            phx-click={delete_and_hide(dom_id, merchant)}
+            phx-disable-with={gettext "Deleting..."}
+            data-confirm={gettext "Are you sure?"}
+            class="delete-raffle"
+          >
+            <.icon name="hero-trash" class="h-4 w-4" />
+          </.link>
+        </:action>
+      </.table>
     </div>
     """
   end
+
+  def delete_and_hide(dom_id, merchant) do
+    JS.push("delete", value: %{id: merchant.id})
+    |> JS.hide(to: "##{dom_id}}", transition: "fade-out")
+  end
+
 end
