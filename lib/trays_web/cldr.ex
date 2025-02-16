@@ -3,7 +3,7 @@ defmodule TraysWeb.Cldr do
 
   use Cldr,
     default_locale: "en",
-    locales: ["fr-FR", "en", "de-DE"],
+    locales: ["fr", "en", "de"],
     add_fallback_locales: false,
     gettext: TraysWeb.Gettext,
     data_dir: "priv/cldr",

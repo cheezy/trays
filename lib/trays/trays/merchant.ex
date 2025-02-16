@@ -1,6 +1,8 @@
-defmodule Trays.Trays.Merchant do
+defmodule Trays.Merchant do
   use Ecto.Schema
   import Ecto.Changeset
+
+  @moduledoc false
 
   schema "merchants" do
     field :name, :string
@@ -18,26 +20,10 @@ defmodule Trays.Trays.Merchant do
   @doc false
   def changeset(merchant, attrs) do
     merchant
-    |> cast(attrs, [
-      :name,
-      :contact_name,
-      :contact_phone,
-      :contact_email,
-      :logo_path,
-      :description,
-      :food_category,
-      :store_image_path
-    ])
-    |> validate_required([
-      :name,
-      :contact_name,
-      :contact_phone,
-      :contact_email,
-      :logo_path,
-      :description,
-      :food_category,
-      :store_image_path
-    ])
+    |> cast(attrs, [:name, :contact_name, :contact_phone, :contact_email, :logo_path,
+      :description, :food_category, :store_image_path])
+    |> validate_required([:name, :contact_name, :contact_phone, :contact_email,
+      :logo_path, :description, :food_category, :store_image_path])
     |> validate_length(:description, min: 10)
   end
 end
