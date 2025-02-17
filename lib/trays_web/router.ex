@@ -46,6 +46,7 @@ defmodule TraysWeb.Router do
       live "/trays", TraysLive.Index
 
       live "/admin/merchants", Admin.MerchantLive.Index
+      live "/admin/merchants/:id", Admin.MerchantLive.Show
     end
   end
 

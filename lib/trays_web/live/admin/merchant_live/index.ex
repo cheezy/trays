@@ -25,12 +25,16 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
           </.link>
         </:actions>
       </.header>
-      <.table id="merchants" rows={@streams.merchants}>
+      <.table
+          id="merchants"
+          rows={@streams.merchants}
+          row_click={fn {_, merchant} -> JS.navigate(~p"/#{@locale}/admin/merchants/#{merchant}") end}
+          >
         <:col :let={{_, merchant}}>
           <img src={merchant.logo_path} width="60"/>
         </:col>
         <:col :let={{_, merchant}} label={gettext "Name"}>
-          <.link navigate={~p"/#{@locale}/merchants/#{merchant}"}>
+          <.link navigate={~p"/#{@locale}/admin/merchants/#{merchant}"}>
             {merchant.name}
           </.link>
         </:col>

@@ -10,6 +10,45 @@
     @apply text-4xl font-extrabold text-center mb-8;
   }
 
+  /* Admin.MerchantLive.Index */
+  .merchants-index table a {
+    @apply text-sky-600 hover:text-sky-800 focus:outline-none focus:underline transition ease-in-out duration-150;
+  }
+
+  /* Admin.MerchantLive.Show */
+  .merchant-show .merchant {
+    @apply grid md:grid-cols-3 gap-x-4 mb-10;
+  }
+
+  .merchant-show .merchant img {
+    @apply mx-auto w-1/2 px-8 md:w-full;
+  }
+
+  .merchant-show .merchant section {
+    @apply md:col-span-2 space-y-5;
+  }
+
+  .merchant-show .merchant section header {
+    @apply flex justify-between items-start;
+  }
+
+  .merchant-show .merchant section header h2 {
+    @apply flex items-center gap-2 text-2xl font-semibold text-gray-900;
+  }
+
+  .merchant-show .merchant section header h3 {
+    @apply text-xl text-gray-500;
+  }
+
+  .merchant-show .merchant section header .contact {
+    @apply text-lg font-medium text-gray-900;
+  }
+
+  .merchant-show .merchant section .description {
+    @apply text-gray-500 font-light text-lg;
+  }
+
+
   /* Components and Utilities */
   .button {
     @apply inline-block rounded-lg bg-zinc-900 hover:bg-zinc-700 hover:text-white py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 focus:no-underline;

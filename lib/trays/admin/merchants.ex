@@ -9,4 +9,8 @@ defmodule Trays.Admin.Merchants do
     Merchant
     |> Repo.all()
   end
+
+  def get_merchant!(id) do
+      Repo.get!(Merchant, id)
+  end
 end
