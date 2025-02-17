@@ -7,9 +7,9 @@ defmodule Trays.Merchant do
   schema "merchants" do
     field :name, :string
     field :description, :string
-    field :contact_name, :string
-    field :contact_phone, :string
-    field :contact_email, :string
+    field :contact_name, :string, default: "First Last"
+    field :contact_phone, :string, default: "1111111111"
+    field :contact_email, :string, default: "first@example.com"
     field :logo_path, :string
     field :food_category, :string
     field :store_image_path, :string

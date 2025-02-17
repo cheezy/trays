@@ -13,4 +13,24 @@ defmodule Trays.Admin.Merchants do
   def get_merchant!(id) do
       Repo.get!(Merchant, id)
   end
+
+  def change_merchant(%Merchant{} = merchant, attrs \\ %{}) do
+    Merchant.changeset(merchant, attrs)
+  end
+
+  def create_merchant(attrs \\ %{}) do
+    %Merchant{}
+    |> Merchant.changeset(attrs)
+    |> Repo.insert()
+  end
+
+    def update_merchant(%Merchant{} = merchant, attrs) do
+      merchant
+    |> Merchant.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def delete_merchant(%Merchant{} = merchant) do
+    Repo.delete(merchant)
+  end
 end

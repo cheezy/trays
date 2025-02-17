@@ -18,7 +18,7 @@ alias Trays.Merchant
   name: "Au Pain Doré",
   description: "Bakery location offering fresh bread, pastries & other sweets, plus a cafe with sandwiches & coffee.",
   contact_name: "Ardita Karaj",
-  contact_phone: "4162304519",
+  contact_phone: "4162305555",
   contact_email: "ardita@letstango.ca",
   logo_path: "/images/apd_logo.png",
   food_category: "Bakery & Cafe",

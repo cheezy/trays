@@ -67,6 +67,12 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
     """
   end
 
+  def handle_event("delete", %{"id" => id}, socket) do
+    merchant = Merchants.get_merchant!(id)
+    {:ok, _} = Merchants.delete_merchant(merchant)
+    {:noreply, stream_delete(socket, :merchants, merchant)}
+  end
+
   def delete_and_hide(dom_id, merchant) do
     JS.push("delete", value: %{id: merchant.id})
     |> JS.hide(to: "##{dom_id}}", transition: "fade-out")
