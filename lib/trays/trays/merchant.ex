@@ -14,6 +14,8 @@ defmodule Trays.Merchant do
     field :food_category, :string
     field :store_image_path, :string
 
+    has_many :merchant_locations, Trays.MerchantLocation
+
     timestamps(type: :utc_datetime)
   end
 

@@ -12,9 +12,10 @@
 
 alias Trays.Repo
 alias Trays.Merchant
+alias Trays.MerchantLocation
 
 
-%Merchant{
+apd = %Merchant{
   name: "Au Pain Doré",
   description: "Bakery location offering fresh bread, pastries & other sweets, plus a cafe with sandwiches & coffee.",
   contact_name: "Ardita Karaj",
@@ -23,6 +24,28 @@ alias Trays.Merchant
   logo_path: "/images/apd_logo.png",
   food_category: "Bakery & Cafe",
   store_image_path: "/images/apd_store.jpg"
+}
+|> Repo.insert
+
+%MerchantLocation{
+ street1: "81 Front Street E",
+ city: "Toronto",
+ province: "ON",
+ postal_code: "M5E 1B8",
+ country: "Canada",
+ contact_name: "Jeff Morgan",
+ merchant: apd
+}
+|> Repo.insert
+
+%MerchantLocation{
+ street1: "222 Bay",
+ city: "Toronto",
+ province: "ON",
+ postal_code: "M5K 1E5",
+ country: "Canada",
+ contact_name: "Ardita Karaj",
+ merchant: apd
 }
 |> Repo.insert
 

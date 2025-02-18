@@ -1,4 +1,4 @@
-defmodule Trays.Trays.MerchantLocation do
+defmodule Trays.MerchantLocation do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -11,6 +11,8 @@ defmodule Trays.Trays.MerchantLocation do
     field :country, :string
     field :contact_name, :string
 
+    belongs_to :merchant, Trays.Merchant
+
     timestamps(type: :utc_datetime)
   end
 
@@ -18,6 +20,6 @@ defmodule Trays.Trays.MerchantLocation do
   def changeset(merchant_location, attrs) do
     merchant_location
     |> cast(attrs, [:street1, :street2, :city, :province, :postal_code, :country, :contact_name])
-    |> validate_required([:street1, :street2, :city, :province, :postal_code, :country, :contact_name])
+    |> validate_required([:street1, :city, :province, :postal_code, :country, :contact_name])
   end
 end
