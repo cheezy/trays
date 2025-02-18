@@ -2,7 +2,7 @@ defmodule Trays.Repo.Migrations.CreateMerchantLocation do
   use Ecto.Migration
 
   def change do
-    create table(:merchant_location) do
+    create table(:merchant_locations) do
       add :street1, :string
       add :street2, :string
       add :city, :string
