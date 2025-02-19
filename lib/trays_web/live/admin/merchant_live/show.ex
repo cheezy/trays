@@ -45,7 +45,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
       </div>
       <.header>
         <:actions>
-          <.link navigate={~p"/#{@locale}/admin/merchants/new"} id="new_merchant_btn" class="button">
+          <.link navigate={~p"/#{@locale}/admin/merchants/#{@merchant.id}/locations/new"} id="new_merchant_btn" class="button">
             {gettext "New Location"}
           </.link>
         </:actions>
@@ -70,6 +70,14 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
         <:col :let={location} label={gettext "Contact"}>
           {location.contact_name}
         </:col>
+        <:action :let={location}>
+          <.link
+              navigate={~p"/#{@locale}/admin/merchants/#{@merchant.id}/locations/#{location.id}/edit"}
+              class="edit-merchant-location"
+          >
+            <.icon name="hero-pencil-square" class="h-4 w-4" />
+          </.link>
+        </:action>
       </.table>
     </div>
     <.back navigate={~p"/#{@locale}/admin/merchants"}>
