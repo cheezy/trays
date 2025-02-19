@@ -15,6 +15,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
     socket =
       socket
       |> assign(merchant: merchant)
+      |> assign(locations: merchant.merchant_locations)
       |> assign(page_title: merchant.name)
 
     {:noreply, socket}
@@ -43,42 +44,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
           <img src={@merchant.store_image_path} />
         </section>
       </div>
-      <.header>
-        <:actions>
-          <.link navigate={~p"/#{@locale}/admin/merchants/#{@merchant.id}/locations/new"} id="new_merchant_btn" class="button">
-            {gettext "New Location"}
-          </.link>
-        </:actions>
-      </.header>
-      <.table
-          id="locations"
-          rows={@merchant.merchant_locations}
-          row_click={fn location -> JS.navigate(~p"/#{@locale}/admin/merchants/") end}
-        >
-        <:col :let={location} label={gettext "Street"}>
-          {location.street1}
-        </:col>
-        <:col :let={location} label={gettext "City"}>
-          {location.city}
-        </:col>
-        <:col :let={location} label={gettext "Province"}>
-          {location.province}
-        </:col>
-        <:col :let={location} label={gettext "Country"}>
-          {location.country}
-        </:col>
-        <:col :let={location} label={gettext "Contact"}>
-          {location.contact_name}
-        </:col>
-        <:action :let={location}>
-          <.link
-              navigate={~p"/#{@locale}/admin/merchants/#{@merchant.id}/locations/#{location.id}/edit"}
-              class="edit-merchant-location"
-          >
-            <.icon name="hero-pencil-square" class="h-4 w-4" />
-          </.link>
-        </:action>
-      </.table>
+      <.merchant_locations merchant_id={@merchant.id} locations={@locations} locale={@locale}/>
     </div>
     <.back navigate={~p"/#{@locale}/admin/merchants"}>
       {gettext "Back to all Merchants"}
@@ -86,4 +52,59 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
     """
   end
 
+  def merchant_locations(assigns) do
+    ~H"""
+    <.header>
+      <:actions>
+        <.link navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/locations/new"} id="new_location_btn" class="button">
+          {gettext "New Location"}
+        </.link>
+      </:actions>
+    </.header>
+    <.table id="locations" rows={@locations}>
+      <:col :let={location} label={gettext "Street"}>
+        {location.street1}
+      </:col>
+      <:col :let={location} label={gettext "City"}>
+        {location.city}
+      </:col>
+      <:col :let={location} label={gettext "Province"}>
+        {location.province}
+      </:col>
+      <:col :let={location} label={gettext "Country"}>
+        {location.country}
+      </:col>
+      <:col :let={location} label={gettext "Contact"}>
+        {location.contact_name}
+      </:col>
+      <:action :let={location}>
+        <.link
+            navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/locations/#{location.id}/edit"}
+            class="edit-merchant-location"
+        >
+          <.icon name="hero-pencil-square" class="h-4 w-4" />
+        </.link>
+      </:action>
+      <:action :let={location}}>
+        <.link
+          phx-click="delete"
+          phx-value-id={location.id}
+          phx-disable-with={gettext "Deleting..."}
+          data-confirm={gettext "Are you sure?"}
+          class="delete-merchant-location"
+        >
+          <.icon name="hero-trash" class="h-4 w-4" />
+        </.link>
+      </:action>
+    </.table>
+    """
+  end
+
+  def handle_event("delete", %{"id" => id}, socket) do
+    merchant = Merchants.get_merchant_location!(id)
+    {:ok, _} = Merchants.delete_merchant_location(merchant)
+    merchant = Merchants.get_merchant_with_locations!(socket.assigns.merchant.id)
+
+    {:noreply, assign(socket, :locations, merchant.merchant_locations)}
+  end
 end

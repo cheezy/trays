@@ -43,6 +43,10 @@ defmodule Trays.Admin.Merchants do
     Repo.get!(MerchantLocation, id) |> Repo.preload(:merchant)
   end
 
+  def get_merchant_location!(id) do
+    Repo.get!(MerchantLocation, id)
+  end
+
   def change_merchant_location(%MerchantLocation{} = location, attrs \\ %{}) do
     MerchantLocation.changeset(location, attrs)
   end
@@ -57,5 +61,9 @@ defmodule Trays.Admin.Merchants do
     location
     |> MerchantLocation.changeset(attrs)
     |> Repo.update()
+  end
+
+  def delete_merchant_location(%MerchantLocation{} = merchant_location) do
+    Repo.delete(merchant_location)
   end
 end
