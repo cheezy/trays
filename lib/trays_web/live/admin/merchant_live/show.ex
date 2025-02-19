@@ -10,7 +10,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
   end
 
   def handle_params(%{"id" => id}, _url, socket) do
-    merchant = Merchants.get_merchant!(id)
+    merchant = Merchants.get_merchant_with_locations!(id)
 
     socket =
       socket
@@ -43,6 +43,34 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
           <img src={@merchant.store_image_path} />
         </section>
       </div>
+      <.header>
+        <:actions>
+          <.link navigate={~p"/#{@locale}/admin/merchants/new"} id="new_merchant_btn" class="button">
+            {gettext "New Location"}
+          </.link>
+        </:actions>
+      </.header>
+      <.table
+          id="locations"
+          rows={@merchant.merchant_locations}
+          row_click={fn location -> JS.navigate(~p"/#{@locale}/admin/merchants/") end}
+        >
+        <:col :let={location} label={gettext "Street"}>
+          {location.street1}
+        </:col>
+        <:col :let={location} label={gettext "City"}>
+          {location.city}
+        </:col>
+        <:col :let={location} label={gettext "Province"}>
+          {location.province}
+        </:col>
+        <:col :let={location} label={gettext "Country"}>
+          {location.country}
+        </:col>
+        <:col :let={location} label={gettext "Contact"}>
+          {location.contact_name}
+        </:col>
+      </.table>
     </div>
     <.back navigate={~p"/#{@locale}/admin/merchants"}>
       {gettext "Back to all Merchants"}

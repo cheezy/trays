@@ -25,7 +25,7 @@ apd = %Merchant{
   food_category: "Bakery & Cafe",
   store_image_path: "/images/apd_store.jpg"
 }
-|> Repo.insert
+|> Repo.insert!()
 
 %MerchantLocation{
  street1: "81 Front Street E",
@@ -36,7 +36,7 @@ apd = %Merchant{
  contact_name: "Jeff Morgan",
  merchant: apd
 }
-|> Repo.insert
+|> Repo.insert!()
 
 %MerchantLocation{
  street1: "222 Bay",
@@ -47,7 +47,7 @@ apd = %Merchant{
  contact_name: "Ardita Karaj",
  merchant: apd
 }
-|> Repo.insert
+|> Repo.insert!()
 
 %Merchant{
   name: "Miku",
@@ -59,7 +59,7 @@ apd = %Merchant{
   food_category: "Authentic Japanese restaurant",
   store_image_path: "/images/miku_store.jpg"
 }
-|> Repo.insert
+|> Repo.insert!()
 
 %Merchant{
   name: "The Flat Iron",
@@ -71,7 +71,7 @@ apd = %Merchant{
   food_category: "British Pub",
   store_image_path: "/images/flatiron_store.jpg"
 }
-|> Repo.insert
+|> Repo.insert!()
 
 %Merchant{
   name: "The Sultan's Tent",
@@ -83,4 +83,4 @@ apd = %Merchant{
   food_category: "Mediterranean restaurant",
   store_image_path: "/images/sultans_tent_store.jpg"
 }
-|> Repo.insert
+|> Repo.insert!()

@@ -4,6 +4,7 @@ defmodule Trays.Admin.Merchants do
 
   alias Trays.Repo
   alias Trays.Merchant
+  alias Trays.MerchantLocation
 
   def list_merchants() do
     Merchant
@@ -11,7 +12,11 @@ defmodule Trays.Admin.Merchants do
   end
 
   def get_merchant!(id) do
-      Repo.get!(Merchant, id)
+    Repo.get!(Merchant, id)
+  end
+
+  def get_merchant_with_locations!(id) do
+    Repo.get!(Merchant, id) |> Repo.preload(:merchant_locations)
   end
 
   def change_merchant(%Merchant{} = merchant, attrs \\ %{}) do

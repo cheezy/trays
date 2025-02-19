@@ -48,6 +48,9 @@
     @apply text-gray-500 font-light text-lg;
   }
 
+  .merchant-show table a {
+    @apply text-sky-600 hover:text-sky-800 focus:outline-none focus:underline transition ease-in-out duration-150;
+  }
   /* Admin.MerchantLive.Form */
 
   #merchant-form .entry {
