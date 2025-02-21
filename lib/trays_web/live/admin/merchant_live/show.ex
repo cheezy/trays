@@ -41,7 +41,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
           <div class="description">
             {@merchant.description}
           </div>
-          <img src={@merchant.store_image_path} />
+          <img src={@merchant.store_image_path} alt="merchant store image"/>
         </section>
       </div>
       <.merchant_locations merchant_id={@merchant.id} locations={@locations} locale={@locale}/>
@@ -85,7 +85,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
           <.icon name="hero-pencil-square" class="h-4 w-4" />
         </.link>
       </:action>
-      <:action :let={location}}>
+      <:action :let={location}>
         <.link
           phx-click="delete"
           phx-value-id={location.id}
