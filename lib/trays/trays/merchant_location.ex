@@ -2,6 +2,8 @@ defmodule Trays.MerchantLocation do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @moduledoc false
+
   schema "merchant_locations" do
     field :street1, :string
     field :street2, :string

@@ -37,3 +37,4 @@ npm-debug.log
 
 /trays.iml
 /.idea/*
+/priv/static/uploads/*
