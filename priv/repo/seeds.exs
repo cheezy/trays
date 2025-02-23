@@ -23,7 +23,6 @@ apd = %Merchant{
   contact_email: "ardita@letstango.ca",
   logo_path: "/images/apd_logo.png",
   food_category: "Bakery & Cafe",
-  store_image_path: "/images/apd_store.jpg"
 }
 |> Repo.insert!()
 
@@ -57,7 +56,6 @@ apd = %Merchant{
   contact_email: "ko@miku.ca",
   logo_path: "/images/miku_logo.jpg",
   food_category: "Authentic Japanese restaurant",
-  store_image_path: "/images/miku_store.jpg"
 }
 |> Repo.insert!()
 
@@ -69,7 +67,6 @@ apd = %Merchant{
   contact_email: "joseph@gooddrinks.ca",
   logo_path: "/images/flatiron_logo.png",
   food_category: "British Pub",
-  store_image_path: "/images/flatiron_store.jpg"
 }
 |> Repo.insert!()
 
@@ -81,6 +78,5 @@ apd = %Merchant{
   contact_email: "libia@sultantstent.ca",
   logo_path: "/images/sultans_tent_logo.png",
   food_category: "Mediterranean restaurant",
-  store_image_path: "/images/sultans_tent_store.jpg"
 }
 |> Repo.insert!()

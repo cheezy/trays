@@ -59,8 +59,7 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
         }
       </:hint>
     </.image_upload>
-
-    <.input field={@form[:store_image_path]} label={gettext "Store image path"} />
+    
     <:actions>
       <.button phx-disable-with={gettext "Saving..."}>{gettext "Save Merchant"}</.button>
     </:actions>

@@ -12,7 +12,6 @@ defmodule Trays.Merchant do
     field :contact_email, :string, default: "first@example.com"
     field :logo_path, :string
     field :food_category, :string
-    field :store_image_path, :string
 
     has_many :merchant_locations, Trays.MerchantLocation
 
@@ -23,9 +22,9 @@ defmodule Trays.Merchant do
   def changeset(merchant, attrs) do
     merchant
     |> cast(attrs, [:name, :contact_name, :contact_phone, :contact_email, :logo_path,
-      :description, :food_category, :store_image_path])
+      :description, :food_category])
     |> validate_required([:name, :contact_name, :contact_phone, :contact_email,
-      :logo_path, :description, :food_category, :store_image_path])
+      :logo_path, :description, :food_category])
     |> validate_length(:description, min: 10)
   end
 end

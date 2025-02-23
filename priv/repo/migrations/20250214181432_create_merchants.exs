@@ -10,7 +10,6 @@ defmodule Trays.Repo.Migrations.CreateMerchants do
       add :logo_path, :string
       add :description, :text
       add :food_category, :string
-      add :store_image_path, :string
 
       timestamps(type: :utc_datetime)
     end
