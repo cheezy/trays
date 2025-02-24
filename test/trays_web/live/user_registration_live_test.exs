@@ -28,11 +28,13 @@ defmodule TraysWeb.UserRegistrationLiveTest do
       result =
         lv
         |> element("#registration_form")
-        |> render_change(user: %{"email" => "with spaces", "password" => "too short"})
+        |> render_change(user: %{"email" => "with spaces", "password" => "short"})
 
       assert result =~ "Register"
       assert result =~ "must have the @ sign and no spaces"
-      assert result =~ "should be at least 12 character"
+      assert result =~ "at least one digit or punctuation character"
+      assert result =~ "at least one upper case character"
+      assert result =~ "should be at least 8 character"
     end
   end
 
