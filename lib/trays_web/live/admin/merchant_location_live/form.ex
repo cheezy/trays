@@ -42,24 +42,41 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
     <.header>
       {@page_title}
     </.header>
-    <.simple_form for={@form} id="merchant-location-form" phx-submit="save" phx-change="validate">
-      <.input field={@form[:street1]} label={gettext "Street"} />
-      <.input field={@form[:street2]} />
-      <.input field={@form[:city]} label={gettext "City"}/>
-      <.input
-        field={@form[:province]}
-        type="select"
-        label={gettext "Province"}
-        prompt="Choose a province"
-        options={@province_options}
-      />
-      <.input field={@form[:postal_code]} label={gettext "Postal Code"}/>
-      <.input field={@form[:country]} label={gettext "Country"} />
-      <.input field={@form[:contact_name]} label={gettext "Contact Name"} />
-      <:actions>
-        <.button phx-disable-with={gettext "Saving..."}>{gettext "Save Merchant Location"}</.button>
-      </:actions>
-    </.simple_form>
+    <.form for={@form}
+        id="merchant-location-form"
+        phx-submit="save"
+        phx-change="validate">
+      <div class="street">
+        <.input field={@form[:street1]} label={gettext "Street"}/>
+        <.input field={@form[:street2]}/>
+      </div>
+      <div class="city-province-postal">
+        <div class="city">
+          <.input field={@form[:city]} label={gettext "City"}/>
+        </div>
+        <.input
+          field={@form[:province]}
+          type="select"
+          label={gettext "Province"}
+          prompt="Choose a province"
+          options={@province_options}
+        />
+        <.input field={@form[:postal_code]} label={gettext "Postal Code"}/>
+      </div>
+      <div class="country">
+        <.input field={@form[:country]} label={gettext "Country"} />
+      </div>
+      <div class="contact">
+        <.input field={@form[:contact_name]} label={gettext "Contact Name"} />
+      </div>
+      <div class="action">
+        <.button
+          type="submit"
+          class="submit"
+          phx-disable-with={gettext "Saving..."}>{gettext "Save Merchant Location"}
+        </.button>
+      </div>
+    </.form>
     <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}"}>
       {gettext "Back to Merchant"}
     </.back>
