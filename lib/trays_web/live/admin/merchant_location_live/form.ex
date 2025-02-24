@@ -58,7 +58,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
           field={@form[:province]}
           type="select"
           label={gettext "Province"}
-          prompt="Choose a province"
+          prompt="Choose..."
           options={@province_options}
         />
         <.input field={@form[:postal_code]} label={gettext "Postal Code"}/>
