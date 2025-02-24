@@ -46,6 +46,15 @@ defmodule Trays.Accounts.User do
     |> validate_password(opts)
   end
 
+  @doc """
+  A user changeset for changing their name.
+  """
+  def name_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:name])
+    |> validate_name()
+  end
+
   defp validate_name(changeset) do
     changeset
     |> validate_required([:name])
