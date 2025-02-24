@@ -8,6 +8,7 @@ defmodule TraysWeb.ImageUpload do
 
     attr :image, Phoenix.LiveView.UploadConfig, required: true
     slot :label, required: true
+    slot :current_image, required: true
     slot :hint
 
     def image_upload(assigns) do
@@ -16,19 +17,24 @@ defmodule TraysWeb.ImageUpload do
         <label for={@image.ref} class="label">
           { render_slot(@label) }
         </label>
-        <div class="drop" phx-drop-target={@image.ref}>
-          <div>
-            <img src="/images/upload.svg">
+        <div class="image-and-upload">
+          <div class="current-image">
+            { render_slot(@current_image)}
+          </div>
+          <div class="drop" phx-drop-target={@image.ref}>
             <div>
-              <label for={@image.ref}>
-                <span>{gettext "Upload an image"}</span>
-                <.live_file_input upload={@image} class="sr-only" />
-              </label>
-              <span>{gettext "or drag and drop here."}</span>
+              <img src="/images/upload.svg" width="45">
+              <div>
+                <label for={@image.ref}>
+                  <span>{gettext "Upload an image"}</span>
+                  <.live_file_input upload={@image} class="sr-only" />
+                </label>
+                <span>{gettext "or drag and drop here."}</span>
+              </div>
+              <p>
+                { render_slot(@hint)}
+              </p>
             </div>
-            <p>
-              { render_slot(@hint)}
-            </p>
           </div>
         </div>
 

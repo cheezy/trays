@@ -66,8 +66,16 @@
     @apply my-4 text-slate-600 text-sm;
   }
 
+  #image-upload .image-and-upload {
+    @apply flex flex-row;
+  }
+
+  #image-upload .current-image {
+    @apply w-1/4;
+  }
+
   #image-upload .drop {
-    @apply flex items-baseline justify-center space-x-1 my-2 p-4 border-2 border-dashed border-slate-300 rounded-md text-center text-slate-600;
+    @apply w-3/4 items-baseline justify-center space-x-1 my-2 p-4 border-2 border-dashed border-slate-300 rounded-md text-center text-slate-600;
   }
 
   #image-upload .drop label {

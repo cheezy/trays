@@ -53,8 +53,12 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
 
     <.image_upload image={@uploads.logo}>
       <:label>Logo</:label>
+      <:current_image>
+        <img src={@merchant.logo_path}/>
+      </:current_image>
       <:hint>
-        {gettext("Up to %{size} MB (.png, .jpeg, .jpg)",
+        {
+          gettext("Up to %{size} MB (.png, .jpeg, .jpg)",
           size: trunc(@uploads.logo.max_file_size / 1_000_000))
         }
       </:hint>

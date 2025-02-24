@@ -10,7 +10,7 @@ defmodule Trays.Merchant do
     field :contact_name, :string, default: "First Last"
     field :contact_phone, :string, default: "1111111111"
     field :contact_email, :string, default: "first@example.com"
-    field :logo_path, :string
+    field :logo_path, :string, default: "/images/logo_placeholder.jpg"
     field :food_category, :string
 
     has_many :merchant_locations, Trays.MerchantLocation
