@@ -66,4 +66,21 @@ defmodule Trays.Admin.Merchants do
   def delete_merchant_location(%MerchantLocation{} = merchant_location) do
     Repo.delete(merchant_location)
   end
+
+  def get_provinces() do
+    [
+      {"Alberta", "AB"},
+      {"British Columbia", "BC"},
+      {"Manitoba", "MB"},
+      {"New Brunswick", "NB"},
+      {"Newfoundland and Labrador", "NL"},
+      {"Nova Scotia", "NS"},
+      {"Nunaut", "NU"},
+      {"Ontario", "ON"},
+      {"Prince Edward Island", "PE"},
+      {"Quebec", "QC"},
+      {"Saskatchewan", "SK"},
+      {"Yukon", "YK"}
+    ]
+  end
 end

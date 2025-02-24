@@ -10,6 +10,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
     socket =
       socket
       |> apply_action(socket.assigns.live_action, params)
+      |> assign(:province_options, Merchants.get_provinces())
 
     {:ok, socket}
   end
@@ -45,8 +46,14 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
       <.input field={@form[:street1]} label={gettext "Street"} />
       <.input field={@form[:street2]} />
       <.input field={@form[:city]} label={gettext "City"}/>
-      <.input field={@form[:province]} label={gettext "Province"} />
-      <.input field={@form[:postal_code]} label={gettext "Postal Code"} />
+      <.input
+        field={@form[:province]}
+        type="select"
+        label={gettext "Province"}
+        prompt="Choose a province"
+        options={@province_options}
+      />
+      <.input field={@form[:postal_code]} label={gettext "Postal Code"}/>
       <.input field={@form[:country]} label={gettext "Country"} />
       <.input field={@form[:contact_name]} label={gettext "Contact Name"} />
       <:actions>
