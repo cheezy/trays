@@ -9,7 +9,7 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
     socket =
       socket
       |> assign(:page_title, gettext("Listing Merchants"))
-      |> stream(:merchants, Merchants.list_merchants())
+      |> stream(:merchants, Merchants.list_merchants_with_contacts())
 
     {:ok, socket}
   end
@@ -42,7 +42,7 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
           {merchant.description}
         </:col>
         <:col :let={{_, merchant}} label={gettext "Contact"}>
-          {merchant.contact_name}
+          {merchant.contact.name}
         </:col>
         <:col :let={{_, merchant}} label={gettext "Phone"}>
           {merchant.contact_phone}

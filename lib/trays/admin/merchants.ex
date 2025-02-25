@@ -11,6 +11,11 @@ defmodule Trays.Admin.Merchants do
     |> Repo.all()
   end
 
+  def list_merchants_with_contacts() do
+    list_merchants()
+    |> Repo.preload(:contact)
+  end
+
   def get_merchant!(id) do
     Repo.get!(Merchant, id)
   end
