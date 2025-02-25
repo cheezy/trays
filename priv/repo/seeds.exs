@@ -13,7 +13,26 @@
 alias Trays.Repo
 alias Trays.Merchant
 alias Trays.MerchantLocation
+alias Trays.Accounts
 
+
+{:ok, cheezy} = Accounts.register_user(%{
+  name: "Cheezy Morgan",
+  email: "cheezy@me.com",
+  password: "Apd@81Front"
+})
+
+{:ok, ardita} = Accounts.register_user(%{
+  name: "Ardita Karaj",
+  email: "ardita@letstango.ca",
+  password: "Apd@222Bay"
+})
+
+{:ok, joseph} = Accounts.register_user(%{
+  name: "Joseph Morgan",
+  email: "joser.morgan6@gmail.com",
+  password: "JSM@8Colborne"
+})
 
 apd = %Merchant{
   name: "Au Pain Doré",
@@ -23,28 +42,29 @@ apd = %Merchant{
   contact_email: "ardita@letstango.ca",
   logo_path: "/images/apd_logo.png",
   food_category: "Bakery & Cafe",
+  contact_id: ardita.id
 }
 |> Repo.insert!()
 
 %MerchantLocation{
- street1: "81 Front Street E",
- city: "Toronto",
- province: "ON",
- postal_code: "M5E 1B8",
- country: "Canada",
- contact_name: "Jeff Morgan",
- merchant: apd
+  street1: "81 Front Street E",
+  city: "Toronto",
+  province: "ON",
+  postal_code: "M5E 1B8",
+  country: "Canada",
+  contact_name: "Jeff Morgan",
+  merchant: apd
 }
 |> Repo.insert!()
 
 %MerchantLocation{
- street1: "222 Bay",
- city: "Toronto",
- province: "ON",
- postal_code: "M5K 1E5",
- country: "Canada",
- contact_name: "Ardita Karaj",
- merchant: apd
+  street1: "222 Bay",
+  city: "Toronto",
+  province: "ON",
+  postal_code: "M5K 1E5",
+  country: "Canada",
+  contact_name: "Ardita Karaj",
+  merchant: apd
 }
 |> Repo.insert!()
 
@@ -56,6 +76,7 @@ apd = %Merchant{
   contact_email: "ko@miku.ca",
   logo_path: "/images/miku_logo.jpg",
   food_category: "Authentic Japanese restaurant",
+  contact_id: cheezy.id
 }
 |> Repo.insert!()
 
@@ -67,6 +88,7 @@ apd = %Merchant{
   contact_email: "joseph@gooddrinks.ca",
   logo_path: "/images/flatiron_logo.png",
   food_category: "British Pub",
+  contact_id: joseph.id
 }
 |> Repo.insert!()
 
@@ -78,5 +100,6 @@ apd = %Merchant{
   contact_email: "libia@sultantstent.ca",
   logo_path: "/images/sultans_tent_logo.png",
   food_category: "Mediterranean restaurant",
+  contact_id: ardita.id
 }
 |> Repo.insert!()
