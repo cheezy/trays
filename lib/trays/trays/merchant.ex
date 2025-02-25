@@ -24,5 +24,6 @@ defmodule Trays.Merchant do
     |> validate_required([:name, :contact_phone, :logo_path, :description, :food_category])
     |> validate_length(:description, min: 10, max: 500)
     |> validate_length(:name, min: 4, max: 100)
+    |> validate_length(:food_category, min: 2, max: 100)
   end
 end
