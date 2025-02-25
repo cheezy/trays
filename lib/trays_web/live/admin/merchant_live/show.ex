@@ -10,7 +10,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
   end
 
   def handle_params(%{"id" => id}, _url, socket) do
-    merchant = Merchants.get_merchant_with_locations!(id)
+    merchant = Merchants.get_merchant_with_locations_and_contact!(id)
 
     socket =
       socket
@@ -33,9 +33,9 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
               <h3>{@merchant.food_category}</h3>
             </div>
             <div class="contact">
-              {@merchant.contact_name}<br>
+              {@merchant.contact.name}<br>
               {@merchant.contact_phone}<br>
-              {@merchant.contact_email}
+              {@merchant.contact.email}
             </div>
           </header>
           <div class="description">
