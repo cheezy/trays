@@ -102,7 +102,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
   def handle_event("delete", %{"id" => id}, socket) do
     merchant = Merchants.get_merchant_location!(id)
     {:ok, _} = Merchants.delete_merchant_location(merchant)
-    merchant = Merchants.get_merchant_with_locations!(socket.assigns.merchant.id)
+    merchant = Merchants.get_merchant_with_locations_and_contact!(socket.assigns.merchant.id)
 
     {:noreply, assign(socket, :locations, merchant.merchant_locations)}
   end
