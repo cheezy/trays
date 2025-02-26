@@ -3,7 +3,6 @@ defmodule Trays.TestHelpers do
   
   @moduledoc false
 
-
   def assert_validation_error_on(changeset, field, msg) do
     assert changeset.valid? == false
     assert Keyword.keys(changeset.errors) == [field]
