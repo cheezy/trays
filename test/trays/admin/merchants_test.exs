@@ -7,7 +7,7 @@ defmodule Trays.Admin.MerchantsTest do
   alias Trays.AccountsFixtures
   alias Trays.MerchantFixtures
 
-  describe "merchant" do
+  describe "Merchant" do
     setup do
       user = AccountsFixtures.user_fixture()
       merchant = MerchantFixtures.merchant_fixture(%{contact_id: user.id})
@@ -62,5 +62,10 @@ defmodule Trays.Admin.MerchantsTest do
       Merchants.delete_merchant(merchant)
       assert Repo.get(Merchant, context.merchant.id) == nil
     end
+  end
+
+  describe "Getting Provinces and Territories" do
+    provinces = Merchants.get_provinces()
+    assert length(provinces) == 12
   end
 end
