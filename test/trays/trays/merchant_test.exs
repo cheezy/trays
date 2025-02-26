@@ -77,7 +77,7 @@ defmodule Trays.MerchantTest do
     invalid_attrs = Map.put(valid_attrs, field, "")
     changeset = Merchant.changeset(%Merchant{}, invalid_attrs)
     assert changeset.valid? == false
-    assert Keyword.keys(changeset.errors) == [field]
+    assert %{field => ["can't be blank"]} == errors_on(changeset)
     valid_attrs
   end
 
