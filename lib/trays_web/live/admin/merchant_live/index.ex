@@ -38,7 +38,7 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
             {merchant.name}
           </.link>
         </:col>
-        <:col :let={{_, merchant}} label={gettext "Name"}>
+        <:col :let={{_, merchant}} label={gettext "Description"}>
           {merchant.description}
         </:col>
         <:col :let={{_, merchant}} label={gettext "Contact"}>
