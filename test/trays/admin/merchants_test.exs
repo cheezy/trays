@@ -64,6 +64,10 @@ defmodule Trays.Admin.MerchantsTest do
     end
   end
 
+  describe "Merchant Locations" do
+    # Joseph works here :D
+  end
+
   describe "Getting Provinces and Territories" do
     provinces = Merchants.get_provinces()
     assert length(provinces) == 12
