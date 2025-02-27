@@ -22,5 +22,18 @@ defmodule Trays.Product do
     |> validate_length(:description, min: 10, max: 250)
     |> validate_length(:name, min: 4, max: 100)
     |> validate_length(:category, min: 4, max: 100)
+    |> validate_zero_or_greater(:price)
+  end
+
+  def validate_zero_or_greater(changeset, field) when is_atom(field) do
+    validate_change(changeset, field, fn _field, value ->
+      case Money.negative?(value) do
+        true ->
+          [{field, "must be zero or greater"}]
+
+        false ->
+          []
+      end
+    end)
   end
 end
