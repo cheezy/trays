@@ -4,7 +4,6 @@ defmodule Trays.MerchantFixtures do
   alias Trays.Admin.Merchants
 
   def unique_name, do: "Merchant #{System.unique_integer()}!"
-  def valid_description, do: "hello!World!"
   def valid_description, do: "Description of the merchant"
   def valid_food_category, do: "Good food served daily"
   def valid_contact_phone, do: "2342342342"
@@ -27,5 +26,9 @@ defmodule Trays.MerchantFixtures do
       |> Merchants.create_merchant()
 
     merchant
+  end
+
+  def merchant_fixture_with_user(user, attrs \\ %{}) do
+    merchant_fixture(Map.merge(attrs, %{contact_id: user.id}))
   end
 end

@@ -10,7 +10,7 @@ defmodule Trays.Admin.MerchantsTest do
   describe "Merchant" do
     setup do
       user = AccountsFixtures.user_fixture()
-      merchant = MerchantFixtures.merchant_fixture(%{contact_id: user.id})
+      merchant = MerchantFixtures.merchant_fixture_with_user(user)
       {:ok, user: user, merchant: merchant}
     end
 
