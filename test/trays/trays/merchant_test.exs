@@ -75,9 +75,8 @@ defmodule Trays.MerchantTest do
 
   defp assert_require_field(valid_attrs, field) do
     invalid_attrs = Map.put(valid_attrs, field, "")
-    changeset = Merchant.changeset(%Merchant{}, invalid_attrs)
-    assert changeset.valid? == false
-    assert %{field => ["can't be blank"]} == errors_on(changeset)
+    Merchant.changeset(%Merchant{}, invalid_attrs)
+    |> assert_validation_error_on(field, "can't be blank")
     valid_attrs
   end
 
