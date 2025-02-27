@@ -68,6 +68,16 @@ defmodule Trays.ProductTest do
     |> assert_validation_error_on(:category, "should be at most 100 character(s)")
   end
 
+  test "should require price to be zero or greater", context do
+    changeset = changeset_with(context.valid_attributes, :price, Money.new(0, :CAD))
+    assert changeset.valid? == true
+    changeset = changeset_with(context.valid_attributes, :price, Money.new(1, :CAD))
+    assert changeset.valid? == true
+
+    changeset_with(context.valid_attributes, :price, Money.new(-1, :CAD))
+    |> assert_validation_error_on(:price, "must be zero or greater")
+  end
+
   defp changeset_with(attrs, field, value) do
     attrs = Map.put(attrs, field, value)
     Product.changeset(%Product{}, attrs)

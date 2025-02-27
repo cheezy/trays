@@ -8,7 +8,7 @@ defmodule Trays.ProductFixtures do
   def valid_description, do: "Description of the product"
   def valid_category, do: "Breakfast"
   def valid_image_path, do: "/images/product.png"
-  def valid_price, do: 12
+  def valid_price, do: Money.new(12, :CAD)
 
   def valid_product_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
