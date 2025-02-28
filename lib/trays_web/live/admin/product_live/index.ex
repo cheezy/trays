@@ -30,9 +30,6 @@ defmodule TraysWeb.Admin.ProductLive.Index do
       <.table
         id="products"
         rows={@streams.products}
-        row_click={fn
-          {_, product} -> JS.navigate(~p"/#{@locale}/admin/merchants/#{@merchant}/products/#{product}/")
-        end}
       >
         <:col :let={{_, product}}>
           <img src={product.image_path} width="60"/>

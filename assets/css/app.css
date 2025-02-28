@@ -5,10 +5,40 @@
 /* This file is for your main application CSS */
 
 @layer components {
+
   /* TraysLive.Index */
   .trays-index h1 {
     @apply text-4xl font-extrabold text-center mb-8;
   }
+
+  .trays-index .merchants {
+    @apply mt-6 grid grid-cols-1 gap-6;
+  }
+
+  .trays-index .merchants .card {
+    @apply bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200 pb-4 flex flex-col;
+  }
+
+  .trays-index .merchants .card .name {
+    @apply py-3 text-center bg-gray-200 text-gray-600 font-bold text-sm flex-grow;
+  }
+
+  .trays-index .merchants .card .content {
+    @apply flex flex-row;
+  }
+
+  .trays-index .merchants .card .content img {
+    @apply w-1/6 p-4 pb-0 mx-auto object-cover hover:scale-105 transition duration-300;
+  }
+
+  .trays-index .merchant .card .details {
+    @apply w-5/6;
+  }
+
+  .trays-index .merchants .card h2 {
+    @apply px-4 mt-2 mb-8 text-center text-sky-600 font-semibold truncate;
+  }
+
 
   /* Admin.MerchantLive.Index */
   .merchants-index table a {
