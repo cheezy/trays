@@ -11,6 +11,8 @@ defmodule Trays.Product do
     field :image_path, :string
     field :price, Money.Ecto.Amount.Type
 
+    belongs_to :merchant, Trays.Merchant
+
     timestamps(type: :utc_datetime)
   end
 

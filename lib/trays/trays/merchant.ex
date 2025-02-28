@@ -12,6 +12,7 @@ defmodule Trays.Merchant do
     field :food_category, :string
 
     has_many :merchant_locations, Trays.MerchantLocation
+    has_many :products, Trays.Product
     belongs_to :contact, Trays.Accounts.User
 
     timestamps(type: :utc_datetime)
