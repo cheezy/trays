@@ -21,7 +21,7 @@ defmodule Trays.MerchantLocation do
   @doc false
   def changeset(merchant_location, attrs) do
     merchant_location
-    |> cast(attrs, [:street1, :street2, :city, :province, :postal_code, :country, :contact_name])
-    |> validate_required([:street1, :city, :province, :postal_code, :country, :contact_name])
+    |> cast(attrs, [:street1, :street2, :city, :province, :postal_code, :country, :contact_name, :merchant_id])
+    |> validate_required([:street1, :city, :province, :postal_code, :country, :contact_name, :merchant_id])
   end
 end

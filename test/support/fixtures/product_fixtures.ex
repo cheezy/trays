@@ -16,7 +16,8 @@ defmodule Trays.ProductFixtures do
       description: valid_description(),
       category: valid_category(),
       image_path: valid_image_path(),
-      price: valid_price()
+      price: valid_price(),
+      merchant_id: 3
     })
   end
 

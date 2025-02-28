@@ -19,8 +19,8 @@ defmodule Trays.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:name, :description, :category, :image_path, :price])
-    |> validate_required([:name, :description, :category, :image_path, :price])
+    |> cast(attrs, [:name, :description, :category, :image_path, :price, :merchant_id])
+    |> validate_required([:name, :description, :category, :image_path, :price, :merchant_id])
     |> validate_length(:description, min: 10, max: 250)
     |> validate_length(:name, min: 4, max: 100)
     |> validate_length(:category, min: 4, max: 100)
