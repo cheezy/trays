@@ -55,6 +55,8 @@ defmodule TraysWeb.Router do
 
       live "/admin/merchants/:merchant_id/locations/new", Admin.MerchantLocationLive.Form, :new
       live "/admin/merchants/:merchant_id/locations/:id/edit", Admin.MerchantLocationLive.Form, :edit
+
+      live "/admin/merchants/:merchant_id/products", Admin.ProductLive.Index
     end
   end
 

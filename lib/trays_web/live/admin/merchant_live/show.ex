@@ -55,6 +55,11 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
     ~H"""
     <.header>
       <:actions>
+        <.link navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/products"} id="manage_products_btn" class="button">
+          {gettext "Manage Products"}
+        </.link>
+      </:actions>
+      <:actions>
         <.link navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/locations/new"} id="new_location_btn" class="button">
           {gettext "New Location"}
         </.link>
