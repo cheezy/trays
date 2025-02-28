@@ -66,7 +66,6 @@ defmodule Trays.Admin.MerchantsTest do
 
   describe "Merchant Locations" do
     # Joseph works here :D
-    # Get busy boy!
   end
 
   describe "Getting Provinces and Territories" do
