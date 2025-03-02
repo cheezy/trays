@@ -16,8 +16,6 @@ defmodule Trays.Admin.Products do
     |> Repo.preload(:merchant)
   end
 
-  def with_merchant(query, merchant_id) when merchant_id in ["", nil], do: query
-
   def with_merchant(query, merchant_id) do
     where(query, merchant_id: ^merchant_id)
   end
