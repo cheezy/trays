@@ -7,9 +7,12 @@ defmodule Trays.Merchant do
   schema "merchants" do
     field :name, :string
     field :description, :string
-    field :contact_phone, :string, default: "1111111111"
+    field :contact_phone, :string, default: "1111111111"  # move to contact
     field :logo_path, :string, default: "/images/logo_placeholder.jpg"
     field :food_category, :string
+    # type of merchant - corp or individual (Ardita to provide types)
+    # business number
+    # articles of incorporation? or proof of documents
 
     has_many :merchant_locations, Trays.MerchantLocation
     has_many :products, Trays.Product

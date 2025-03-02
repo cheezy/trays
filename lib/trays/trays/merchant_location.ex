@@ -11,7 +11,15 @@ defmodule Trays.MerchantLocation do
     field :province, :string
     field :postal_code, :string
     field :country, :string
-    field :contact_name, :string
+    field :contact_name, :string   # build relationship to user
+
+  # special instructions to get to location
+  # hours of deliveries
+  # lead time for delivery
+  # cancellation policy
+  # payment options - online, credit card, in person, pay on delivery
+  # holiday schedule
+  # delivery options - delivery / pickup
 
     belongs_to :merchant, Trays.Merchant
 
