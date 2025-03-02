@@ -13,6 +13,7 @@ defmodule Trays.Merchant do
     # type of merchant - corp or individual (Ardita to provide types)
     # business number
     # articles of incorporation? or proof of documents
+    # test comment
 
     has_many :merchant_locations, Trays.MerchantLocation
     has_many :products, Trays.Product
