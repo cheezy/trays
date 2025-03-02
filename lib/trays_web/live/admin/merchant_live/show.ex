@@ -1,7 +1,7 @@
 defmodule TraysWeb.Admin.MerchantLive.Show do
   use TraysWeb, :live_view
 
-    @moduledoc false
+  @moduledoc false
 
   alias Trays.Admin.Merchants
 
@@ -25,7 +25,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
     ~H"""
     <div class="merchant-show">
       <div class="merchant">
-        <img src={@merchant.logo_path} alt={gettext "Logo"} />
+        <img src={@merchant.logo_path} alt={gettext("Logo")} />
         <section>
           <header>
             <div>
@@ -33,8 +33,8 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
               <h3>{@merchant.food_category}</h3>
             </div>
             <div class="contact">
-              {@merchant.contact.name}<br>
-              {@merchant.contact_phone}<br>
+              {@merchant.contact.name}<br />
+              {@merchant.contact_phone}<br />
               {@merchant.contact.email}
             </div>
           </header>
@@ -43,10 +43,10 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
           </div>
         </section>
       </div>
-      <.merchant_locations merchant_id={@merchant.id} locations={@locations} locale={@locale}/>
+      <.merchant_locations merchant_id={@merchant.id} locations={@locations} locale={@locale} />
     </div>
     <.back navigate={~p"/#{@locale}/admin/merchants"}>
-      {gettext "Back to all Merchants"}
+      {gettext("Back to all Merchants")}
     </.back>
     """
   end
@@ -55,36 +55,44 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
     ~H"""
     <.header>
       <:actions>
-        <.link navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/products"} id="manage_products_btn" class="button">
-          {gettext "Manage Products"}
+        <.link
+          navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/products"}
+          id="manage_products_btn"
+          class="button"
+        >
+          {gettext("Manage Products")}
         </.link>
       </:actions>
       <:actions>
-        <.link navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/locations/new"} id="new_location_btn" class="button">
-          {gettext "New Location"}
+        <.link
+          navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/locations/new"}
+          id="new_location_btn"
+          class="button"
+        >
+          {gettext("New Location")}
         </.link>
       </:actions>
     </.header>
     <.table id="locations" rows={@locations}>
-      <:col :let={location} label={gettext "Street"}>
+      <:col :let={location} label={gettext("Street")}>
         {location.street1}
       </:col>
-      <:col :let={location} label={gettext "City"}>
+      <:col :let={location} label={gettext("City")}>
         {location.city}
       </:col>
-      <:col :let={location} label={gettext "Province"}>
+      <:col :let={location} label={gettext("Province")}>
         {location.province}
       </:col>
-      <:col :let={location} label={gettext "Country"}>
+      <:col :let={location} label={gettext("Country")}>
         {location.country}
       </:col>
-      <:col :let={location} label={gettext "Contact"}>
+      <:col :let={location} label={gettext("Contact")}>
         {location.contact_name}
       </:col>
       <:action :let={location}>
         <.link
-            navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/locations/#{location.id}/edit"}
-            class="edit-merchant-location"
+          navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/locations/#{location.id}/edit"}
+          class="edit-merchant-location"
         >
           <.icon name="hero-pencil-square" class="h-4 w-4" />
         </.link>
@@ -93,8 +101,8 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
         <.link
           phx-click="delete"
           phx-value-id={location.id}
-          phx-disable-with={gettext "Deleting..."}
-          data-confirm={gettext "Are you sure?"}
+          phx-disable-with={gettext("Deleting...")}
+          data-confirm={gettext("Are you sure?")}
           class="delete-merchant-location"
         >
           <.icon name="hero-trash" class="h-4 w-4" />

@@ -14,7 +14,8 @@ defmodule TraysWeb.TraysLive.Index do
     socket =
       socket
       |> stream(:merchants, Merchants.list_merchants(), reset: true)
-      {:noreply, socket}
+
+    {:noreply, socket}
   end
 
   def render(assigns) do
@@ -26,8 +27,12 @@ defmodule TraysWeb.TraysLive.Index do
         <div id="empty" class="no-results only:block hidden">
           No merchants found. Try changing your filters.
         </div>
-        <.merchant_card :for={{dom_id, merchant} <- @streams.merchants}
-          merchant={merchant} id={dom_id} locale={@locale} />
+        <.merchant_card
+          :for={{dom_id, merchant} <- @streams.merchants}
+          merchant={merchant}
+          id={dom_id}
+          locale={@locale}
+        />
       </div>
     </div>
     """

@@ -25,10 +25,13 @@ defmodule TraysWeb.Admin.MerchantLive.ShowTest do
     merchant = MerchantFixtures.merchant_fixture_with_user(user)
 
     {:ok, view, _html} = live(conn, "#{@route}/#{merchant.id}")
-    {:ok, _, html} = view
+
+    {:ok, _, html} =
+      view
       |> element("#new_location_btn")
       |> render_click()
       |> follow_redirect(conn)
+
     assert html =~ "New Merchant Location"
   end
 end

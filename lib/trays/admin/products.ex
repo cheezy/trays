@@ -1,5 +1,4 @@
 defmodule Trays.Admin.Products do
-
   alias Trays.Repo
   alias Trays.Product
   import Ecto.Query

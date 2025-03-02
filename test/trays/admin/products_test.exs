@@ -14,7 +14,7 @@ defmodule Trays.AdminProductsTest do
     product = ProductFixtures.product_fixture_with_merchant(merchant)
     {:ok, merchant: merchant, product: product}
   end
-  
+
   test "should retrieve a list of all products", context do
     all_products = Products.list_products_for_merchant(context.merchant.id)
     assert [context.product] == all_products
@@ -24,5 +24,4 @@ defmodule Trays.AdminProductsTest do
     [product_with_merchant | _] = Products.list_products_with_merchant(context.merchant.id)
     assert context.merchant.id == product_with_merchant.merchant.id
   end
-
 end

@@ -27,28 +27,24 @@ defmodule TraysWeb.Admin.ProductLive.Index do
       <.header>
         {@page_title}
       </.header>
-      <.table
-        id="products"
-        rows={@streams.products}
-      >
+      <.table id="products" rows={@streams.products}>
         <:col :let={{_, product}}>
-          <img src={product.image_path} width="60"/>
+          <img src={product.image_path} width="60" />
         </:col>
-        <:col :let={{_, product}} label={gettext "Name"}>
+        <:col :let={{_, product}} label={gettext("Name")}>
           {product.name}
         </:col>
-        <:col :let={{_, product}} label={gettext "Category"}>
+        <:col :let={{_, product}} label={gettext("Category")}>
           {product.category}
         </:col>
-        <:col :let={{_, product}} label={gettext "Price"}>
+        <:col :let={{_, product}} label={gettext("Price")}>
           {"$#{Money.to_string(product.price, symbol: false)}"}
         </:col>
       </.table>
     </div>
     <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant}"}>
-      {gettext "Back to Merchant"}
+      {gettext("Back to Merchant")}
     </.back>
-
     """
   end
 end

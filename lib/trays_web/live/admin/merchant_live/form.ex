@@ -12,11 +12,11 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
       socket
       |> apply_action(socket.assigns.live_action, params)
       |> allow_upload(
-            :logo,
-            accept: ~w(.png .jpeg .jpg),
-            max_file_size: 4_000_000,
-            auto_upload: false
-         )
+        :logo,
+        accept: ~w(.png .jpeg .jpg),
+        max_file_size: 4_000_000,
+        auto_upload: false
+      )
 
     {:ok, socket}
   end
@@ -26,7 +26,7 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
     changeset = Merchants.change_merchant(merchant)
 
     socket
-    |> assign(:page_title, gettext "New Merchant")
+    |> assign(:page_title, gettext("New Merchant"))
     |> assign(:form, to_form(changeset))
     |> assign(:merchant, merchant)
   end
@@ -36,46 +36,50 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
     changeset = Merchants.change_merchant(merchant)
 
     socket
-    |> assign(:page_title, gettext "Edit Merchant")
+    |> assign(:page_title, gettext("Edit Merchant"))
     |> assign(:form, to_form(changeset))
     |> assign(:merchant, merchant)
   end
 
   def render(assigns) do
-  ~H"""
-  <.header>
-    {@page_title}
-  </.header>
-  <.simple_form for={@form} id="merchant-form" phx-submit="save" phx-change="validate">
-    <.input field={@form[:name]} label={gettext "Name"} />
-    <.input field={@form[:food_category]} label={gettext "Category"} />
-    <.input field={@form[:description]} type="textarea" label={gettext "Description"} phx-debounce="blur" />
+    ~H"""
+    <.header>
+      {@page_title}
+    </.header>
+    <.simple_form for={@form} id="merchant-form" phx-submit="save" phx-change="validate">
+      <.input field={@form[:name]} label={gettext("Name")} />
+      <.input field={@form[:food_category]} label={gettext("Category")} />
+      <.input
+        field={@form[:description]}
+        type="textarea"
+        label={gettext("Description")}
+        phx-debounce="blur"
+      />
 
-    <.image_upload image={@uploads.logo}>
-      <:label>Logo</:label>
-      <:current_image>
-        <img src={@merchant.logo_path}/>
-      </:current_image>
-      <:hint>
-        {
-          gettext("Up to %{size} MB (.png, .jpeg, .jpg)",
-          size: trunc(@uploads.logo.max_file_size / 1_000_000))
-        }
-      </:hint>
-    </.image_upload>
-    
-    <:actions>
-      <.button phx-disable-with={gettext "Saving..."}>{gettext "Save Merchant"}</.button>
-    </:actions>
-  </.simple_form>
-  <.back navigate={~p"/#{@locale}/admin/merchants"}>
-    {gettext "Back to all Merchants"}
-  </.back>
-  """
+      <.image_upload image={@uploads.logo}>
+        <:label>Logo</:label>
+        <:current_image>
+          <img src={@merchant.logo_path} />
+        </:current_image>
+        <:hint>
+          {gettext("Up to %{size} MB (.png, .jpeg, .jpg)",
+            size: trunc(@uploads.logo.max_file_size / 1_000_000)
+          )}
+        </:hint>
+      </.image_upload>
+
+      <:actions>
+        <.button phx-disable-with={gettext("Saving...")}>{gettext("Save Merchant")}</.button>
+      </:actions>
+    </.simple_form>
+    <.back navigate={~p"/#{@locale}/admin/merchants"}>
+      {gettext("Back to all Merchants")}
+    </.back>
+    """
   end
 
   def handle_event("cancel-logo", %{"ref" => ref}, socket) do
-      {:noreply, cancel_upload(socket, :logo, ref)}
+    {:noreply, cancel_upload(socket, :logo, ref)}
   end
 
   def handle_event("validate", %{"merchant" => merchant_params}, socket) do
@@ -91,12 +95,12 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
 
   defp save_merchant(socket, :new, merchant_params) do
     Merchants.create_merchant(merchant_params)
-    |> handle_save_results(socket, gettext "Merchant created successfully!")
+    |> handle_save_results(socket, gettext("Merchant created successfully!"))
   end
 
   defp save_merchant(socket, :edit, merchant_params) do
     Merchants.update_merchant(socket.assigns.merchant, merchant_params)
-    |> handle_save_results(socket, gettext "Merchant updated successfully!")
+    |> handle_save_results(socket, gettext("Merchant updated successfully!"))
   end
 
   defp handle_save_results(result, socket, message) do
@@ -125,10 +129,12 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
             "uploads",
             "#{entry.uuid}-#{entry.client_name}"
           ])
+
         File.cp!(meta.path, dest)
         url_path = static_path(socket, "/uploads/#{Path.basename(dest)}")
         {:ok, url_path}
       end)
+
     List.first(paths)
   end
 end

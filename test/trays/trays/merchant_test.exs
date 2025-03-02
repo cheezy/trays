@@ -1,6 +1,6 @@
 defmodule Trays.MerchantTest do
   use Trays.DataCase
-  
+
   @moduledoc false
 
   alias Trays.Merchant
@@ -75,9 +75,10 @@ defmodule Trays.MerchantTest do
 
   defp assert_require_field(valid_attrs, field) do
     invalid_attrs = Map.put(valid_attrs, field, "")
+
     Merchant.changeset(%Merchant{}, invalid_attrs)
     |> assert_validation_error_on(field, "can't be blank")
+
     valid_attrs
   end
-
 end

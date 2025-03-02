@@ -7,6 +7,5 @@ defmodule Trays.Repo.Migrations.AddContactIdToMerchant do
     end
 
     create index(:merchants, [:contact_id])
-
   end
 end

@@ -20,7 +20,7 @@ defmodule Trays.ProductFixtures do
       merchant_id: 3
     })
   end
-  
+
   def product_fixture(attrs \\ %{}) do
     {:ok, product} =
       %Product{}
@@ -33,5 +33,4 @@ defmodule Trays.ProductFixtures do
   def product_fixture_with_merchant(merchant) do
     product_fixture(%{merchant_id: merchant.id})
   end
-
 end

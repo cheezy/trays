@@ -13,7 +13,10 @@ defmodule TraysWeb.UserRegistrationLive do
         Register for an account
         <:subtitle>
           Already registered?
-          <.link navigate={~p"/#{@locale}/users/log_in"} class="font-semibold text-brand hover:underline">
+          <.link
+            navigate={~p"/#{@locale}/users/log_in"}
+            class="font-semibold text-brand hover:underline"
+          >
             Log in
           </.link>
           to your account now.

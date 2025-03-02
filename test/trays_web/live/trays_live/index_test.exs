@@ -15,7 +15,7 @@ defmodule TraysWeb.TraysLive.IndexTest do
   test "should show information about merchants in the system", %{conn: conn} do
     user = AccountsFixtures.user_fixture()
     merchant = MerchantFixtures.merchant_fixture_with_user(user)
-    
+
     {:ok, _view, html} = live(conn, @route)
     assert html =~ merchant.name
     assert html =~ merchant.description

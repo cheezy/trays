@@ -17,8 +17,7 @@ defmodule TraysWeb do
   those modules here.
   """
 
-  def static_paths, do:
-    ~w(assets fonts images uploads favicon.ico favicon.svg favicon-96x96.png
+  def static_paths, do: ~w(assets fonts images uploads favicon.ico favicon.svg favicon-96x96.png
         apple-touch-icon.png web-app-manifest-192x192.png web-app-manifest-512x512.png
         robots.txt site.webmanifest)
 

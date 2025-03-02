@@ -21,30 +21,30 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
         {@page_title}
         <:actions>
           <.link navigate={~p"/#{@locale}/admin/merchants/new"} id="new_merchant_btn" class="button">
-            {gettext "New Merchant"}
+            {gettext("New Merchant")}
           </.link>
         </:actions>
       </.header>
       <.table
-          id="merchants"
-          rows={@streams.merchants}
-          row_click={fn {_, merchant} -> JS.navigate(~p"/#{@locale}/admin/merchants/#{merchant}") end}
-          >
+        id="merchants"
+        rows={@streams.merchants}
+        row_click={fn {_, merchant} -> JS.navigate(~p"/#{@locale}/admin/merchants/#{merchant}") end}
+      >
         <:col :let={{_, merchant}}>
-          <img src={merchant.logo_path} width="60"/>
+          <img src={merchant.logo_path} width="60" />
         </:col>
-        <:col :let={{_, merchant}} label={gettext "Name"}>
+        <:col :let={{_, merchant}} label={gettext("Name")}>
           <.link navigate={~p"/#{@locale}/admin/merchants/#{merchant}"}>
             {merchant.name}
           </.link>
         </:col>
-        <:col :let={{_, merchant}} label={gettext "Description"}>
+        <:col :let={{_, merchant}} label={gettext("Description")}>
           {merchant.description}
         </:col>
-        <:col :let={{_, merchant}} label={gettext "Contact"}>
+        <:col :let={{_, merchant}} label={gettext("Contact")}>
           {merchant.contact.name}
         </:col>
-        <:col :let={{_, merchant}} label={gettext "Phone"}>
+        <:col :let={{_, merchant}} label={gettext("Phone")}>
           {merchant.contact_phone}
         </:col>
         <:action :let={{_, merchant}}>
@@ -55,7 +55,7 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
         <:action :let={{dom_id, merchant}}>
           <.link
             phx-click={delete_and_hide(dom_id, merchant)}
-            data-confirm={gettext "Are you sure?"}
+            data-confirm={gettext("Are you sure?")}
             class="delete-merchant"
           >
             <.icon name="hero-trash" class="h-4 w-4" />
@@ -76,5 +76,4 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
     JS.push("delete", value: %{id: merchant.id})
     |> JS.hide(to: "##{dom_id}", transition: "fade-out")
   end
-
 end

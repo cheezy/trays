@@ -101,7 +101,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Mini Baked Good Platter",
   description: "A tray of mini goodness",
   image_path: "/images/mini.jpg",
@@ -111,7 +111,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Yogurt Parfait",
   description: "Yogurt and Fruit",
   image_path: "/images/yogurt.jpg",
@@ -121,7 +121,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Fresh Fruit Salad",
   description: "Fruit in a cup",
   image_path: "/images/fruit.jpg",
@@ -131,7 +131,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Breakfast Combo",
   description: "Baked Good or Muffin + Yogurt Pafait or Fruit Salad",
   image_path: "/images/breakfast-combo.jpg",
@@ -141,7 +141,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Breakfast Platter",
   description: "Assortment of muffins, sweet and savoury baked goods",
   image_path: "/images/breakfast-platter.jpg",
@@ -151,7 +151,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Sandwich Platter",
   description: "One of our amazing sandwiches",
   category: "lunch",
@@ -161,7 +161,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Side Salads",
   description: "Add a salad to your sandwich order",
   category: "lunch",
@@ -171,9 +171,10 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Quiche Platter",
-  description: "An assortment of traditional and new recipes always in a pure butter artisan pastry shell",
+  description:
+    "An assortment of traditional and new recipes always in a pure butter artisan pastry shell",
   category: "lunch",
   image_path: "/images/quiche.jpg",
   price: Money.new(1050),
@@ -181,7 +182,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "French combo",
   description: "A quiche + Side salad",
   category: "lunch",
@@ -191,7 +192,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Lunch Bag with desert",
   description: "Sandwich + Side salad + Cookie or fresh fruit",
   category: "lunch",
@@ -201,7 +202,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Lunch Bag without desert",
   description: "Sandwich + Side salad",
   image_path: "/images/lunch-box-without-desert.jpg",
@@ -211,7 +212,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Fresh Fruit",
   description: "Fruit on a Tray",
   category: "alacarte",
@@ -221,7 +222,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Fruit and Cheese",
   description: "Fruit and cheese on a tray",
   category: "alacarte",
@@ -231,7 +232,7 @@ apd =
 }
 |> Repo.insert!()
 
-%Product {
+%Product{
   name: "Dessert Platter",
   description: "A tray with a lot of deserts",
   category: "dessert",
@@ -240,8 +241,6 @@ apd =
   merchant: apd
 }
 |> Repo.insert!()
-
-
 
 %Merchant{
   name: "Miku",

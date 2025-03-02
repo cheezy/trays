@@ -1,6 +1,5 @@
 defmodule Trays.Admin.Merchants do
-
-    @moduledoc false
+  @moduledoc false
 
   alias Trays.Repo
   alias Trays.Merchant
@@ -35,7 +34,7 @@ defmodule Trays.Admin.Merchants do
   end
 
   def update_merchant(%Merchant{} = merchant, attrs) do
-      merchant
+    merchant
     |> Merchant.changeset(attrs)
     |> Repo.update()
   end

@@ -83,12 +83,12 @@ defmodule Trays.ProductTest do
     Product.changeset(%Product{}, attrs)
   end
 
-
   defp assert_require_field(valid_attrs, field) do
     invalid_attrs = Map.put(valid_attrs, field, "")
+
     Product.changeset(%Product{}, invalid_attrs)
     |> assert_validation_error_on(field, "can't be blank")
+
     valid_attrs
   end
-
 end

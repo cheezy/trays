@@ -90,6 +90,7 @@ defmodule TraysWeb.UserSettingsLive do
 
   def mount(%{"token" => token}, _session, socket) do
     socket = assign(socket, :locale, TraysWeb.Cldr.get_my_locale())
+
     socket =
       case Accounts.update_user_email(socket.assigns.current_user, token) do
         :ok ->
@@ -140,6 +141,7 @@ defmodule TraysWeb.UserSettingsLive do
     case Accounts.apply_user_email(user, password, user_params) do
       {:ok, applied_user} ->
         locale = TraysWeb.Cldr.get_my_locale()
+
         Accounts.deliver_user_update_email_instructions(
           applied_user,
           user.email,

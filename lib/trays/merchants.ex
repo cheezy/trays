@@ -1,5 +1,4 @@
 defmodule Trays.Merchants do
-
   @moduledoc """
   The Merchants context.
   """
@@ -11,6 +10,4 @@ defmodule Trays.Merchants do
     Merchant
     |> Repo.all()
   end
-
-
 end

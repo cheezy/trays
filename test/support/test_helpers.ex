@@ -1,6 +1,6 @@
 defmodule Trays.TestHelpers do
   use ExUnit.Case
-  
+
   @moduledoc false
 
   def assert_validation_error_on(changeset, field, msg) do
@@ -12,5 +12,4 @@ defmodule Trays.TestHelpers do
   def string_of_length(len) do
     Enum.reduce(1..len, "", fn _, acc -> "x" <> acc end)
   end
-
 end

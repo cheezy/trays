@@ -23,10 +23,13 @@ defmodule TraysWeb.Admin.MerchantLive.IndexTest do
 
   test "should navigate to create a new Merchant", %{conn: conn} do
     {:ok, view, _html} = live(conn, @route)
-    {:ok, _, html} = view
+
+    {:ok, _, html} =
+      view
       |> element("#new_merchant_btn")
       |> render_click()
       |> follow_redirect(conn)
+
     assert html =~ "New Merchant"
   end
 
@@ -35,10 +38,13 @@ defmodule TraysWeb.Admin.MerchantLive.IndexTest do
     MerchantFixtures.merchant_fixture_with_user(user)
 
     {:ok, view, _html} = live(conn, @route)
-    {:ok, _, html} = view
+
+    {:ok, _, html} =
+      view
       |> element(".edit-merchant")
       |> render_click()
       |> follow_redirect(conn)
+
     assert html =~ "Edit Merchant"
   end
 
@@ -47,9 +53,11 @@ defmodule TraysWeb.Admin.MerchantLive.IndexTest do
     merchant = MerchantFixtures.merchant_fixture_with_user(user)
 
     {:ok, view, _html} = live(conn, @route)
+
     view
-      |> element(".delete-merchant")
-      |> render_click()
+    |> element(".delete-merchant")
+    |> render_click()
+
     assert Repo.get(Merchant, merchant.id) == nil
   end
- end
+end

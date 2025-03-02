@@ -10,6 +10,7 @@ defmodule TraysWeb.UserSessionController do
 
   def create(conn, %{"_action" => "password_updated"} = params) do
     locale = TraysWeb.Cldr.get_my_locale()
+
     conn
     |> put_session(:user_return_to, ~p"/#{locale}/users/settings")
     |> create(params, "Password updated successfully!")
