@@ -39,7 +39,7 @@ defmodule TraysWeb.TraysLive.Index do
 
   def merchant_card(assigns) do
     ~H"""
-    <div class="card">
+    <div class="card" id="{@id}">
       <div class="name">
         {@merchant.name}
       </div>
