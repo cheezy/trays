@@ -1,0 +1,20 @@
+defmodule TraysWeb.Admin.ProductLive.IndexTest do
+  use TraysWeb.ConnCase
+
+  import Phoenix.LiveViewTest
+  alias Trays.MerchantFixtures
+  alias Trays.AccountsFixtures
+  alias Trays.ProductFixtures
+
+  test "should load the page and display products", %{conn: conn} do
+    user = AccountsFixtures.user_fixture()
+    merchant = MerchantFixtures.merchant_fixture_with_user(user)
+    product = ProductFixtures.product_fixture(%{merchant_id: merchant.id})
+
+    {:ok, _view, html} = live(conn, "/en/admin/merchants/#{merchant.id}/products")
+    assert html =~ "Products for #{merchant.name}"
+    assert html =~ product.name
+    assert html =~ product.category
+    assert html =~ Money.to_string(product.price, symbol: false)
+  end
+end
