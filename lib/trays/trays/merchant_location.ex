@@ -11,7 +11,7 @@ defmodule Trays.MerchantLocation do
     field :province, :string
     field :postal_code, :string
     field :country, :string
-    field :contact_name, :string   # build relationship to user
+    field :contact_name, :string
 
   # special instructions to get to location
   # hours of deliveries
@@ -22,6 +22,7 @@ defmodule Trays.MerchantLocation do
   # delivery options - delivery / pickup
 
     belongs_to :merchant, Trays.Merchant
+    belongs_to :contact, Trays.Accounts.User
 
     timestamps(type: :utc_datetime)
   end
