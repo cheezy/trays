@@ -3,9 +3,11 @@ defmodule TraysWeb.Admin.MerchantLive.ShowTest do
 
   import Phoenix.LiveViewTest
   alias Trays.MerchantFixtures
+  alias Trays.MerchantLocationFixtures
   alias Trays.AccountsFixtures
 
   @route "/en/admin/merchants"
+
 
   test "should show the details for a Merchant", %{conn: conn} do
     user = AccountsFixtures.user_fixture()
@@ -33,5 +35,18 @@ defmodule TraysWeb.Admin.MerchantLive.ShowTest do
       |> follow_redirect(conn)
 
     assert html =~ "New Merchant Location"
+  end
+
+  test "should display locations of the merchant", %{conn: conn} do
+    user = AccountsFixtures.user_fixture()
+    merchant = MerchantFixtures.merchant_fixture_with_user(user)
+    merchant_location = MerchantLocationFixtures.merchant_location_fixture(merchant)
+
+    {:ok, _view, html} = live(conn, "#{@route}/#{merchant.id}")
+    assert html =~ merchant_location.street1
+    assert html =~ merchant_location.city
+    assert html =~ merchant_location.province
+    assert html =~ merchant_location.country
+    assert html =~ merchant_location.contact_name
   end
 end
