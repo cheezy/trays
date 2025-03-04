@@ -25,7 +25,7 @@ defmodule TraysWeb.Admin.MerchantLive.IndexTest do
     assert html =~ merchant.contact_phone
   end
 
-  test "should navigate to create a new Merchant", %{conn: conn, user: user} do
+  test "should navigate to create a new Merchant", %{conn: conn} do
     {:ok, view, _html} = live(conn, @route)
 
     {:ok, _, html} =
@@ -37,7 +37,7 @@ defmodule TraysWeb.Admin.MerchantLive.IndexTest do
     assert html =~ "New Merchant"
   end
 
-  test "should navigate to edit an existing Merchant", %{conn: conn, user: user} do
+  test "should navigate to edit an existing Merchant", %{conn: conn} do
     {:ok, view, _html} = live(conn, @route)
 
     {:ok, _, html} =
