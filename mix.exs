@@ -66,7 +66,8 @@ defmodule Trays.MixProject do
       {:money, "~> 1.13"},
       {:fun_with_flags, "~> 1.12.0"},
       {:fun_with_flags_ui, "~> 1.0"},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:mix_audit, "~> 2.1", only: [:dev, :test], runtime: false}
     ]
   end
 

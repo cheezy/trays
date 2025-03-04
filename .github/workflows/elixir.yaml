@@ -105,11 +105,16 @@ jobs:
       run: mix compile --warnings-as-errors
 
     # Step: Check that the checked in code has already been formatted.
-    # This step fails if something was found unformatted.
-    # Customize this step as desired.
-#    - name: Check Formatting
-#      run: mix format --check-formatted
+    - name: Check Formatting
+      run: mix format --check-formatted --no-exit
+
+    # Step: Run audit on dependencies
+    - name: Run Audit
+      run: |
+        mix deps.audit
+        mix hex.audit
 
     # Step: Execute the tests.
     - name: Run tests
       run: mix test
+
