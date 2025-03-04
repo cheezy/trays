@@ -20,21 +20,24 @@ alias Trays.Product
   Accounts.register_user(%{
     name: "Cheezy Morgan",
     email: "cheezy@letstango.ca",
-    password: "Apd@81Front"
+    password: "Apd@81Front",
+    type: :merchant
   })
 
 {:ok, ardita} =
   Accounts.register_user(%{
     name: "Ardita Karaj",
     email: "ardita@letstango.ca",
-    password: "Apd@222Bay"
+    password: "Apd@222Bay",
+    type: :merchant
   })
 
 {:ok, joseph} =
   Accounts.register_user(%{
     name: "Joseph Morgan",
     email: "joser.morgan6@gmail.com",
-    password: "JSM@8Colborne"
+    password: "JSM@8Colborne",
+    type: :merchant
   })
 
 apd =

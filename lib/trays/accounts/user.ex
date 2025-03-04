@@ -7,6 +7,7 @@ defmodule Trays.Accounts.User do
   schema "users" do
     field :email, :string
     field :name, :string
+    field :type, Ecto.Enum, values: [:customer, :merchant], default: :customer
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :current_password, :string, virtual: true, redact: true
@@ -40,7 +41,7 @@ defmodule Trays.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password, :name])
+    |> cast(attrs, [:email, :password, :name, :type])
     |> validate_name()
     |> validate_email(opts)
     |> validate_password(opts)
