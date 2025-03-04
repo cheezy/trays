@@ -47,7 +47,14 @@ defmodule TraysWeb.Router do
       pipe_through :browser
       live "/", TraysLive.Index
       live "/trays", TraysLive.Index
+    end
+  end
 
+  scope "/:locale", TraysWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live_session :admin,
+        on_mount: [{TraysWeb.UserAuth, :ensure_authenticated}, {TraysWeb.RestoreLocale, :default}] do
       live "/admin/merchants", Admin.MerchantLive.Index
       live "/admin/merchants/new", Admin.MerchantLive.Form, :new
       live "/admin/merchants/:id/edit", Admin.MerchantLive.Form, :edit
