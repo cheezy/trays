@@ -12,7 +12,7 @@ defmodule TraysWeb.Admin.ProductLive.IndexTest do
     %{conn: log_in_user(conn, user), user: user, merchant: merchant}
   end
 
-  test "should load the page and display products", %{conn: conn, user: user, merchant: merchant} do
+  test "should load the page and display products", %{conn: conn, merchant: merchant} do
     product = ProductFixtures.product_fixture(%{merchant_id: merchant.id})
 
     {:ok, _view, html} = live(conn, "/en/admin/merchants/#{merchant.id}/products")

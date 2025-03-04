@@ -25,7 +25,7 @@ defmodule TraysWeb.Admin.MerchantLive.ShowTest do
     assert html =~ user.email
   end
 
-  test "should navigate to create new Merchant Location", %{conn: conn, user: user, merchant: merchant} do
+  test "should navigate to create new Merchant Location", %{conn: conn, merchant: merchant} do
     {:ok, view, _html} = live(conn, "#{@route}/#{merchant.id}")
 
     {:ok, _, html} =
@@ -37,7 +37,7 @@ defmodule TraysWeb.Admin.MerchantLive.ShowTest do
     assert html =~ "New Merchant Location"
   end
 
-  test "should display locations of the merchant", %{conn: conn, user: user, merchant: merchant} do
+  test "should display locations of the merchant", %{conn: conn, merchant: merchant} do
     merchant_location = MerchantLocationFixtures.merchant_location_fixture(merchant)
 
     {:ok, _view, html} = live(conn, "#{@route}/#{merchant.id}")
