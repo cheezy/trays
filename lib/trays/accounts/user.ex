@@ -7,7 +7,7 @@ defmodule Trays.Accounts.User do
   schema "users" do
     field :email, :string
     field :name, :string
-    field :type, Ecto.Enum, values: [:customer, :merchant], default: :customer
+    field :type, Ecto.Enum, values: [:customer, :merchant, :super], default: :customer
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :current_password, :string, virtual: true, redact: true

@@ -21,7 +21,7 @@ alias Trays.Product
     name: "Cheezy Morgan",
     email: "cheezy@letstango.ca",
     password: "Apd@81Front",
-    type: :merchant
+    type: :super
   })
 
 {:ok, ardita} =
@@ -29,7 +29,7 @@ alias Trays.Product
     name: "Ardita Karaj",
     email: "ardita@letstango.ca",
     password: "Apd@222Bay",
-    type: :merchant
+    type: :super
   })
 
 {:ok, joseph} =
@@ -37,8 +37,48 @@ alias Trays.Product
     name: "Joseph Morgan",
     email: "joser.morgan6@gmail.com",
     password: "JSM@8Colborne",
+    type: :super
+  })
+
+{:ok, debbie} =
+  Accounts.register_user(%{
+    name: "Debbie Dore",
+    email: "debbie@trays.ca",
+    password: "Debbie@123Pain",
     type: :merchant
   })
+
+{:ok, mike} =
+  Accounts.register_user(%{
+    name: "Mike Miku",
+    email: "mike@trays.ca",
+    password: "Mike@123Miku",
+    type: :merchant
+  })
+
+{:ok, fanny} =
+  Accounts.register_user(%{
+    name: "Flat Fanny",
+    email: "Fanny@trays.ca",
+    password: "fanny@123Iron",
+    type: :merchant
+  })
+
+{:ok, sally} =
+  Accounts.register_user(%{
+    name: "Sally Sultan",
+    email: "Sally@trays.ca",
+    password: "sally@123Sultin",
+    type: :merchant
+  })
+
+Accounts.register_user(%{
+  name: "Curious Customer",
+  email: "Customer@trays.ca",
+  password: "customer@123Trays",
+  type: :customer
+})
+
 
 apd =
   %Merchant{
@@ -48,7 +88,7 @@ apd =
     contact_phone: "4162305555",
     logo_path: "/images/apd_logo.png",
     food_category: "Bakery & Cafe",
-    contact_id: ardita.id
+    contact_id: debbie.id
   }
   |> Repo.insert!()
 
@@ -252,7 +292,7 @@ apd =
   contact_phone: "4165551234",
   logo_path: "/images/miku_logo.jpg",
   food_category: "Authentic Japanese restaurant",
-  contact_id: cheezy.id
+  contact_id: mike.id
 }
 |> Repo.insert!()
 
@@ -263,7 +303,7 @@ apd =
   contact_phone: "6471234567",
   logo_path: "/images/flatiron_logo.png",
   food_category: "British Pub",
-  contact_id: joseph.id
+  contact_id: fanny.id
 }
 |> Repo.insert!()
 
@@ -274,6 +314,6 @@ apd =
   contact_phone: "6479993487",
   logo_path: "/images/sultans_tent_logo.png",
   food_category: "Mediterranean restaurant",
-  contact_id: ardita.id
+  contact_id: sally.id
 }
 |> Repo.insert!()
