@@ -35,7 +35,7 @@ defmodule TraysWeb.UserAuth do
     |> renew_session()
     |> put_token_in_session(token)
     |> maybe_write_remember_me_cookie(token, params)
-    |> redirect(to: user_return_to || signed_in_path(conn))
+    |> redirect(to: user_return_to || sign_in_after_login(conn, user.type, user))
   end
 
   defp maybe_write_remember_me_cookie(conn, token, %{"remember_me" => "true"}) do
@@ -229,5 +229,24 @@ defmodule TraysWeb.UserAuth do
 
   defp signed_in_path(_conn) do
     ~p"/#{TraysWeb.Cldr.get_my_locale()}/"
+  end
+
+  defp sign_in_after_login(conn, :customer, _user) do
+    signed_in_path(conn)
+  end
+
+  defp sign_in_after_login(_conn, :merchant, user) do
+    merchant = Accounts.get_merchant_for_user(user)
+    case merchant do
+      nil ->
+        ~p"/#{TraysWeb.Cldr.get_my_locale()}/admin/merchants/new"
+
+      merchant ->
+        ~p"/#{TraysWeb.Cldr.get_my_locale()}/admin/merchants/#{merchant.id}"
+    end
+  end
+
+  defp sign_in_after_login(_conn, :super, _user) do
+    ~p"/#{TraysWeb.Cldr.get_my_locale()}/admin/merchants"
   end
 end

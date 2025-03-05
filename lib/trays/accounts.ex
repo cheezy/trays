@@ -7,6 +7,7 @@ defmodule Trays.Accounts do
   alias Trays.Repo
 
   alias Trays.Accounts.{User, UserToken, UserNotifier}
+  alias Trays.Merchant
 
   ## Database getters
 
@@ -59,6 +60,13 @@ defmodule Trays.Accounts do
 
   """
   def get_user!(id), do: Repo.get!(User, id)
+
+
+  def get_merchant_for_user(user) do
+    Merchant
+    |> where(contact_id: ^user.id)
+    |> Repo.one()
+  end
 
   ## User registration
 

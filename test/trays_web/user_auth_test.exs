@@ -5,6 +5,7 @@ defmodule TraysWeb.UserAuthTest do
   alias Trays.Accounts
   alias TraysWeb.UserAuth
   import Trays.AccountsFixtures
+  import Trays.MerchantFixtures
 
   @remember_me_cookie "_trays_web_user_remember_me"
 
@@ -34,6 +35,25 @@ defmodule TraysWeb.UserAuthTest do
     test "redirects to the configured path", %{conn: conn, user: user} do
       conn = conn |> put_session(:user_return_to, "/hello") |> UserAuth.log_in_user(user)
       assert redirected_to(conn) == "/hello"
+    end
+
+    test "redirects to new merchant page for merchant user with no merchant", %{conn: conn} do
+      merchant_user = user_fixture(%{type: :merchant})
+      conn = conn |> UserAuth.log_in_user(merchant_user)
+      assert redirected_to(conn) == "/en/admin/merchants/new"
+    end
+
+    test "redirects to show merchant page for merchant user with merchant", %{conn: conn} do
+      merchant_user = user_fixture(%{type: :merchant})
+      merchant = merchant_fixture(%{contact_id: merchant_user.id})
+      conn = conn |> UserAuth.log_in_user(merchant_user)
+      assert redirected_to(conn) == "/en/admin/merchants/#{merchant.id}"
+    end
+
+    test "redirects to merchant index page when user is super user", %{conn: conn} do
+      super_user = user_fixture(%{type: :super})
+      conn = conn |> UserAuth.log_in_user(super_user)
+      assert redirected_to(conn) == "/en/admin/merchants"
     end
 
     test "writes a cookie if remember_me is configured", %{conn: conn, user: user} do
