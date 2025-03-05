@@ -36,6 +36,11 @@ defmodule TraysWeb.UserRegistrationLive do
           Oops, something went wrong! Please check the errors below.
         </.error>
 
+        <.radio_group field={@form[:type]}>
+          User Type
+          <:radio value={:customer}>Customer</:radio>
+          <:radio value={:merchant}>Merchant</:radio>
+        </.radio_group>
         <.input field={@form[:name]} type="text" label="Name" required />
         <.input field={@form[:email]} type="email" label="Email" required />
         <.input field={@form[:password]} type="password" label="Password" required />
@@ -62,6 +67,7 @@ defmodule TraysWeb.UserRegistrationLive do
   end
 
   def handle_event("save", %{"user" => user_params}, socket) do
+    IO.inspect(user_params, pretty: true)
     case Accounts.register_user(user_params) do
       {:ok, user} ->
         {:ok, _} =

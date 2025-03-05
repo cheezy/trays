@@ -366,6 +366,37 @@ defmodule TraysWeb.CoreComponents do
     """
   end
 
+
+  attr :rb_class, :string,
+      default: "rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6"
+
+  slot :radio, required: true do
+    attr :value, :string, required: true
+  end
+
+  slot :inner_block
+
+  def radio_group(assigns) do
+    ~H"""
+    <div class="flex flex-row text-zinc-800 text-sm font-semibold">
+      <%= render_slot(@inner_block) %>
+      <div :for={{%{value: value} = rad, idx} <- Enum.with_index(@radio)}
+          class="px-4">
+        <input
+          type="radio"
+          name={@field.name}
+          id={"#{@field.id}-#{idx}"}
+          value={value}
+          checked={to_string(@field.value) == to_string(value)}
+          class={@rb_class}
+        />
+        <label for={"#{@field.id}-#{idx}"}><%= render_slot(rad) %></label>
+      </div>
+    </div>
+    """
+  end
+
+
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def input(assigns) do
     ~H"""
