@@ -22,7 +22,7 @@ defmodule TraysWeb.Admin.MerchantLive.IndexTest do
     assert html =~ merchant.name
     assert html =~ merchant.description
     assert html =~ user.name
-    assert html =~ merchant.contact_phone
+    assert html =~ user.phone_number
   end
 
   test "should navigate to create a new Merchant", %{conn: conn} do

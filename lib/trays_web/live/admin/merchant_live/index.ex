@@ -45,7 +45,7 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
           {merchant.contact.name}
         </:col>
         <:col :let={{_, merchant}} label={gettext("Phone")}>
-          {merchant.contact_phone}
+          {merchant.contact.phone_number}
         </:col>
         <:action :let={{_, merchant}}>
           <.link navigate={~p"/#{@locale}/admin/merchants/#{merchant}/edit"} class="edit-merchant">

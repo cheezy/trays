@@ -34,7 +34,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
             </div>
             <div class="contact">
               {@merchant.contact.name}<br />
-              {@merchant.contact_phone}<br />
+              {@merchant.contact.phone_number}<br />
               {@merchant.contact.email}
             </div>
           </header>

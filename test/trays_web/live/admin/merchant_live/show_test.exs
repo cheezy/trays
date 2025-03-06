@@ -20,7 +20,7 @@ defmodule TraysWeb.Admin.MerchantLive.ShowTest do
     assert html =~ merchant.name
     assert html =~ merchant.description
     assert html =~ merchant.food_category
-    assert html =~ merchant.contact_phone
+    assert html =~ user.phone_number
     assert html =~ user.name
     assert html =~ user.email
   end

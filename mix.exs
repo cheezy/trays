@@ -63,8 +63,6 @@ defmodule Trays.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:ex_cldr_plugs, "~> 1.3"},
-      {:ex_phone_number, "~> 0.4.5"},
-      {:live_phone, "~> 0.8"},
       {:money, "~> 1.13"},
       {:fun_with_flags, "~> 1.12.0"},
       {:fun_with_flags_ui, "~> 1.0"},

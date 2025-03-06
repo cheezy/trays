@@ -7,7 +7,6 @@ defmodule Trays.Merchant do
   schema "merchants" do
     field :name, :string
     field :description, :string
-    field :contact_phone, :string, default: "1111111111"  # move to contact
     field :logo_path, :string, default: "/images/logo_placeholder.jpg"
     field :food_category, :string
     # type of merchant - corp or individual (Ardita to provide types)
@@ -25,10 +24,9 @@ defmodule Trays.Merchant do
   @doc false
   def changeset(merchant, attrs) do
     merchant
-    |> cast(attrs, [:name, :contact_phone, :logo_path, :description, :food_category, :contact_id])
+    |> cast(attrs, [:name, :logo_path, :description, :food_category, :contact_id])
     |> validate_required([
       :name,
-      :contact_phone,
       :logo_path,
       :description,
       :food_category,
