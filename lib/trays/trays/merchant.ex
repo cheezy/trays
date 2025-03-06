@@ -12,7 +12,10 @@ defmodule Trays.Merchant do
     field :logo_path, :string, default: @default_logo_path
     field :food_category, :string
     # type of merchant - corp or individual (Ardita to provide types)
+    field :type, Ecto.Enum, values: [:business, :individual], default: :business
     # business number
+    field :business_number, :string
+
     # articles of incorporation? or proof of documents
 
 
@@ -30,7 +33,14 @@ defmodule Trays.Merchant do
   @doc false
   def changeset(merchant, attrs) do
     merchant
-    |> cast(attrs, [:name, :logo_path, :description, :food_category, :contact_id])
+    |> cast(attrs, [
+      :name,
+      :logo_path,
+      :description,
+      :food_category,
+      :type,
+      :business_number,
+      :contact_id])
     |> validate_required([
       :name,
       :logo_path,
