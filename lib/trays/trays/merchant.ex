@@ -46,7 +46,8 @@ defmodule Trays.Merchant do
       :logo_path,
       :description,
       :food_category,
-      :contact_id
+      :contact_id,
+      :type
     ])
     |> validate_length(:description, min: 10, max: 500)
     |> validate_length(:name, min: 4, max: 100)

@@ -95,7 +95,8 @@ apd =
       "Bakery location offering fresh bread, pastries & other sweets, plus a cafe with sandwiches & coffee.",
     logo_path: "/images/apd_logo.png",
     food_category: "Bakery & Cafe",
-    contact_id: debbie.id
+    contact_id: debbie.id,
+    type: :business
   }
   |> Repo.insert!()
 
@@ -298,7 +299,8 @@ apd =
     "Flame-seared sushi is the specialty at this Japanese fine-dining destination with soaring ceilings.",
   logo_path: "/images/miku_logo.jpg",
   food_category: "Authentic Japanese restaurant",
-  contact_id: mike.id
+  contact_id: mike.id,
+  type: :business
 }
 |> Repo.insert!()
 
@@ -308,7 +310,8 @@ apd =
     "Classic British pub offering international brews & grub in a historic building with a patio.",
   logo_path: "/images/flatiron_logo.png",
   food_category: "British Pub",
-  contact_id: fanny.id
+  contact_id: fanny.id,
+  type: :business
 }
 |> Repo.insert!()
 
@@ -318,6 +321,7 @@ apd =
     "French-Moroccan fare is served in the front cafe, with belly dancers & plush divans in a back room.",
   logo_path: "/images/sultans_tent_logo.png",
   food_category: "Mediterranean restaurant",
-  contact_id: sally.id
+  contact_id: sally.id,
+  type: :business
 }
 |> Repo.insert!()
