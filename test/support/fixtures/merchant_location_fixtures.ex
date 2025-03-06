@@ -10,6 +10,7 @@ defmodule Trays.MerchantLocationFixtures do
   def valid_postal_code(), do: "M3M 3M3"
   def valid_country(), do: "Canada"
   def valid_contact_name(), do: "Sam Smith"
+  def valid_contact_id(), do: nil
 
   def valid_merchant_location_attrs(attrs \\ %{}) do
     Enum.into(attrs, %{
@@ -19,7 +20,8 @@ defmodule Trays.MerchantLocationFixtures do
       province: valid_province(),
       postal_code: valid_postal_code(),
       country: valid_country(),
-      contact_name: valid_contact_name()
+      contact_name: valid_contact_name(),
+      contact_id: valid_contact_id()
     })
   end
 

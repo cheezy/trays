@@ -22,7 +22,7 @@ defmodule Trays.MerchantLocation do
   # delivery options - delivery / pickup
 
     belongs_to :merchant, Trays.Merchant
-    belongs_to :contact, Trays.Accounts.User
+    belongs_to :contact, Trays.Accounts.User, foreign_key: :contact_id
 
     timestamps(type: :utc_datetime)
   end
