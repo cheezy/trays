@@ -62,7 +62,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
         <.input field={@form[:country]} label={gettext("Country")} />
       </div>
       <div class="contact">
-        <.input field={@form[:contact_name]} label={gettext("Contact Name")} />
+        <.input field={@form[:contact_id]} label={gettext("Contact Name")} />
       </div>
       <div class="action">
         <.button type="submit" class="submit" phx-disable-with={gettext("Saving...")}>
