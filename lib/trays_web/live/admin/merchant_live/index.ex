@@ -6,12 +6,10 @@ defmodule TraysWeb.Admin.MerchantLive.Index do
   alias Trays.Admin.Merchants
 
   def mount(_params, _session, socket) do
-    socket =
-      socket
-      |> assign(:page_title, gettext("Listing Merchants"))
-      |> stream(:merchants, Merchants.list_merchants_with_contacts())
-
-    {:ok, socket}
+    socket
+    |> assign(:page_title, gettext("Listing Merchants"))
+    |> stream(:merchants, Merchants.list_merchants_with_contacts())
+    |> ok()
   end
 
   def render(assigns) do

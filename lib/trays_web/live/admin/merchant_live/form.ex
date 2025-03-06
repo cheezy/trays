@@ -8,17 +8,15 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
   import TraysWeb.ImageUpload
 
   def mount(params, _session, socket) do
-    socket =
-      socket
-      |> apply_action(socket.assigns.live_action, params)
-      |> allow_upload(
-        :logo,
-        accept: ~w(.png .jpeg .jpg),
-        max_file_size: 4_000_000,
-        auto_upload: false
-      )
-
-    {:ok, socket}
+    socket
+    |> apply_action(socket.assigns.live_action, params)
+    |> allow_upload(
+      :logo,
+      accept: ~w(.png .jpeg .jpg),
+      max_file_size: 4_000_000,
+      auto_upload: false
+    )
+    |> ok()
   end
 
   defp apply_action(socket, :new, _params) do
@@ -84,8 +82,9 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
 
   def handle_event("validate", %{"merchant" => merchant_params}, socket) do
     changeset = Merchants.change_merchant(socket.assigns.merchant, merchant_params)
-    socket = assign(socket, :form, to_form(changeset, action: :validate))
-    {:noreply, socket}
+
+    assign(socket, :form, to_form(changeset, action: :validate))
+    |> noreply()
   end
 
   def handle_event("save", %{"merchant" => merchant_params}, socket) do
@@ -106,16 +105,14 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
   defp handle_save_results(result, socket, message) do
     case result do
       {:ok, _merchant} ->
-        socket =
-          socket
-          |> put_flash(:info, message)
-          |> push_navigate(to: ~p"/#{socket.assigns.locale}/admin/merchants")
-
-        {:noreply, socket}
+        socket
+        |> put_flash(:info, message)
+        |> push_navigate(to: ~p"/#{socket.assigns.locale}/admin/merchants")
+        |> noreply()
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        socket = assign(socket, :form, to_form(changeset))
-        {:noreply, socket}
+        assign(socket, :form, to_form(changeset))
+        |> noreply()
     end
   end
 

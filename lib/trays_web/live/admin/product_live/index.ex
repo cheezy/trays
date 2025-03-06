@@ -8,17 +8,16 @@ defmodule TraysWeb.Admin.ProductLive.Index do
 
   def mount(%{"merchant_id" => merchant_id}, _session, socket) do
     merchant = Merchants.get_merchant!(merchant_id)
-    socket = assign(socket, :merchant, merchant)
-    {:ok, socket}
+
+    assign(socket, :merchant, merchant)
+    |> ok()
   end
 
   def handle_params(%{"merchant_id" => merchant_id}, _url, socket) do
-    socket =
-      socket
-      |> assign(:page_title, "Products for #{socket.assigns.merchant.name}")
-      |> stream(:products, Products.list_products_for_merchant(merchant_id))
-
-    {:noreply, socket}
+    socket
+    |> assign(:page_title, "Products for #{socket.assigns.merchant.name}")
+    |> stream(:products, Products.list_products_for_merchant(merchant_id))
+    |> noreply()
   end
 
   def render(assigns) do

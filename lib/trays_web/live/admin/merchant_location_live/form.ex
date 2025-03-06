@@ -7,12 +7,10 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   alias Trays.MerchantLocation
 
   def mount(params, _session, socket) do
-    socket =
-      socket
-      |> apply_action(socket.assigns.live_action, params)
-      |> assign(:province_options, Merchants.get_provinces())
-
-    {:ok, socket}
+    socket
+    |> apply_action(socket.assigns.live_action, params)
+    |> assign(:province_options, Merchants.get_provinces())
+    |> ok()
   end
 
   defp apply_action(socket, :new, %{"merchant_id" => merchant_id}) do
@@ -80,8 +78,9 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
 
   def handle_event("validate", %{"merchant_location" => location_params}, socket) do
     changeset = Merchants.change_merchant_location(socket.assigns.location, location_params)
-    socket = assign(socket, :form, to_form(changeset, action: :validate))
-    {:noreply, socket}
+
+    assign(socket, :form, to_form(changeset, action: :validate))
+    |> noreply()
   end
 
   def handle_event("save", %{"merchant_location" => location_params}, socket) do
@@ -103,18 +102,16 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   defp handle_save_results(result, socket, message) do
     case result do
       {:ok, location} ->
-        socket =
-          socket
-          |> put_flash(:info, message)
-          |> push_navigate(
-            to: ~p"/#{socket.assigns.locale}/admin/merchants/#{location.merchant_id}"
-          )
-
-        {:noreply, socket}
+        socket
+        |> put_flash(:info, message)
+        |> push_navigate(
+          to: ~p"/#{socket.assigns.locale}/admin/merchants/#{location.merchant_id}"
+        )
+        |> noreply()
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        socket = assign(socket, :form, to_form(changeset))
-        {:noreply, socket}
+        assign(socket, :form, to_form(changeset))
+        |> noreply()
     end
   end
 end

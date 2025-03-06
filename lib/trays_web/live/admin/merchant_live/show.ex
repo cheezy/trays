@@ -12,13 +12,11 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
   def handle_params(%{"id" => id}, _url, socket) do
     merchant = Merchants.get_merchant_with_locations_and_contact!(id)
 
-    socket =
-      socket
-      |> assign(merchant: merchant)
-      |> assign(locations: merchant.merchant_locations)
-      |> assign(page_title: merchant.name)
-
-    {:noreply, socket}
+    socket
+    |> assign(merchant: merchant)
+    |> assign(locations: merchant.merchant_locations)
+    |> assign(page_title: merchant.name)
+    |> noreply()
   end
 
   def render(assigns) do
