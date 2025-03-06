@@ -43,6 +43,10 @@ defmodule Trays.Admin.Merchants do
     Repo.delete(merchant)
   end
 
+  def default_merchant_logo_path() do
+    Merchant.default_logo_path()
+  end
+
   def get_merchant_location_with_merchant!(id) do
     Repo.get!(MerchantLocation, id) |> Repo.preload(:merchant)
   end

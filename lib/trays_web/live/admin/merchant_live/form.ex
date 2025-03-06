@@ -88,18 +88,34 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
   end
 
   def handle_event("save", %{"merchant" => merchant_params}, socket) do
-    merchant_params = Map.put(merchant_params, "logo_path", logo_path(socket))
     save_merchant(socket, socket.assigns.live_action, merchant_params)
   end
 
   defp save_merchant(socket, :new, merchant_params) do
+    contact = socket.assigns.current_user
+    merchant_params =
+      merchant_params
+      |> Map.put("logo_path", logo_path(socket) || Merchants.default_merchant_logo_path())
+      |> Map.put("contact_id", contact.id)
+
     Merchants.create_merchant(merchant_params)
     |> handle_save_results(socket, gettext("Merchant created successfully!"))
   end
 
   defp save_merchant(socket, :edit, merchant_params) do
+    merchant_params = socket
+      |> logo_path()
+      |> update_logo_path(merchant_params)
+
     Merchants.update_merchant(socket.assigns.merchant, merchant_params)
     |> handle_save_results(socket, gettext("Merchant updated successfully!"))
+  end
+
+  defp update_logo_path(logo_path, merchant_params)
+      when is_nil(logo_path), do: merchant_params
+
+  defp update_logo_path(logo_path, merchant_params) do
+    Map.put(merchant_params, "logo_path", logo_path)
   end
 
   defp handle_save_results(result, socket, message) do

@@ -4,10 +4,12 @@ defmodule Trays.Merchant do
 
   @moduledoc false
 
+  @default_logo_path "/images/logo_placeholder.jpg"
+
   schema "merchants" do
     field :name, :string
     field :description, :string
-    field :logo_path, :string, default: "/images/logo_placeholder.jpg"
+    field :logo_path, :string, default: @default_logo_path
     field :food_category, :string
     # type of merchant - corp or individual (Ardita to provide types)
     # business number
@@ -19,6 +21,10 @@ defmodule Trays.Merchant do
     belongs_to :contact, Trays.Accounts.User
 
     timestamps(type: :utc_datetime)
+  end
+
+  def default_logo_path() do
+    @default_logo_path
   end
 
   @doc false
