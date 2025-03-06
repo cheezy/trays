@@ -88,21 +88,23 @@ defmodule TraysWeb.UserSettingsLiveTest do
       %{conn: log_in_user(conn, user), user: user}
     end
 
-    test "updates the user's name", %{conn: conn, user: user} do
+    test "updates the user's name and phone", %{conn: conn, user: user} do
       new_name = user.name <> " Updated!"
+      new_phone = "111-111-1111"
 
       {:ok, lv, _html} = live(conn, ~p"/en/users/settings")
 
       form =
-        form(lv, "#name_form", %{
+        form(lv, "#user_form", %{
           "user" => %{
-            "name" => new_name
+            "name" => new_name,
+            "phone_number" => new_phone
           }
         })
 
       html = render_submit(form)
 
-      assert html =~ "Name updated"
+      assert html =~ "User updated"
     end
 
     test "renders errors with invalid data (phx-change)", %{conn: conn} do
@@ -110,10 +112,10 @@ defmodule TraysWeb.UserSettingsLiveTest do
 
       result =
         lv
-        |> element("#name_form")
+        |> element("#user_form")
         |> render_change(%{
-          "action" => "update_name",
-          "user" => %{"name" => "a"}
+          "action" => "update_user",
+          "user" => %{"name" => "a", "phone_number" => "1234567890"}
         })
 
       assert result =~ "Change Name"
@@ -125,8 +127,8 @@ defmodule TraysWeb.UserSettingsLiveTest do
 
       result =
         lv
-        |> form("#name_form", %{
-          "user" => %{"name" => "a"}
+        |> form("#user_form", %{
+          "user" => %{"name" => "a", "phone_number" => "1234567890"}
         })
         |> render_submit()
 

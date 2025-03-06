@@ -183,23 +183,23 @@ defmodule Trays.Accounts do
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for changing a user's name.
+  Returns an `%Ecto.Changeset{}` for changing a user's values.
 
   ## Examples
 
-  iex > change_user_name(user)
+  iex > change_user(user)
   %Ecto.Changeset{data: %User{}}
   """
-  def change_user_name(user, attrs \\ %{}) do
-    User.name_changeset(user, attrs)
+  def change_user(user, attrs \\ %{}) do
+    User.user_changeset(user, attrs)
   end
 
   @doc """
-  Changes a user's name.
+  Changes a user's values.
   """
-  def update_user_name(user, attrs \\ %{}) do
+  def update_user(user, attrs \\ %{}) do
     user
-    |> User.name_changeset(attrs)
+    |> User.user_changeset(attrs)
     |> Repo.update()
   end
 

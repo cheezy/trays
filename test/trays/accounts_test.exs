@@ -100,7 +100,7 @@ defmodule Trays.AccountsTest do
   describe "change_user_registration/2" do
     test "returns a changeset" do
       assert %Ecto.Changeset{} = changeset = Accounts.change_user_registration(%User{})
-      assert changeset.required == [:password, :email, :name]
+      assert changeset.required == [:phone_number, :password, :email, :name]
     end
 
     test "allows fields to be set" do
@@ -241,32 +241,32 @@ defmodule Trays.AccountsTest do
     end
   end
 
-  describe "change_user_name/2" do
+  describe "change_user/2" do
     test "returns a user changeset" do
-      assert %Ecto.Changeset{} = changeset = Accounts.change_user_name(%User{})
-      assert changeset.required == [:name]
+      assert %Ecto.Changeset{} = changeset = Accounts.change_user(%User{})
+      assert changeset.required == [:phone_number, :name]
     end
   end
 
-  describe "update_user_name/2" do
+  describe "update_user/2" do
     setup do
       %{user: user_fixture()}
     end
 
     test "validates name", %{user: user} do
       {:error, changeset} =
-        Accounts.update_user_name(user, %{
+        Accounts.update_user(user, %{
           name: "a"
         })
 
       assert %{name: ["should be at least 2 character(s)"]} = errors_on(changeset)
     end
 
-    test "updates the name", %{user: user} do
+    test "updates the user", %{user: user} do
       new_name = user.name <> " Updated!"
 
       {:ok, user} =
-        Accounts.update_user_name(user, %{
+        Accounts.update_user(user, %{
           name: new_name
         })
 

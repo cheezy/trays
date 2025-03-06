@@ -7,6 +7,7 @@ defmodule Trays.Accounts.User do
   schema "users" do
     field :email, :string
     field :name, :string
+    field :phone_number, :string
     field :type, Ecto.Enum, values: [:customer, :merchant, :super], default: :customer
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
@@ -41,19 +42,21 @@ defmodule Trays.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password, :name, :type])
+    |> cast(attrs, [:email, :password, :name, :type, :phone_number])
     |> validate_name()
     |> validate_email(opts)
     |> validate_password(opts)
+    |> validate_phone_number()
   end
 
   @doc """
-  A user changeset for changing their name.
+  A user changeset for changing their values.
   """
-  def name_changeset(user, attrs) do
+  def user_changeset(user, attrs) do
     user
-    |> cast(attrs, [:name])
+    |> cast(attrs, [:name, :phone_number])
     |> validate_name()
+    |> validate_phone_number()
   end
 
   defp validate_name(changeset) do
@@ -62,6 +65,13 @@ defmodule Trays.Accounts.User do
     |> validate_length(:name, min: 2, max: 100)
   end
 
+  defp validate_phone_number(changeset) do
+    changeset
+    |> validate_required([:phone_number])
+    |> validate_format(:phone_number, ~r/^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
+        message: "must be a 10 digit phone number")
+  end
+  
   defp validate_email(changeset, opts) do
     changeset
     |> validate_required([:email])
