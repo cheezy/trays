@@ -109,12 +109,12 @@ jobs:
       run: mix format --check-formatted --no-exit
 
     # Step: Run audit on dependencies
-    - name: Run Audit
+    - name: Run Audit Security Vulnerabilities and Retired Packages
       run: |
         mix deps.audit
         mix hex.audit
 
     # Step: Execute the tests.
-    - name: Run tests
+    - name: Run Tests
       run: mix test
 
