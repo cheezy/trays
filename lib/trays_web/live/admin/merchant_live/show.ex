@@ -84,8 +84,8 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
       <:col :let={location} label={gettext("Country")}>
         {location.country}
       </:col>
-      <:col label={gettext("Contact")}>
-        {@current_user.name}
+      <:col :let={location} label={gettext("Contact")}>
+        {location.contact.name}
       </:col>
       <:action :let={location}>
         <.link

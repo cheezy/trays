@@ -20,7 +20,7 @@ defmodule Trays.Admin.Merchants do
   end
 
   def get_merchant_with_locations_and_contact!(id) do
-    Repo.get!(Merchant, id) |> Repo.preload([:merchant_locations, :contact])
+    Repo.get!(Merchant, id) |> Repo.preload([[merchant_locations: :contact], :contact])
   end
 
   def change_merchant(%Merchant{} = merchant, attrs \\ %{}) do

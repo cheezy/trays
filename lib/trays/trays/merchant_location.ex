@@ -21,7 +21,7 @@ defmodule Trays.MerchantLocation do
   # delivery options - delivery / pickup
 
     belongs_to :merchant, Trays.Merchant
-    belongs_to :contact, Trays.Accounts.User, foreign_key: :contact_id
+    belongs_to :contact, Trays.Accounts.User
 
     timestamps(type: :utc_datetime)
   end
@@ -36,7 +36,8 @@ defmodule Trays.MerchantLocation do
       :province,
       :postal_code,
       :country,
-      :merchant_id
+      :merchant_id,
+      :contact_id
     ])
     |> validate_required([
       :street1,
