@@ -41,7 +41,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
           </div>
         </section>
       </div>
-      <.merchant_locations merchant_id={@merchant.id} locations={@locations} locale={@locale} />
+      <.merchant_locations merchant_id={@merchant.id} current_user={@current_user} locations={@locations} locale={@locale} />
     </div>
     <.back navigate={~p"/#{@locale}/admin/merchants"}>
       {gettext("Back to all Merchants")}
@@ -84,8 +84,8 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
       <:col :let={location} label={gettext("Country")}>
         {location.country}
       </:col>
-      <:col :let={location} label={gettext("Contact")}>
-        {location.contact_name}
+      <:col label={gettext("Contact")}>
+        {@current_user.name}
       </:col>
       <:action :let={location}>
         <.link

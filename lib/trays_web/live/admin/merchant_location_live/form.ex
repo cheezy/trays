@@ -81,6 +81,8 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   end
 
   def handle_event("save", %{"merchant_location" => location_params}, socket) do
+    contact = socket.assigns.current_user
+    location_params = Map.put(location_params, "contact_id", contact.id)
     save_merchant(socket, socket.assigns.live_action, location_params)
   end
 

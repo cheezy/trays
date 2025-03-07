@@ -109,7 +109,6 @@ apd =
   province: "ON",
   postal_code: "M5E 1B8",
   country: "Canada",
-  contact_name: "Jeff Morgan",
   merchant: apd
 }
 |> Repo.insert!()
@@ -120,7 +119,6 @@ apd =
   province: "ON",
   postal_code: "M5K 1E5",
   country: "Canada",
-  contact_name: "Ardita Karaj",
   merchant: apd
 }
 |> Repo.insert!()

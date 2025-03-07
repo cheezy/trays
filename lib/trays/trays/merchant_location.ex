@@ -11,7 +11,6 @@ defmodule Trays.MerchantLocation do
     field :province, :string
     field :postal_code, :string
     field :country, :string
-    field :contact_name, :string
 
   # special instructions to get to location
   # hours of deliveries
@@ -37,7 +36,6 @@ defmodule Trays.MerchantLocation do
       :province,
       :postal_code,
       :country,
-      :contact_name,
       :merchant_id
     ])
     |> validate_required([
@@ -46,7 +44,6 @@ defmodule Trays.MerchantLocation do
       :province,
       :postal_code,
       :country,
-      :contact_name,
       :merchant_id
     ])
   end
