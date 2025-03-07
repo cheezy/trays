@@ -22,8 +22,8 @@ defmodule Trays.MerchantLocationFixtures do
   end
 
   def merchant_location_fixture(merchant, attrs \\ %{}) do
-    attrs = valid_merchant_location_attrs(attrs)
-    {:ok, merchant_location} = Merchants.create_merchant_location(merchant.id, attrs)
+    location_attrs = valid_merchant_location_attrs(attrs)
+    {:ok, merchant_location} = Merchants.create_merchant_location(merchant.id, location_attrs)
     merchant_location
   end
 end

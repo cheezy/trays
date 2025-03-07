@@ -4,8 +4,10 @@ defmodule Trays.Admin.MerchantsTest do
   alias Trays.Repo
   alias Trays.Admin.Merchants
   alias Trays.Merchant
+  alias Trays.MerchantLocation
   alias Trays.AccountsFixtures
   alias Trays.MerchantFixtures
+  alias Trays.MerchantLocationFixtures
 
   describe "Merchant" do
     setup do
@@ -58,14 +60,53 @@ defmodule Trays.Admin.MerchantsTest do
     end
 
     test "should delete a merchant", context do
-      merchant = Merchants.get_merchant!(context.merchant.id)
-      Merchants.delete_merchant(merchant)
+      Merchants.delete_merchant(context.merchant)
       assert Repo.get(Merchant, context.merchant.id) == nil
     end
   end
 
   describe "Merchant Locations" do
-    # Joseph works here :D
+    setup do
+      user = AccountsFixtures.user_fixture()
+      merchant = MerchantFixtures.merchant_fixture_with_user(user)
+      merchant_location = MerchantLocationFixtures.merchant_location_fixture(merchant, %{contact_id: user.id})
+      {:ok, user: user, merchant: merchant, location: merchant_location}
+    end
+
+    test "should retrieve a location and its associated merchant", context do
+      location = Merchants.get_merchant_location_with_merchant!(context.location.id)
+
+      assert location.street1 == context.location.street1
+      assert location.merchant.id == context.merchant.id
+    end
+
+    test "should retrieve a merchant location by its' id", context do
+      location = Merchants.get_merchant_location!(context.location.id)
+
+      assert location.street1 == context.location.street1
+      assert location.city == context.location.city
+    end
+
+    test "should create a merchant location with a merchant id", context do
+      attrs = MerchantLocationFixtures.valid_merchant_location_attrs(%{contact_id: context.user.id})
+      {:ok, location} = Merchants.create_merchant_location(context.merchant.id, attrs)
+
+      assert location.street1 == attrs.street1
+      refute location.id == nil
+    end
+
+    test "should update an existing merchant location", context do
+      update_attrs = %{"street1" => "updated street", "city" => "updated city"}
+      Merchants.update_merchant_location(context.location, update_attrs)
+      updated_location = Merchants.get_merchant_location!(context.location.id)
+      assert updated_location.street1 == "updated street"
+      assert updated_location.city == "updated city"
+    end
+
+    test "should delete a merchant location", context do
+      Merchants.delete_merchant_location(context.location)
+      assert Repo.get(MerchantLocation, context.location.id) == nil
+    end
   end
 
   describe "Getting Provinces and Territories" do

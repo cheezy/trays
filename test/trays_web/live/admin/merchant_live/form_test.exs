@@ -31,13 +31,15 @@ defmodule TraysWeb.Admin.MerchantLive.FormTest do
       |> render_submit(%{"merchant" => %{
           "name" => "Merchant Name",
           "food_category" => "Food Category",
-          "description" => "Food Description"
+          "description" => "Food Description",
+          "type" => "individual"
         }
       })
 
       [merchant | _] = Merchant |> Repo.all()
       refute merchant.id == nil
       assert merchant.contact_id == user.id
+      assert merchant.type == :individual
       {path, flash} = assert_redirect(view)
       assert path == "/en/admin/merchants"
       assert flash["info"] == "Merchant created successfully!"
@@ -83,6 +85,20 @@ defmodule TraysWeb.Admin.MerchantLive.FormTest do
       assert merchant.name == "Updated Name"
       assert merchant.food_category == "Updated Category"
       assert merchant.description == "Updated Description"
+    end
+
+    test "should edit individual or business for a merchant", %{conn: conn, merchant: merchant} do
+      {:ok, view, _html} = live(conn, "/en/admin/merchants/#{merchant.id}/edit")
+
+      view
+      |> form("#merchant-form")
+      |> render_submit(%{"merchant" => %{
+          "type" => "individual"
+        }
+      })
+
+      [merchant | _] = Merchant |> Repo.all()
+      assert merchant.type == :individual
     end
   end
 end

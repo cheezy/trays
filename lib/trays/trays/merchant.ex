@@ -34,7 +34,8 @@ defmodule Trays.Merchant do
       :description,
       :food_category,
       :type,
-      :contact_id])
+      :contact_id
+    ])
     |> validate_required([
       :name,
       :logo_path,
