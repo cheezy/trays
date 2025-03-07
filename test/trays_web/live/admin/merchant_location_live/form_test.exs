@@ -34,7 +34,8 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
           "city" => "Toronto",
           "province" => "ON",
           "postal_code" => "M1M 1M1",
-          "country" => "Canada"
+          "country" => "Canada",
+          "delivery_option" => "pickup"
         }
       })
 
@@ -42,6 +43,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
       refute location.id == nil
       {path, flash} = assert_redirect(view)
       assert location.contact.id == user.id
+      assert location.delivery_option == :pickup
       assert path == "/en/admin/merchants/#{merchant.id}"
       assert flash["info"] == "Merchant Location created successfully!"
     end
@@ -81,13 +83,15 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
         "city" => "London",
         "province" => "ON",
         "postal_code" => "M1M 1M2",
-        "country" => "Canada"
+        "country" => "Canada",
+        "delivery_option" => "both"
       }
       })
 
       [location | _] = MerchantLocation |> Repo.all() |> Repo.preload(:contact)
       {path, flash} = assert_redirect(view)
       assert location.contact.id == user.id
+      assert location.delivery_option == :both
       assert path == "/en/admin/merchants/#{merchant.id}"
       assert flash["info"] == "Merchant Location updated successfully!"
     end

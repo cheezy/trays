@@ -11,7 +11,7 @@ defmodule Trays.MerchantLocation do
     field :province, :string
     field :postal_code, :string
     field :country, :string
-
+    field :delivery_option, Ecto.Enum, values: [:pickup, :delivery, :both], default: :both
   # special instructions to get to location
   # hours of deliveries
   # lead time for delivery
@@ -37,7 +37,8 @@ defmodule Trays.MerchantLocation do
       :postal_code,
       :country,
       :merchant_id,
-      :contact_id
+      :contact_id,
+      :delivery_option
     ])
     |> validate_required([
       :street1,

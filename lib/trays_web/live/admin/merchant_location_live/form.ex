@@ -61,6 +61,12 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
       <div class="country">
         <.input field={@form[:country]} label={gettext("Country")} />
       </div>
+      <.radio_group field={@form[:delivery_option]}>
+        Delivery Options
+        <:radio value="pickup">Pickup</:radio>
+        <:radio value="delivery">Delivery</:radio>
+        <:radio value="both">Both</:radio>
+      </.radio_group>
       <div class="action">
         <.button type="submit" class="submit" phx-disable-with={gettext("Saving...")}>
           {gettext("Save Merchant Location")}
