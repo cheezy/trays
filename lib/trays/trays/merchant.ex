@@ -11,7 +11,6 @@ defmodule Trays.Merchant do
     field :description, :string
     field :logo_path, :string, default: @default_logo_path
     field :food_category, :string
-    # type of merchant - corp or individual (Ardita to provide types)
     field :type, Ecto.Enum, values: [:business, :individual], default: :business
 
     has_many :merchant_locations, Trays.MerchantLocation

@@ -12,13 +12,14 @@ defmodule Trays.MerchantLocation do
     field :postal_code, :string
     field :country, :string
     field :delivery_option, Ecto.Enum, values: [:pickup, :delivery, :both], default: :both
-  # special instructions to get to location
+
+    # lead time for delivery - some number of hours
+    # cancellation policy - textfield
+    # special instructions to get to location - textfield
+
   # hours of deliveries
-  # lead time for delivery
-  # cancellation policy
   # payment options - online, credit card, in person, pay on delivery
   # holiday schedule
-  # delivery options - delivery / pickup
 
     belongs_to :merchant, Trays.Merchant
     belongs_to :contact, Trays.Accounts.User
