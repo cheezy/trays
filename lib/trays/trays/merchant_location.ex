@@ -47,11 +47,10 @@ defmodule Trays.MerchantLocation do
       :country,
       :merchant_id
     ])
-    |> validate_length(:street1, min: 1, max: 100)
-    |> validate_length(:street2, min: 1, max: 100)
+    |> validate_length(:street1, min: 3, max: 100)
     |> validate_length(:city, min: 3, max: 100)
     |> validate_length(:province, min: 2, max: 30) #add custom validation to check provinces
-    |> validate_length(:postal_code, min: 6, max: 7)
+    |> validate_format(:postal_code, ~r/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/, message: "must be a valid postal code")
     |> validate_inclusion(:country, ["Canada"], message: "Only \"Canada\" is allowed!") #ask ardita if she want's Canada to be defaulted and the user doesn't need to input it
   end
 end
