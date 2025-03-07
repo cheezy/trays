@@ -15,8 +15,7 @@ defmodule Trays.MerchantFixtures do
       description: valid_description(),
       food_category: valid_food_category(),
       logo_path: valid_logo_path(),
-      type: valid_merchant_type(),
-      business_number: "123abc456"
+      type: valid_merchant_type()
     })
   end
 

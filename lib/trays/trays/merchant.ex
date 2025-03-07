@@ -13,11 +13,6 @@ defmodule Trays.Merchant do
     field :food_category, :string
     # type of merchant - corp or individual (Ardita to provide types)
     field :type, Ecto.Enum, values: [:business, :individual], default: :business
-    # business number
-    field :business_number, :string
-
-    # articles of incorporation? or proof of documents
-
 
     has_many :merchant_locations, Trays.MerchantLocation
     has_many :products, Trays.Product
@@ -39,7 +34,6 @@ defmodule Trays.Merchant do
       :description,
       :food_category,
       :type,
-      :business_number,
       :contact_id])
     |> validate_required([
       :name,
