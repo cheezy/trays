@@ -106,6 +106,7 @@ defmodule Trays.MixProject do
         Trays.Application,
         Trays.AccountsFixtures,
         Trays.MerchantFixtures,
+        Trays.MerchantLocationFixtures,
         Trays.ProductFixtures,
         Trays.TestHelpers,
         TraysWeb.ConnCase,
