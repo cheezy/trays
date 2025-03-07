@@ -51,9 +51,10 @@ jobs:
         elixir-version: ${{matrix.elixir}}
 
     # Step: Setup Python - Gigalixir is written in python, so Python is
-    #          installed so that we can install Gigalixir CLI via pip3
+    # installed so that we can install Gigalixir CLI via pip3
     - name: Setup Python
-      uses:
+      uses: actions/setup-python@v2
+      with:
         python-version: "3.8"
 
     - name: Install Gigalixir
