@@ -5,6 +5,8 @@ defmodule TraysWeb.Admin.MerchantLive.ShowTest do
   alias Trays.MerchantFixtures
   alias Trays.MerchantLocationFixtures
   alias Trays.AccountsFixtures
+  alias Trays.MerchantLocation
+  alias Trays.Repo
 
   @route "/en/admin/merchants"
 
@@ -40,11 +42,21 @@ defmodule TraysWeb.Admin.MerchantLive.ShowTest do
   test "should display locations of the merchant", %{conn: conn, merchant: merchant, user: user} do
     merchant_location = MerchantLocationFixtures.merchant_location_fixture(merchant, %{contact_id: user.id})
 
-
     {:ok, _view, html} = live(conn, "#{@route}/#{merchant.id}")
     assert html =~ merchant_location.street1
     assert html =~ merchant_location.city
     assert html =~ merchant_location.province
     assert html =~ merchant_location.country
+  end
+
+  test "should delete a merchant location", %{conn: conn, merchant: merchant, user: user} do
+    merchant_location = MerchantLocationFixtures.merchant_location_fixture(merchant, %{contact_id: user.id})
+
+    {:ok, view, _html} = live(conn, "#{@route}/#{merchant.id}")
+    view
+      |> element(".delete-merchant-location")
+      |> render_click()
+
+    assert Repo.get(MerchantLocation, merchant_location.id) == nil
   end
 end
