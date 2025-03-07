@@ -76,4 +76,22 @@ defmodule Trays.MerchantLocationTest do
     changeset_with(changeset_fn, valid_attributes, :province, string_of_length(31))
     |> assert_validation_error_on(:province, "should be at most 30 character(s)")
   end
+
+  test "should require a valid postal code",
+       %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
+    changeset_fn
+    |> assert_is_valid_postal_code("M5E 1E1", valid_attributes)
+    |> assert_is_valid_postal_code("M5E1E1", valid_attributes)
+    |> assert_is_valid_postal_code("m5e1e1", valid_attributes)
+    |> assert_is_valid_postal_code("m5e 1e1", valid_attributes)
+
+    changeset_with(changeset_fn, valid_attributes, :postal_code, "m54ds3")
+    |> assert_validation_error_on(:postal_code, "must be a valid postal code")
+  end
+
+  defp assert_is_valid_postal_code(changeset_fn, postal_code, valid_attributes) do
+    changeset = changeset_with(changeset_fn, valid_attributes, :postal_code, postal_code)
+    assert changeset.valid? == true
+    changeset_fn
+  end
 end
