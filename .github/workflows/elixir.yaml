@@ -60,7 +60,6 @@ jobs:
     - name: Install Gigalixir
       run:
         sudo pip3 install gigalixir --ignore-installed six
-        gigalixir version
 
     # Step: Check out the code.
     - name: Checkout code
