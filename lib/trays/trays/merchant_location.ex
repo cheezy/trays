@@ -46,7 +46,8 @@ defmodule Trays.MerchantLocation do
       :province,
       :postal_code,
       :country,
-      :merchant_id
+      :merchant_id,
+      :delivery_option
     ])
     |> validate_length(:street1, min: 3, max: 100)
     |> validate_length(:city, min: 3, max: 100)

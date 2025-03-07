@@ -97,6 +97,19 @@ defmodule Trays.MerchantLocationTest do
     changeset_with(changeset_fn, valid_attributes, :country, "Merica")
     |> assert_validation_error_on(:country, "Only \"Canada\" is allowed!")
   end
+  
+  test "require it only allows delivery options",
+       %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
+    changeset = changeset_with(changeset_fn, valid_attributes, :delivery_option, "pickup")
+    assert changeset.valid? == true
+    changeset = changeset_with(changeset_fn, valid_attributes, :delivery_option, "delivery")
+    assert changeset.valid? == true
+    changeset = changeset_with(changeset_fn, valid_attributes, :delivery_option, "both")
+    assert changeset.valid? == true
+
+    changeset_with(changeset_fn, valid_attributes, :delivery_option, "for free")
+    |> assert_validation_error_on(:delivery_option, "is invalid")
+  end
 
   defp assert_is_valid_postal_code(changeset_fn, postal_code, valid_attributes) do
     changeset = changeset_with(changeset_fn, valid_attributes, :postal_code, postal_code)
