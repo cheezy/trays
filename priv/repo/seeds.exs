@@ -22,32 +22,29 @@ Repo.delete_all(MerchantLocation)
 Repo.delete_all(Merchant)
 Repo.delete_all(User)
 
-{:ok, cheezy} =
-  Accounts.register_user(%{
-    name: "Cheezy Morgan",
-    email: "cheezy@letstango.ca",
-    phone_number: "647-992-2499",
-    password: "Apd@81Front",
-    type: :super
-  })
+Accounts.register_user(%{
+  name: "Cheezy Morgan",
+  email: "cheezy@letstango.ca",
+  phone_number: "647-992-2499",
+  password: "Apd@81Front",
+  type: :super
+})
 
-{:ok, ardita} =
-  Accounts.register_user(%{
-    name: "Ardita Karaj",
-    email: "ardita@letstango.ca",
-    phone_number: "416-230-4519",
-    password: "Apd@222Bay",
-    type: :super
-  })
+Accounts.register_user(%{
+  name: "Ardita Karaj",
+  email: "ardita@letstango.ca",
+  phone_number: "416-230-4519",
+  password: "Apd@222Bay",
+  type: :super
+})
 
-{:ok, joseph} =
-  Accounts.register_user(%{
-    name: "Joseph Morgan",
-    email: "joser.morgan6@gmail.com",
-    phone_number: "647-594-4519",
-    password: "JSM@8Colborne",
-    type: :super
-  })
+Accounts.register_user(%{
+  name: "Joseph Morgan",
+  email: "joser.morgan6@gmail.com",
+  phone_number: "647-594-4519",
+  password: "JSM@8Colborne",
+  type: :super
+})
 
 {:ok, debbie} =
   Accounts.register_user(%{
