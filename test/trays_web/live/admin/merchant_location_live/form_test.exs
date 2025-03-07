@@ -20,7 +20,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
       assert html_response(conn, 200) =~ "New Merchant Location"
     end
 
-    test "should create a new merchant location", %{conn: conn, merchant: merchant} do
+    test "should create a new merchant location", %{conn: conn, merchant: merchant, user: user} do
       {:ok, view, _html} = live(conn, "/en/admin/merchants/#{merchant.id}/locations/new")
 
       view
@@ -35,9 +35,10 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
         }
       })
 
-      [location | _] = MerchantLocation |> Repo.all()
+      [location | _] = MerchantLocation |> Repo.all() |> Repo.preload(:contact)
       refute location.id == nil
       {path, flash} = assert_redirect(view)
+      assert location.contact.id == user.id
       assert path == "/en/admin/merchants/#{merchant.id}"
       assert flash["info"] == "Merchant Location created successfully!"
     end
