@@ -14,7 +14,13 @@ alias Trays.Repo
 alias Trays.Merchant
 alias Trays.MerchantLocation
 alias Trays.Accounts
+alias Trays.Accounts.User
 alias Trays.Product
+
+Repo.delete_all(Product)
+Repo.delete_all(MerchantLocation)
+Repo.delete_all(Merchant)
+Repo.delete_all(User)
 
 {:ok, cheezy} =
   Accounts.register_user(%{
