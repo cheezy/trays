@@ -45,8 +45,7 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
       {@page_title}
     </.header>
     <.simple_form for={@form} id="merchant-form" phx-submit="save" phx-change="validate">
-      <.radio_group field={@form[:type]}>
-        Merchant Type
+      <.radio_group field={@form[:type]} label="Merchant Type">
         <:radio value="business">Business</:radio>
         <:radio value="individual">Individual</:radio>
       </.radio_group>

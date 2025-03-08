@@ -391,6 +391,7 @@ defmodule TraysWeb.CoreComponents do
   attr :field, Phoenix.HTML.FormField
   attr :rb_class, :string,
       default: "rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6"
+  attr :label, :string
   slot :radio, required: true do
     attr :value, :string, required: true
   end
@@ -399,7 +400,7 @@ defmodule TraysWeb.CoreComponents do
   def radio_group(assigns) do
     ~H"""
     <div class="flex flex-row text-zinc-800 text-sm font-semibold">
-      <%= render_slot(@inner_block) %>
+      <.label>{@label}</.label>
       <div :for={{%{value: value} = rad, idx} <- Enum.with_index(@radio)}
           class="px-4">
         <input
