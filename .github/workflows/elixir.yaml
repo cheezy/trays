@@ -170,5 +170,19 @@ jobs:
           MIX_ENV: prod
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
-        run: gigalixir ps:migrate
-      
+#        run: gigalixir ps:migrate
+
+ # error message
+#      gigalixir ps:migrate
+#      shell: /usr/bin/bash -e {0}
+#      env:
+#        MIX_ENV: prod
+#        pythonLocation: /opt/hostedtoolcache/Python/3.8.18/x64
+#        LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.8.18/x64/lib
+#        INSTALL_DIR_FOR_OTP: /home/runner/work/_temp/.setup-beam/otp
+#        INSTALL_DIR_FOR_ELIXIR: /home/runner/work/_temp/.setup-beam/elixir
+#        DATABASE_URL: ***
+#        SECRET_KEY_BASE: ***
+#      Pseudo-terminal will not be allocated because stdin is not a terminal.
+#      Host key verification failed.
+#      Command '['ssh', '-t', 'root@europe-west1.gcp.ssh.gigalixir.com', '-p', '30175', 'gigalixir_run', 'migrate']' returned non-zero exit status 255.
