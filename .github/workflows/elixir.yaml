@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  CD:
     # Set up a Postgres DB service. By default, Phoenix applications
     # use Postgres. This creates a database for running tests.
     # Additional services can be defined here if required.
@@ -128,9 +128,7 @@ jobs:
     - name: Run Tests
       run: mix test --trace
 
-  deploy:
-    steps:
-      # Step: Deploy to Gigalixir
+    # Step: Deploy to Gigalixir
     - name: Deploy to Gigalixir
       run: |
         gigalixir login -e "${{ secrets.GIGALIXIR_USERNAME }}" -y -p "${{ secrets.GIGALIXIR_PASSWORD }}" # authenticate Gigalixir
