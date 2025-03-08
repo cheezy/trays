@@ -165,12 +165,12 @@ jobs:
           gigalixir git:remote trays
           git push -f gigalixir HEAD:refs/heads/main --force
 
-#      - name: Update Database
-#        env:
-#          MIX_ENV: prod
-#          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-#          SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
-#        run: gigalixir ps:migrate
+      - name: Update Database
+        env:
+          MIX_ENV: prod
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+        run: gigalixir ps:migrate
 
  # error message
 #      gigalixir ps:migrate
