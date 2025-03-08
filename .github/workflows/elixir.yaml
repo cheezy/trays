@@ -128,11 +128,11 @@ jobs:
     - name: Run Tests
       run: mix test --trace
 
-#  deploy:
-#    # Step: Deploy to Gigalixir
-#    - name: Deploy to Gigalixir
-#      run: |
-#        gigalixir login -e "${{ secrets.GIGALIXIR_USERNAME }}" -y -p "${{ secrets.GIGALIXIR_PASSWORD }}" # authenticate Gigalixir
+  deploy:
+    # Step: Deploy to Gigalixir
+    - name: Deploy to Gigalixir
+      run: |
+        gigalixir login -e "${{ secrets.GIGALIXIR_USERNAME }}" -y -p "${{ secrets.GIGALIXIR_PASSWORD }}" # authenticate Gigalixir
 #        gigalixir git:remote trays
 #        git push -f gigalixir HEAD:refs/heads/main --force
 #
