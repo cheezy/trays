@@ -129,7 +129,8 @@ jobs:
       run: mix test --trace
 
   deploy:
-    # Step: Deploy to Gigalixir
+    steps:
+      # Step: Deploy to Gigalixir
     - name: Deploy to Gigalixir
       run: |
         gigalixir login -e "${{ secrets.GIGALIXIR_USERNAME }}" -y -p "${{ secrets.GIGALIXIR_PASSWORD }}" # authenticate Gigalixir
