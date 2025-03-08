@@ -36,8 +36,7 @@ defmodule TraysWeb.UserRegistrationLive do
           Oops, something went wrong! Please check the errors below.
         </.error>
 
-        <.radio_group field={@form[:type]}>
-          User Type
+        <.radio_group field={@form[:type]} label="User Type">
           <:radio value="customer">Customer</:radio>
           <:radio value="merchant">Merchant</:radio>
         </.radio_group>
