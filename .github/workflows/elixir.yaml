@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  CD:
+  test:
     # Set up a Postgres DB service. By default, Phoenix applications
     # use Postgres. This creates a database for running tests.
     # Additional services can be defined here if required.
@@ -49,16 +49,6 @@ jobs:
         otp-version: ${{matrix.otp}}
         elixir-version: ${{matrix.elixir}}
 
-    # Step: Setup Python - Gigalixir is written in python, so Python is
-    # installed so that we can install Gigalixir CLI via pip3
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.8"
-
-    - name: Install Gigalixir
-      run:
-        sudo pip3 install gigalixir --ignore-installed six
 
     # Step: Check out the code.
     - name: Checkout code
@@ -128,14 +118,55 @@ jobs:
     - name: Run Tests
       run: mix test --trace
 
-    # Step: Deploy to Gigalixir
-    - name: Deploy to Gigalixir
-      run: |
-        gigalixir login -e "${{ secrets.GIGALIXIR_USERNAME }}" -y -p "${{ secrets.GIGALIXIR_PASSWORD }}" # authenticate Gigalixir
-        gigalixir git:remote trays
-        git push -f gigalixir HEAD:refs/heads/main --force
 
-#    # Step: Run migrations
+  deploy:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+    name: Deploy to Gigalixir
+    strategy:
+      # Specify the OTP and Elixir versions to use when building
+      # and running the workflow steps.
+      matrix:
+        otp: ['27.2.2']       # Define the OTP version [required]
+        elixir: ['1.18.2']    # Define the elixir version [required]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Unshallow git origin main branch
+        run: git fetch --unshallow origin main # This command does a full clone of the repo. Encountered this error
+        # ! [remote rejected] HEAD -> main (shallow update not allowed) which is why I added this step
+
+        # Step: Setup Python - Gigalixir is written in python, so Python is
+        # installed so that we can install Gigalixir CLI via pip3
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: Install Gigalixir
+        run:
+          sudo pip3 install gigalixir --ignore-installed six
+
+      # Step: Setup Elixir + Erlang image as the base.
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{matrix.otp}}
+          elixir-version: ${{matrix.elixir}}
+
+      - name: Install Dependencies
+        run: mix deps.get
+
+      - name: Deploy to Gigalixir
+        run: |
+          gigalixir login -e "${{ secrets.GIGALIXIR_USERNAME }}" -y -p "${{ secrets.GIGALIXIR_PASSWORD }}" # authenticate Gigalixir
+          gigalixir git:remote <your-gigalixir-app-name>
+          git push -f gigalixir HEAD:refs/heads/main --force
+
+
+      #    # Step: Run migrations
 #    - name: Update Database
 #      env:
 #        MIX_ENV: prod
