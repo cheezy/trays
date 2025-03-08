@@ -34,7 +34,7 @@ jobs:
           --health-retries 5
 
     runs-on: ubuntu-latest
-    name: Test on OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
+    name: Continuous Integration
     strategy:
       # Specify the OTP and Elixir versions to use when building
       # and running the workflow steps.
@@ -120,9 +120,9 @@ jobs:
 
 
   deploy:
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    needs: test
     runs-on: ubuntu-latest
-    name: Deploy to Gigalixir
+    name: Continuous Deployment
     strategy:
       # Specify the OTP and Elixir versions to use when building
       # and running the workflow steps.
