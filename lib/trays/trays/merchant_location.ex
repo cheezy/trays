@@ -13,13 +13,16 @@ defmodule Trays.MerchantLocation do
     field :country, :string
     field :delivery_option, Ecto.Enum, values: [:pickup, :delivery, :both], default: :both
 
+    # Trello card created for these three items
     # lead time for delivery - some number of hours
     # cancellation policy - textfield
     # special instructions to get to location - textfield
 
-  # hours of deliveries
+    # hours of deliveries - See Hours of Delivery item in Trello
+    # holiday schedule
+
+
   # payment options - online, credit card, in person, pay on delivery
-  # holiday schedule
 
     belongs_to :merchant, Trays.Merchant
     belongs_to :contact, Trays.Accounts.User
