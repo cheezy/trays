@@ -10,7 +10,7 @@ defmodule Trays.Merchant do
     field :name, :string
     field :description, :string
     field :logo_path, :string, default: @default_logo_path
-    field :food_category, :string
+    field :food_category, :string # should come from a master list that we will create
     field :type, Ecto.Enum, values: [:business, :individual], default: :business
 
     has_many :merchant_locations, Trays.MerchantLocation

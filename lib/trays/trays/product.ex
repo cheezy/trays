@@ -7,9 +7,13 @@ defmodule Trays.Product do
   schema "products" do
     field :name, :string
     field :description, :string
-    field :category, :string
+    field :category, :string # should move out to another schema
     field :image_path, :string
     field :price, Money.Ecto.Amount.Type
+
+    # Should category have the relationship to Merchant and then
+    # products reside under the category?
+    
 
     belongs_to :merchant, Trays.Merchant
 

@@ -21,6 +21,9 @@ defmodule Trays.MerchantLocation do
     # hours of deliveries - See Hours of Delivery item in Trello
     # holiday schedule
 
+    # We need to collect bank information for each location
+
+    # Need field for HST/GST - call it business number.
 
   # payment options - online, credit card, in person, pay on delivery
 
