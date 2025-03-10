@@ -19,6 +19,6 @@ defmodule TraysWeb.TraysLive.IndexTest do
     {:ok, _view, html} = live(conn, @route)
     assert html =~ merchant.name
     assert html =~ merchant.description
-    assert html =~ merchant.food_category
+    assert html =~ merchant.category
   end
 end

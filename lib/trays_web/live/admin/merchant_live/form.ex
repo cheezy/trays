@@ -51,7 +51,7 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
       </.radio_group>
 
       <.input field={@form[:name]} label={gettext("Name")} />
-      <.input field={@form[:food_category]} label={gettext("Category")} />
+      <.input field={@form[:category]} label={gettext("Category")} />
       <.input
         field={@form[:description]}
         type="textarea"

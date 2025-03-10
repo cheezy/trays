@@ -49,7 +49,7 @@ defmodule TraysWeb.TraysLive.Index do
       <div class="content">
         <img src={@merchant.logo_path} />
         <div class="details">
-          <h2>{@merchant.food_category}</h2>
+          <h2>{@merchant.category}</h2>
           {@merchant.description}
         </div>
       </div>

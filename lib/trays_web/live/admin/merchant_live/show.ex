@@ -29,7 +29,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
           <header>
             <div>
               <h2>{@merchant.name}</h2>
-              <h3>{@merchant.food_category}</h3>
+              <h3>{@merchant.category}</h3>
             </div>
             <div class="contact">
               {@merchant.contact.name}<br />

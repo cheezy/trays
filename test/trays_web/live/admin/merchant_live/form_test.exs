@@ -30,7 +30,7 @@ defmodule TraysWeb.Admin.MerchantLive.FormTest do
       |> form("#merchant-form")
       |> render_submit(%{"merchant" => %{
           "name" => "Merchant Name",
-          "food_category" => "Food Category",
+          "category" => "Bakery & Cafe",
           "description" => "Food Description",
           "type" => "individual"
         }
@@ -76,14 +76,14 @@ defmodule TraysWeb.Admin.MerchantLive.FormTest do
       |> form("#merchant-form")
       |> render_submit(%{"merchant" => %{
         "name" => "Updated Name",
-        "food_category" => "Updated Category",
+        "category" => "Pizza",
         "description" => "Updated Description"
         }
       })
 
       [merchant | _] = Merchant |> Repo.all()
       assert merchant.name == "Updated Name"
-      assert merchant.food_category == "Updated Category"
+      assert merchant.category == "Pizza"
       assert merchant.description == "Updated Description"
     end
 

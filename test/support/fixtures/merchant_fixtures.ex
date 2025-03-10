@@ -5,7 +5,7 @@ defmodule Trays.MerchantFixtures do
 
   def unique_name, do: "Merchant #{System.unique_integer()}!"
   def valid_description, do: "Description of the merchant"
-  def valid_food_category, do: "Good food served daily"
+  def valid_category, do: "Bakery and Cafe"
   def valid_logo_path, do: "/images/best_picture.png"
   def valid_merchant_type, do: "business"
 
@@ -13,7 +13,7 @@ defmodule Trays.MerchantFixtures do
     Enum.into(attrs, %{
       name: unique_name(),
       description: valid_description(),
-      food_category: valid_food_category(),
+      category: valid_category(),
       logo_path: valid_logo_path(),
       type: valid_merchant_type()
     })

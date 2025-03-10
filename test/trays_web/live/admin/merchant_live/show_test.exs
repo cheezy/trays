@@ -21,7 +21,7 @@ defmodule TraysWeb.Admin.MerchantLive.ShowTest do
     {:ok, _view, html} = live(conn, "#{@route}/#{merchant.id}")
     assert html =~ merchant.name
     assert html =~ merchant.description
-    assert html =~ merchant.food_category
+    assert html =~ merchant.category
     assert html =~ user.phone_number
     assert html =~ user.name
     assert html =~ user.email

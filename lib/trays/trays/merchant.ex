@@ -10,7 +10,7 @@ defmodule Trays.Merchant do
     field :name, :string
     field :description, :string
     field :logo_path, :string, default: @default_logo_path
-    field :food_category, :string # should come from a master list that we will create
+    field :category, :string
     field :type, Ecto.Enum, values: [:business, :individual], default: :business
 
     has_many :merchant_locations, Trays.MerchantLocation
@@ -31,7 +31,7 @@ defmodule Trays.Merchant do
       :name,
       :logo_path,
       :description,
-      :food_category,
+      :category,
       :type,
       :contact_id
     ])
@@ -39,12 +39,12 @@ defmodule Trays.Merchant do
       :name,
       :logo_path,
       :description,
-      :food_category,
+      :category,
       :contact_id,
       :type
     ])
     |> validate_length(:description, min: 10, max: 500)
     |> validate_length(:name, min: 4, max: 100)
-    |> validate_length(:food_category, min: 2, max: 100)
+    |> validate_length(:category, min: 2, max: 100)
   end
 end
