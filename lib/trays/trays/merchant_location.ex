@@ -15,7 +15,6 @@ defmodule Trays.MerchantLocation do
     field :prep_time, :integer
 
     # Trello card created for these three items
-    # lead time for delivery - some number of hours
     # cancellation policy - textfield
     # special instructions to get to location - textfield
 
