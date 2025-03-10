@@ -4,6 +4,7 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
   @moduledoc false
 
   alias Trays.Admin.Merchants
+  alias Trays.Admin.MerchantLocations
 
   def mount(_params, _session, socket) do
     {:ok, socket}
@@ -111,8 +112,8 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
   end
 
   def handle_event("delete", %{"id" => id}, socket) do
-    merchant = Merchants.get_merchant_location!(id)
-    {:ok, _} = Merchants.delete_merchant_location(merchant)
+    merchant = MerchantLocations.get_merchant_location!(id)
+    {:ok, _} = MerchantLocations.delete_merchant_location(merchant)
     merchant = Merchants.get_merchant_with_locations_and_contact!(socket.assigns.merchant.id)
 
     {:noreply, assign(socket, :locations, merchant.merchant_locations)}

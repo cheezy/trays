@@ -1,7 +1,7 @@
 defmodule Trays.MerchantLocationFixtures do
   @moduledoc false
 
-  alias Trays.Admin.Merchants
+  alias Trays.Admin.MerchantLocations
 
   def valid_street1(), do: "123 Yonge Street"
   def valid_street2(), do: "Unit 1500"
@@ -25,7 +25,7 @@ defmodule Trays.MerchantLocationFixtures do
 
   def merchant_location_fixture(merchant, attrs \\ %{}) do
     location_attrs = valid_merchant_location_attrs(attrs)
-    {:ok, merchant_location} = Merchants.create_merchant_location(merchant.id, location_attrs)
+    {:ok, merchant_location} = MerchantLocations.create_merchant_location(merchant.id, location_attrs)
     merchant_location
   end
 end

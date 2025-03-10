@@ -3,19 +3,19 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
 
   @moduledoc false
 
-  alias Trays.Admin.Merchants
+  alias Trays.Admin.MerchantLocations
   alias Trays.MerchantLocation
 
   def mount(params, _session, socket) do
     socket
     |> apply_action(socket.assigns.live_action, params)
-    |> assign(:province_options, Merchants.get_provinces())
+    |> assign(:province_options, MerchantLocations.get_provinces())
     |> ok()
   end
 
   defp apply_action(socket, :new, %{"merchant_id" => merchant_id}) do
     location = %MerchantLocation{}
-    changeset = Merchants.change_merchant_location(location)
+    changeset = MerchantLocations.change_merchant_location(location)
 
     socket
     |> assign(:page_title, gettext("New Merchant Location"))
@@ -25,8 +25,8 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   end
 
   defp apply_action(socket, :edit, %{"id" => id, "merchant_id" => merchant_id}) do
-    location = Merchants.get_merchant_location_with_merchant!(id)
-    changeset = Merchants.change_merchant_location(location)
+    location = MerchantLocations.get_merchant_location_with_merchant!(id)
+    changeset = MerchantLocations.change_merchant_location(location)
 
     socket
     |> assign(:page_title, gettext("Edit Merchant Location"))
@@ -79,7 +79,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   end
 
   def handle_event("validate", %{"merchant_location" => location_params}, socket) do
-    changeset = Merchants.change_merchant_location(socket.assigns.location, location_params)
+    changeset = MerchantLocations.change_merchant_location(socket.assigns.location, location_params)
 
     assign(socket, :form, to_form(changeset, action: :validate))
     |> noreply()
@@ -94,12 +94,12 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   defp save_merchant(socket, :new, location_params) do
     merchant_id = socket.assigns.merchant_id |> String.to_integer()
 
-    Merchants.create_merchant_location(merchant_id, location_params)
+    MerchantLocations.create_merchant_location(merchant_id, location_params)
     |> handle_save_results(socket, gettext("Merchant Location created successfully!"))
   end
 
   defp save_merchant(socket, :edit, location_params) do
-    Merchants.update_merchant_location(socket.assigns.location, location_params)
+    MerchantLocations.update_merchant_location(socket.assigns.location, location_params)
     |> handle_save_results(socket, gettext("Merchant Location updated successfully!"))
   end
 
