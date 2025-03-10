@@ -13,6 +13,7 @@ defmodule Trays.MerchantLocation do
     field :country, :string
     field :delivery_option, Ecto.Enum, values: [:pickup, :delivery, :both], default: :both #style radio buttons
     field :prep_time, :integer
+    field :cancellation_policy, :string
 
     # Trello card created for these three items
     # cancellation policy - textfield
@@ -46,7 +47,8 @@ defmodule Trays.MerchantLocation do
       :merchant_id,
       :contact_id,
       :delivery_option,
-      :prep_time
+      :prep_time,
+      :cancellation_policy
     ])
     |> validate_required([
       :street1,
