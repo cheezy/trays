@@ -10,6 +10,10 @@ defmodule Trays.Product do
     field :category, :string # should move out to another schema
     field :image_path, :string
     field :price, Money.Ecto.Amount.Type
+    field :gluten_free, :boolean, default: false
+    field :vegan, :boolean, default: false
+    field :vegetarian, :boolean, default: false
+    field :nut_free, :boolean, default: false
 
     # Should category have the relationship to Merchant and then
     # products reside under the category?
@@ -23,7 +27,12 @@ defmodule Trays.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:name, :description, :category, :image_path, :price, :merchant_id])
+    |> cast(attrs,
+         [
+           :name, :description, :category, :image_path, :price, :merchant_id,
+           :gluten_free, :vegan, :vegetarian, :nut_free
+         ]
+       )
     |> validate_required([:name, :description, :category, :image_path, :price, :merchant_id])
     |> validate_length(:description, min: 10, max: 250)
     |> validate_length(:name, min: 4, max: 100)

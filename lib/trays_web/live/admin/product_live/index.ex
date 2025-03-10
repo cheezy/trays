@@ -39,6 +39,12 @@ defmodule TraysWeb.Admin.ProductLive.Index do
         <:col :let={{_, product}} label={gettext("Price")}>
           {"$#{Money.to_string(product.price, symbol: false)}"}
         </:col>
+        <:col :let={{_, product}}>
+          <span class="veg" :if={product.vegetarian} aria-label="Vegetarian">V</span>
+          <span class="vegan" :if={product.vegan} aria-label="Vegan">V</span>
+          <span class="glfree" :if={product.gluten_free} aria-label="Gluten Free">GF</span>
+          <span class="nutfree" :if={product.nut_free} aria-label="Nut Free">NF</span>
+        </:col>
       </.table>
     </div>
     <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant}"}>

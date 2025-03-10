@@ -192,6 +192,19 @@
     @apply block text-rose-600 my-2 text-sm leading-6;
   }
 
+  .veg {
+    @apply inline-block rounded-full bg-lime-500 px-2 py-1 text-white font-bold ml-1 text-[10px];
+  }
+  .vegan {
+    @apply inline-block rounded-full bg-stone-300 px-2 py-1 text-white font-bold ml-1 text-[10px];
+  }
+  .glfree {
+    @apply inline-block rounded-full bg-amber-300 px-1 py-1 text-white font-bold ml-1 text-[10px];
+  }
+  .nutfree {
+    @apply inline-block rounded-full bg-yellow-900 px-1 py-1 text-white font-bold ml-1 text-[10px];
+  }
+
 
   /* Components and Utilities */
   .button {

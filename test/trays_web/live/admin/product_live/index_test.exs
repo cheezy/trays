@@ -21,4 +21,20 @@ defmodule TraysWeb.Admin.ProductLive.IndexTest do
     assert html =~ product.category
     assert html =~ Money.to_string(product.price, symbol: false)
   end
+
+  test "should show product identifiers when present on product", %{conn: conn, merchant: merchant} do
+    ProductFixtures.product_fixture(
+      %{merchant_id: merchant.id,
+        gluten_free: true,
+        vegan: true,
+        vegetarian: true,
+        nut_free: true
+      })
+
+    {:ok, _view, html} = live(conn, "/en/admin/merchants/#{merchant.id}/products")
+    assert html =~ "Gluten Free"
+    assert html =~ "Vegan"
+    assert html =~ "Vegetarian"
+    assert html =~ "Nut Free"
+  end
 end

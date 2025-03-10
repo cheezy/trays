@@ -185,7 +185,11 @@ apd =
   image_path: "/images/fruit.jpg",
   category: "breakfast",
   price: Money.new(635),
-  merchant: apd
+  merchant: apd,
+  vegan: true,
+  vegetarian: true,
+  nut_free: true,
+  gluten_free: true
 }
 |> Repo.insert!()
 
@@ -225,7 +229,8 @@ apd =
   category: "lunch",
   image_path: "/images/salad.jpg",
   price: Money.new(625),
-  merchant: apd
+  merchant: apd,
+  vegetarian: true
 }
 |> Repo.insert!()
 
@@ -236,7 +241,8 @@ apd =
   category: "lunch",
   image_path: "/images/quiche.jpg",
   price: Money.new(1050),
-  merchant: apd
+  merchant: apd,
+  nut_free: true
 }
 |> Repo.insert!()
 
@@ -276,7 +282,11 @@ apd =
   category: "alacarte",
   image_path: "/images/fruit_platter.jpg",
   price: Money.new(655),
-  merchant: apd
+  merchant: apd,
+  vegan: true,
+  vegetarian: true,
+  nut_free: true,
+  gluten_free: true
 }
 |> Repo.insert!()
 
@@ -286,7 +296,9 @@ apd =
   category: "alacarte",
   image_path: "/images/fruit-and-cheese.jpg",
   price: Money.new(715),
-  merchant: apd
+  merchant: apd,
+  vegetarian: true,
+  nut_free: true
 }
 |> Repo.insert!()
 
