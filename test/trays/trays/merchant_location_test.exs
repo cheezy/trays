@@ -111,6 +111,19 @@ defmodule Trays.MerchantLocationTest do
     |> assert_validation_error_on(:delivery_option, "is invalid")
   end
 
+  test "require prep time to be between 24 hours and 336 hours",
+       %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
+    changeset = changeset_with(changeset_fn, valid_attributes, :prep_time, 24)
+    assert changeset.valid? == true
+    changeset = changeset_with(changeset_fn, valid_attributes, :prep_time, 336)
+    assert changeset.valid? == true
+
+    changeset_with(changeset_fn, valid_attributes, :prep_time, 23)
+    |> assert_validation_error_on(:prep_time, "must be greater than 23")
+    changeset_with(changeset_fn, valid_attributes, :prep_time, 337)
+    |> assert_validation_error_on(:prep_time, "must be less than 337")
+  end
+
   defp assert_is_valid_postal_code(changeset_fn, postal_code, valid_attributes) do
     changeset = changeset_with(changeset_fn, valid_attributes, :postal_code, postal_code)
     assert changeset.valid? == true

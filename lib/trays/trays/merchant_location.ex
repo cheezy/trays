@@ -11,7 +11,8 @@ defmodule Trays.MerchantLocation do
     field :province, :string
     field :postal_code, :string
     field :country, :string
-    field :delivery_option, Ecto.Enum, values: [:pickup, :delivery, :both], default: :both
+    field :delivery_option, Ecto.Enum, values: [:pickup, :delivery, :both], default: :both #style radio buttons
+    field :prep_time, :integer
 
     # Trello card created for these three items
     # lead time for delivery - some number of hours
@@ -45,7 +46,8 @@ defmodule Trays.MerchantLocation do
       :country,
       :merchant_id,
       :contact_id,
-      :delivery_option
+      :delivery_option,
+      :prep_time
     ])
     |> validate_required([
       :street1,
@@ -54,12 +56,14 @@ defmodule Trays.MerchantLocation do
       :postal_code,
       :country,
       :merchant_id,
-      :delivery_option
+      :delivery_option,
+      :prep_time
     ])
     |> validate_length(:street1, min: 3, max: 100)
     |> validate_length(:city, min: 3, max: 100)
     |> validate_length(:province, min: 2, max: 30) #add custom validation to check provinces
     |> validate_format(:postal_code, ~r/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/, message: "must be a valid postal code")
     |> validate_inclusion(:country, ["Canada"], message: "Only \"Canada\" is allowed!") #ask ardita if she want's Canada to be defaulted and the user doesn't need to input it
+    |> validate_number(:prep_time, greater_than: 23, less_than: 337) #for now prep time is between 24 hours and 2 weeks
   end
 end

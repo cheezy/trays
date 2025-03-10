@@ -109,6 +109,14 @@
     @apply col-span-3;
   }
 
+  #merchant-location-form .prep-time-delivery {
+    @apply grid grid-cols-5 gap-4 align-top;
+  }
+
+  #merchant-location-form .prep-time-delivery .prep-time {
+    @apply col-span-2;
+  }
+
   #merchant-location-form .action {
     @apply pt-4;
   }

@@ -111,7 +111,8 @@ apd =
   country: "Canada",
   contact: debbie,
   merchant: apd,
-  delivery_option: :pickup
+  delivery_option: :pickup,
+  prep_time: 24
 }
 |> Repo.insert!()
 
@@ -123,7 +124,8 @@ apd =
   country: "Canada",
   contact: debbie,
   merchant: apd,
-  delivery_option: :both
+  delivery_option: :both,
+  prep_time: 24
 }
 |> Repo.insert!()
 

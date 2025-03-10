@@ -61,11 +61,16 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
       <div class="country">
         <.input field={@form[:country]} label={gettext("Country")} />
       </div>
-      <.radio_group field={@form[:delivery_option]} label="Delivery Options">
-        <:radio value="pickup">Pickup</:radio>
-        <:radio value="delivery">Delivery</:radio>
-        <:radio value="both">Both</:radio>
+      <div class="prep-time-delivery">
+        <div class="prep-time">
+          <.input field={@form[:prep_time]} type="number" label={gettext("Prep Time")} />
+        </div>
+        <.radio_group field={@form[:delivery_option]} label="Delivery Options">
+          <:radio value="pickup">Pickup</:radio>
+          <:radio value="delivery">Delivery</:radio>
+          <:radio value="both">Both</:radio>
       </.radio_group>
+      </div>
       <div class="action">
         <.button type="submit" class="submit" phx-disable-with={gettext("Saving...")}>
           {gettext("Save Merchant Location")}
