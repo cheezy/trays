@@ -30,7 +30,7 @@ defmodule TraysWeb.Admin.MerchantLive.FormTest do
       |> form("#merchant-form")
       |> render_submit(%{"merchant" => %{
           "name" => "Merchant Name",
-          "category" => "Bakery & Cafe",
+          "category" => "Bakery and Cafe",
           "description" => "Food Description",
           "type" => "individual"
         }

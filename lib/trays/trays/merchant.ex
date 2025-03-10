@@ -45,6 +45,54 @@ defmodule Trays.Merchant do
     ])
     |> validate_length(:description, min: 10, max: 500)
     |> validate_length(:name, min: 4, max: 100)
-    |> validate_length(:category, min: 2, max: 100)
+    |> validate_inclusion(:category, categories(), message: "should be one of the pre-defined categories")
+
+  end
+
+  def categories() do
+    [
+      "Afghan",
+      "All-Day Breakfast",
+      "Bakery",
+      "Bakery and Cafe",
+      "BBQ",
+      "Bagels",
+      "Brunch",
+      "Caribbean",
+      "Chinese",
+      "Coffee",
+      "Donuts",
+      "Ethiopian",
+      "Filipino",
+      "French",
+      "Greek",
+      "Indian",
+      "Irish",
+      "Italian",
+      "Jamaican",
+      "Japanese",
+      "Korean",
+      "Latin American",
+      "Mediterranean",
+      "Mexican",
+      "Middle Eastern",
+      "Pakistani",
+      "Persian",
+      "Pho",
+      "Pizza",
+      "Portuguese",
+      "Pub Food",
+      "Ramen",
+      "Seafood",
+      "Spanish",
+      "Sushi",
+      "Tacos",
+      "Taiwanese",
+      "Thai",
+      "Turkish",
+      "Vegan",
+      "Vegetarian",
+      "Vietnamese"
+    ]
   end
 end

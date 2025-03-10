@@ -58,21 +58,12 @@ defmodule Trays.MerchantTest do
     |> assert_validation_error_on(:description, "should be at most 500 character(s)")
   end
 
-  test "requires at least 2 characters for a category",
+  test "should only allow categoires from pre-defined list",
        %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
-    changeset = changeset_with(changeset_fn, valid_attributes, :category, string_of_length(2))
+    changeset = changeset_with(changeset_fn, valid_attributes, :category, "Italian")
     assert changeset.valid? == true
 
-    changeset_with(changeset_fn, valid_attributes, :category, string_of_length(1))
-    |> assert_validation_error_on(:category, "should be at least 2 character(s)")
-  end
-
-  test "should allow maximum of 100 characters for a category",
-       %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
-    changeset = changeset_with(changeset_fn, valid_attributes, :category, string_of_length(100))
-    assert changeset.valid? == true
-
-    changeset_with(changeset_fn, valid_attributes, :category, string_of_length(101))
-    |> assert_validation_error_on(:category, "should be at most 100 character(s)")
+    changeset_with(changeset_fn, valid_attributes, :category, "Good Food")
+    |> assert_validation_error_on(:category, "should be one of the pre-defined categories")
   end
 end
