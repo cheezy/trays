@@ -61,6 +61,9 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
       <div class="country">
         <.input field={@form[:country]} label={gettext("Country")} />
       </div>
+      <div class="cancellation-policy">
+        <.input type="textarea" field={@form[:cancellation_policy]} label={gettext("Cancellation Policy")} />
+      </div>
       <div class="prep-time-delivery">
         <div class="prep-time">
           <.input field={@form[:prep_time]} type="number" label={gettext("Prep Time")} />

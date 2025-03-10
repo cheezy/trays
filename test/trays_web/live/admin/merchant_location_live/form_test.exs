@@ -36,7 +36,8 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
           "postal_code" => "M1M 1M1",
           "country" => "Canada",
           "delivery_option" => "pickup",
-          "prep_time" => 24
+          "prep_time" => 24,
+          "cancellation_policy" => "new cancellation policy"
         }
       })
 
@@ -86,7 +87,8 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
         "postal_code" => "M1M 1M2",
         "country" => "Canada",
         "delivery_option" => "both",
-        "prep_time" => 48
+        "prep_time" => 48,
+        "cancellation_policy" => "edit cancellation policy"
       }
       })
 
