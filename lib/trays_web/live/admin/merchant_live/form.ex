@@ -16,6 +16,7 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
       max_file_size: 4_000_000,
       auto_upload: false
     )
+    |> assign(:categories, Merchants.get_merchant_categories())
     |> ok()
   end
 
@@ -51,7 +52,13 @@ defmodule TraysWeb.Admin.MerchantLive.Form do
       </.radio_group>
 
       <.input field={@form[:name]} label={gettext("Name")} />
-      <.input field={@form[:category]} label={gettext("Category")} />
+      <.input
+        field={@form[:category]}
+        label={gettext("Category")}
+        type="select"
+        prompt="Choose..."
+        options={@categories}
+      />
       <.input
         field={@form[:description]}
         type="textarea"
