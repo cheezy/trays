@@ -69,7 +69,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
         />
       </div>
       <div class="prep-time">
-        <.input field={@form[:prep_time]} type="number" label={gettext("Prep Time")} />
+        <.input field={@form[:prep_time]} type="number" label={gettext("Prep Time (Hours)")} />
       </div>
       <.radio_group field={@form[:delivery_option]} label="Delivery Options">
         <:radio value="pickup">Pickup</:radio>
