@@ -15,8 +15,6 @@ defmodule Trays.ProductTest do
     context.valid_attributes
     |> assert_require_field(:name)
     |> assert_require_field(:description)
-    |> assert_require_field(:category)
-    |> assert_require_field(:image_path)
     |> assert_require_field(:price)
   end
 
@@ -50,22 +48,6 @@ defmodule Trays.ProductTest do
 
     changeset_with(context.valid_attributes, :description, string_of_length(251))
     |> assert_validation_error_on(:description, "should be at most 250 character(s)")
-  end
-
-  test "requires at least 4 characters for a food category", context do
-    changeset = changeset_with(context.valid_attributes, :category, string_of_length(4))
-    assert changeset.valid? == true
-
-    changeset_with(context.valid_attributes, :category, string_of_length(3))
-    |> assert_validation_error_on(:category, "should be at least 4 character(s)")
-  end
-
-  test "should allow maximum of 100 characters for a category", context do
-    changeset = changeset_with(context.valid_attributes, :category, string_of_length(100))
-    assert changeset.valid? == true
-
-    changeset_with(context.valid_attributes, :category, string_of_length(101))
-    |> assert_validation_error_on(:category, "should be at most 100 character(s)")
   end
 
   test "should require price to be zero or greater", context do

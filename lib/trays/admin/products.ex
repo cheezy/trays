@@ -19,4 +19,25 @@ defmodule Trays.Admin.Products do
   def with_merchant(query, merchant_id) do
     where(query, merchant_id: ^merchant_id)
   end
+
+  def get_product!(id) do
+    Repo.get!(Product, id)
+  end
+
+  def change_product(%Product{} = product, attrs \\ %{}) do
+    Product.changeset(product, attrs)
+  end
+
+  def create_product(merchant_id, attrs) do
+    %Product{merchant_id: merchant_id}
+    |> Product.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def update_product(%Product{} = product, attrs) do
+    product
+    |> Product.changeset(attrs)
+    |> Repo.update()
+  end
+
 end

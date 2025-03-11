@@ -25,6 +25,11 @@ defmodule TraysWeb.Admin.ProductLive.Index do
     <div class="products-index">
       <.header>
         {@page_title}
+        <:actions>
+          <.link navigate={~p"/#{@locale}/admin/merchants/#{@merchant.id}/products/new"} id="new_product_btn" class="button">
+            {gettext("New Product")}
+          </.link>
+        </:actions>
       </.header>
       <.table id="products" rows={@streams.products}>
         <:col :let={{_, product}}>
@@ -39,12 +44,20 @@ defmodule TraysWeb.Admin.ProductLive.Index do
         <:col :let={{_, product}} label={gettext("Price")}>
           {"$#{Money.to_string(product.price, symbol: false)}"}
         </:col>
-        <:col :let={{_, product}}>
+        <:col :let={{_, product}} label={gettext("Indicators")}>
           <span class="veg" :if={product.vegetarian} aria-label="Vegetarian">V</span>
           <span class="vegan" :if={product.vegan} aria-label="Vegan">V</span>
           <span class="glfree" :if={product.gluten_free} aria-label="Gluten Free">GF</span>
           <span class="nutfree" :if={product.nut_free} aria-label="Nut Free">NF</span>
         </:col>
+        <:action :let={{_, product}}>
+          <.link
+            navigate={~p"/#{@locale}/admin/merchants/#{@merchant.id}/products/#{product.id}/edit"}
+            class="edit-merchant-location"
+          >
+          <.icon name="hero-pencil-square" class="h-4 w-4" />
+          </.link>
+        </:action>
       </.table>
     </div>
     <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant}"}>

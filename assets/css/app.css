@@ -125,6 +125,15 @@
     @apply bg-blue-600 text-white py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
   }
 
+  /* Admin.ProductLive.Form */
+  #product-form .product_indicators {
+    @apply grid grid-cols-4 gap-4 mt-6 mb-6;
+  }
+
+  #product-form .product_indicators label {
+    @apply text-sm font-semibold text-zinc-800;
+  }
+
   /* Image Upload Component */
 
   #image-upload .label {

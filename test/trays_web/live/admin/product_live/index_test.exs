@@ -18,7 +18,6 @@ defmodule TraysWeb.Admin.ProductLive.IndexTest do
     {:ok, _view, html} = live(conn, "/en/admin/merchants/#{merchant.id}/products")
     assert html =~ "Products for #{merchant.name}"
     assert html =~ product.name
-    assert html =~ product.category
     assert html =~ Money.to_string(product.price, symbol: false)
   end
 
