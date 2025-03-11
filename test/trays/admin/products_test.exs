@@ -56,4 +56,14 @@ defmodule Trays.AdminProductsTest do
     assert product.name == attrs.name
     assert product.description == attrs.description
   end
+  
+  test "should retrieve a list of product categories", %{merchant: merchant, product: product} do
+    product1 = ProductFixtures.product_fixture(%{category: "Cat1", merchant_id: merchant.id})
+    product2 = ProductFixtures.product_fixture(%{category: "Cat2", merchant_id: merchant.id})
+    product3 = ProductFixtures.product_fixture(%{category: "Cat3", merchant_id: merchant.id})
+    product4 = ProductFixtures.product_fixture(%{category: "Cat1", merchant_id: merchant.id})
+
+    categories = Products.get_product_categories_for(merchant.id)
+    assert categories == [product.category, "Cat1", "Cat2", "Cat3"]
+  end
 end
