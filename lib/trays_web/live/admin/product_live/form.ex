@@ -10,6 +10,7 @@ defmodule TraysWeb.Admin.ProductLive.Form do
   def mount(%{"merchant_id" => merchant_id} = params, _session, socket) do
     socket
     |> assign(:merchant_id, merchant_id)
+    |> assign(:category_suggestions, [])
     |> apply_action(socket.assigns.live_action, params)
     |> allow_upload(
       :logo,
@@ -46,12 +47,9 @@ defmodule TraysWeb.Admin.ProductLive.Form do
       {@page_title}
     </.header>
     <.form for={@form} id="product-form" phx-submit="save" phx-change="validate">
-
-      <pre>
-        {inspect(@form[:price].value, pretty: true)}
-      </pre>
-      
       <.input field={@form[:name]} label={gettext("Name")} />
+      <.input field={@form[:category]} label={gettext("Category")}
+          phx-change="suggest" list="category_suggestions" id="category"/>
       <.input
         field={@form[:description]}
         type="textarea"
@@ -83,7 +81,14 @@ defmodule TraysWeb.Admin.ProductLive.Form do
         </.button>
       </div>
     </.form>
-      <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/products"}>
+
+    <datalist id="category_suggestions">
+      <option :for={suggestion <- @category_suggestions} value={suggestion}>
+        {suggestion}
+      </option>
+    </datalist>
+
+    <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/products"}>
         {gettext("Back to Products")}
     </.back>
     """
@@ -94,6 +99,13 @@ defmodule TraysWeb.Admin.ProductLive.Form do
 
     assign(socket, :form, to_form(changeset, action: :validate))
     |> noreply()
+  end
+
+  def handle_event("suggest", %{"product" => params}, socket) do
+    suggestions =
+      socket.assigns.merchant_id
+      |> Products.filter_product_categories(params["category"])
+    {:noreply, assign(socket, category_suggestions: suggestions)}
   end
 
   def handle_event("save", %{"product" => product_params}, socket) do
