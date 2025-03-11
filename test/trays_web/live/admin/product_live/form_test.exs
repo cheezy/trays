@@ -85,6 +85,15 @@ defmodule TraysWeb.Admin.ProductLive.FormTest do
       assert product.description == "Updated Description"
     end
 
+    test "should filter categories", %{conn: conn, merchant: merchant, product: product} do
+      {:ok, view, _html} = live(conn, edit_url(merchant, product))
+
+      assert view
+        |> element("#category")
+        |> render_change(%{"category" => "B"})
+             =~ "<option value=\"Breakfast\">"
+    end
+
     defp edit_url(merchant, product) do
       "/en/admin/merchants/#{merchant.id}/products/#{product.id}/edit"
     end
