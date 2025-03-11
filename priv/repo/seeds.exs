@@ -133,7 +133,7 @@ apd =
   name: "Breakfast Sandwich Platter",
   description: "All served on fresh multigrain or butter croissants",
   image_path: "/images/breakfast-sandwich.jpg",
-  category: "breakfast",
+  category: "Breakfast",
   price: Money.new(875),
   merchant: apd
 }
@@ -143,7 +143,7 @@ apd =
   name: "Baked Good Platter",
   description: "And other favourites",
   image_path: "/images/baked-goods-platter.jpg",
-  category: "breakfast",
+  category: "Breakfast",
   price: Money.new(575),
   merchant: apd
 }
@@ -153,7 +153,7 @@ apd =
   name: "Muffin Platter",
   description: "Gluten free options are available",
   image_path: "/images/muffin-platter.jpg",
-  category: "breakfast",
+  category: "Breakfast",
   price: Money.new(395),
   merchant: apd
 }
@@ -163,7 +163,7 @@ apd =
   name: "Mini Baked Good Platter",
   description: "A tray of mini goodness",
   image_path: "/images/mini.jpg",
-  category: "breakfast",
+  category: "Breakfast",
   price: Money.new(395),
   merchant: apd
 }
@@ -173,7 +173,7 @@ apd =
   name: "Yogurt Parfait",
   description: "Yogurt and Fruit",
   image_path: "/images/yogurt.jpg",
-  category: "breakfast",
+  category: "Breakfast",
   price: Money.new(655),
   merchant: apd
 }
@@ -183,7 +183,7 @@ apd =
   name: "Fresh Fruit Salad",
   description: "Fruit in a cup",
   image_path: "/images/fruit.jpg",
-  category: "breakfast",
+  category: "Breakfast",
   price: Money.new(635),
   merchant: apd,
   vegan: true,
@@ -197,7 +197,7 @@ apd =
   name: "Breakfast Combo",
   description: "Baked Good or Muffin + Yogurt Pafait or Fruit Salad",
   image_path: "/images/breakfast-combo.jpg",
-  category: "breakfast",
+  category: "Breakfast",
   price: Money.new(1015),
   merchant: apd
 }
@@ -207,7 +207,7 @@ apd =
   name: "Breakfast Platter",
   description: "Assortment of muffins, sweet and savoury baked goods",
   image_path: "/images/breakfast-platter.jpg",
-  category: "breakfast",
+  category: "Breakfast",
   price: Money.new(575),
   merchant: apd
 }
@@ -216,7 +216,7 @@ apd =
 %Product{
   name: "Sandwich Platter",
   description: "One of our amazing sandwiches",
-  category: "lunch",
+  category: "Lunch",
   image_path: "/images/sandwich.jpg",
   price: Money.new(1335),
   merchant: apd
@@ -226,7 +226,7 @@ apd =
 %Product{
   name: "Side Salads",
   description: "Add a salad to your sandwich order",
-  category: "lunch",
+  category: "Lunch",
   image_path: "/images/salad.jpg",
   price: Money.new(625),
   merchant: apd,
@@ -238,7 +238,7 @@ apd =
   name: "Quiche Platter",
   description:
     "An assortment of traditional and new recipes always in a pure butter artisan pastry shell",
-  category: "lunch",
+  category: "Lunch",
   image_path: "/images/quiche.jpg",
   price: Money.new(1050),
   merchant: apd,
@@ -249,7 +249,7 @@ apd =
 %Product{
   name: "French combo",
   description: "A quiche + Side salad",
-  category: "lunch",
+  category: "Lunch",
   image_path: "/images/french-combo.jpg",
   price: Money.new(1050),
   merchant: apd
@@ -259,7 +259,7 @@ apd =
 %Product{
   name: "Lunch Bag with desert",
   description: "Sandwich + Side salad + Cookie or fresh fruit",
-  category: "lunch",
+  category: "Lunch",
   image_path: "/images/lunch_box.jpg",
   price: Money.new(2195),
   merchant: apd
@@ -270,7 +270,7 @@ apd =
   name: "Lunch Bag without desert",
   description: "Sandwich + Side salad",
   image_path: "/images/lunch-box-without-desert.jpg",
-  category: "lunch",
+  category: "Lunch",
   price: Money.new(1995),
   merchant: apd
 }
@@ -279,7 +279,7 @@ apd =
 %Product{
   name: "Fresh Fruit",
   description: "Fruit on a Tray",
-  category: "alacarte",
+  category: "À La Carte",
   image_path: "/images/fruit_platter.jpg",
   price: Money.new(655),
   merchant: apd,
@@ -293,7 +293,7 @@ apd =
 %Product{
   name: "Fruit and Cheese",
   description: "Fruit and cheese on a tray",
-  category: "alacarte",
+  category: "À La Carte",
   image_path: "/images/fruit-and-cheese.jpg",
   price: Money.new(715),
   merchant: apd,
@@ -305,7 +305,7 @@ apd =
 %Product{
   name: "Dessert Platter",
   description: "A tray with a lot of deserts",
-  category: "dessert",
+  category: "Dessert",
   image_path: "/images/deserts.jpg",
   price: Money.new(495),
   merchant: apd
