@@ -15,9 +15,6 @@ defmodule Trays.MerchantLocation do
     field :prep_time, :integer
     field :cancellation_policy, :string
 
-    # Trello card created for these three items
-    # cancellation policy - textfield
-    # special instructions to get to location - textfield
 
     # hours of deliveries - See Hours of Delivery item in Trello
     # holiday schedule
