@@ -12,6 +12,7 @@ defmodule Trays.MerchantLocationFixtures do
   def valid_delivery_option(), do: "pickup"
   def valid_prep_time(), do: 24
   def valid_cancellation_policy(), do: "Cancel for a full refund before 24 hours until delivery."
+  def valid_special_instruct(), do: "Enter from Bay, then take the escalator down."
 
   def valid_merchant_location_attrs(attrs \\ %{}) do
     Enum.into(attrs, %{
@@ -23,7 +24,8 @@ defmodule Trays.MerchantLocationFixtures do
       country: valid_country(),
       delivery_option: valid_delivery_option(),
       prep_time: valid_prep_time(),
-      cancellation_policy: valid_cancellation_policy()
+      cancellation_policy: valid_cancellation_policy(),
+      special_instruct: valid_special_instruct()
     })
   end
 

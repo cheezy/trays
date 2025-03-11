@@ -124,10 +124,22 @@ defmodule Trays.MerchantLocationTest do
     |> assert_validation_error_on(:prep_time, "must be less than 337")
   end
 
-  test "require the cancellation policy is less than 201 characters",
+  test "require the cancellation policy to be less than 201 characters",
        %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
+    changeset = changeset_with(changeset_fn, valid_attributes, :cancellation_policy, "less than 200 char")
+    assert changeset.valid? == true
+
     changeset_with(changeset_fn, valid_attributes, :cancellation_policy, 201)
     |> assert_validation_error_on(:cancellation_policy, "is invalid")
+  end
+
+  test "require the special instruction to be less than 201 characters",
+       %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
+    changeset = changeset_with(changeset_fn, valid_attributes, :special_instruct, "less than 200 char")
+    assert changeset.valid? == true
+
+    changeset_with(changeset_fn, valid_attributes, :special_instruct, 201)
+    |> assert_validation_error_on(:special_instruct, "is invalid")
   end
 
   defp assert_is_valid_postal_code(changeset_fn, postal_code, valid_attributes) do

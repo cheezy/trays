@@ -58,7 +58,8 @@ defmodule Trays.MerchantLocation do
       :merchant_id,
       :delivery_option,
       :prep_time,
-      :cancellation_policy
+      :cancellation_policy,
+      :special_instruct
     ])
     |> validate_length(:street1, min: 3, max: 100)
     |> validate_length(:city, min: 3, max: 100)
@@ -67,5 +68,6 @@ defmodule Trays.MerchantLocation do
     |> validate_inclusion(:country, ["Canada"], message: "Only \"Canada\" is allowed!") #ask ardita if she want's Canada to be defaulted and the user doesn't need to input it
     |> validate_number(:prep_time, greater_than: 23, less_than: 337) #for now prep time is between 24 hours and 2 weeks
     |> validate_length(:cancellation_policy, max: 200) #ask if locations should be required to write a cancellation policy
+    |> validate_length(:special_instruct, max: 200)
   end
 end
