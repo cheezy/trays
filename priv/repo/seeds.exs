@@ -112,7 +112,8 @@ apd =
   contact: debbie,
   merchant: apd,
   delivery_option: :pickup,
-  prep_time: 24
+  prep_time: 24,
+  cancellation_policy: "24 hours before pickup"
 }
 |> Repo.insert!()
 
@@ -125,7 +126,8 @@ apd =
   contact: debbie,
   merchant: apd,
   delivery_option: :both,
-  prep_time: 24
+  prep_time: 24,
+  cancellation_policy: "24 hours before pickup"
 }
 |> Repo.insert!()
 
