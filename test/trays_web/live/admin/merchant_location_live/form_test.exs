@@ -37,7 +37,8 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
           "country" => "Canada",
           "delivery_option" => "pickup",
           "prep_time" => 24,
-          "cancellation_policy" => "new cancellation policy"
+          "cancellation_policy" => "new cancellation policy",
+          "special_instruct" => "instructions to get to location"
         }
       })
 
@@ -88,7 +89,8 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
         "country" => "Canada",
         "delivery_option" => "both",
         "prep_time" => 48,
-        "cancellation_policy" => "edit cancellation policy"
+        "cancellation_policy" => "edit cancellation policy",
+        "special_instruct" => "new instruction to get to location"
       }
       })
 

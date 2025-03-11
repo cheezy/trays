@@ -14,6 +14,7 @@ defmodule Trays.MerchantLocation do
     field :delivery_option, Ecto.Enum, values: [:pickup, :delivery, :both], default: :both #style radio buttons
     field :prep_time, :integer
     field :cancellation_policy, :string
+    field :special_instruct, :string
 
 
     # hours of deliveries - See Hours of Delivery item in Trello
@@ -45,7 +46,8 @@ defmodule Trays.MerchantLocation do
       :contact_id,
       :delivery_option,
       :prep_time,
-      :cancellation_policy
+      :cancellation_policy,
+      :special_instruct
     ])
     |> validate_required([
       :street1,

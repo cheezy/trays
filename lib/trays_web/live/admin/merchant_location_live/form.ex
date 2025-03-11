@@ -61,8 +61,8 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
       <div class="country">
         <.input field={@form[:country]} label={gettext("Country")} />
       </div>
-      <div class="cancellation-policy">
-        <.input type="textarea" field={@form[:cancellation_policy]} label={gettext("Cancellation Policy")} />
+      <div class="special-instructions">
+        <.input type="textarea" field={@form[:special_instruct]} label={gettext("Special Instructions")} />
       </div>
       <div class="prep-time-delivery">
         <div class="prep-time">
@@ -73,6 +73,9 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
           <:radio value="delivery">Delivery</:radio>
           <:radio value="both">Both</:radio>
       </.radio_group>
+      </div>
+      <div class="cancellation-policy">
+        <.input type="textarea" field={@form[:cancellation_policy]} label={gettext("Cancellation Policy")} />
       </div>
       <div class="action">
         <.button type="submit" class="submit" phx-disable-with={gettext("Saving...")}>
