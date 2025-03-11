@@ -67,7 +67,7 @@ defmodule Trays.MerchantLocation do
     |> validate_format(:postal_code, ~r/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/, message: "must be a valid postal code")
     |> validate_inclusion(:country, ["Canada"], message: "Only \"Canada\" is allowed!") #ask ardita if she want's Canada to be defaulted and the user doesn't need to input it
     |> validate_number(:prep_time, greater_than: 23, less_than: 337) #for now prep time is between 24 hours and 2 weeks
-    |> validate_length(:cancellation_policy, max: 200) #ask if locations should be required to write a cancellation policy
+    |> validate_length(:cancellation_policy, max: 200)
     |> validate_length(:special_instruct, max: 200)
   end
 end
