@@ -48,4 +48,9 @@ defmodule Trays.Admin.Products do
         select: p.category
     Repo.all(query) |> Enum.uniq()
   end
+  
+  def filter_product_categories(merchant_id, prefix) do
+    Enum.filter(get_product_categories_for(merchant_id),
+        fn category -> String.contains?(String.upcase(category), String.upcase(prefix)) end)
+  end
 end

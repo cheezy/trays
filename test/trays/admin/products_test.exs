@@ -66,4 +66,17 @@ defmodule Trays.AdminProductsTest do
     categories = Products.get_product_categories_for(merchant.id)
     assert categories == [product.category, "Cat1", "Cat2", "Cat3"]
   end
+
+  test "should filter list of product categories", %{merchant: merchant} do
+    ProductFixtures.product_fixture(%{category: "Cat1", merchant_id: merchant.id})
+    ProductFixtures.product_fixture(%{category: "Foo", merchant_id: merchant.id})
+    ProductFixtures.product_fixture(%{category: "Cat3", merchant_id: merchant.id})
+    ProductFixtures.product_fixture(%{category: "Bar", merchant_id: merchant.id})
+
+    categories = Products.filter_product_categories(merchant.id, "Ca")
+    assert categories == ["Cat1", "Cat3"]
+
+    categories = Products.filter_product_categories(merchant.id, "ca")
+    assert categories == ["Cat1", "Cat3"]
+  end
 end
