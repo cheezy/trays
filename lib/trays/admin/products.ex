@@ -40,4 +40,12 @@ defmodule Trays.Admin.Products do
     |> Repo.update()
   end
 
+  def get_product_categories_for(merchant_id) do
+    query =
+      from p in Product,
+        where: p.merchant_id == ^merchant_id,
+        order_by: :category,
+        select: p.category
+    Repo.all(query) |> Enum.uniq()
+  end
 end

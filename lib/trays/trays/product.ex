@@ -31,7 +31,7 @@ defmodule Trays.Product do
     |> cast(attrs,
          [
            :name, :description, :image_path, :price, :merchant_id,
-           :gluten_free, :vegan, :vegetarian, :nut_free
+           :gluten_free, :vegan, :vegetarian, :nut_free, :category
          ]
        )
     |> validate_required([:name, :description, :price, :merchant_id])
