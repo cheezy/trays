@@ -62,20 +62,26 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
         <.input field={@form[:country]} label={gettext("Country")} />
       </div>
       <div class="special-instructions">
-        <.input type="textarea" field={@form[:special_instruct]} label={gettext("Special Instructions")} />
+        <.input
+          type="textarea"
+          field={@form[:special_instruct]}
+          label={gettext("Special Instructions")}
+        />
       </div>
-      <div class="prep-time-delivery">
-        <div class="prep-time">
-          <.input field={@form[:prep_time]} type="number" label={gettext("Prep Time")} />
-        </div>
-        <.radio_group field={@form[:delivery_option]} label="Delivery Options">
-          <:radio value="pickup">Pickup</:radio>
-          <:radio value="delivery">Delivery</:radio>
-          <:radio value="both">Both</:radio>
+      <div class="prep-time">
+        <.input field={@form[:prep_time]} type="number" label={gettext("Prep Time")} />
+      </div>
+      <.radio_group field={@form[:delivery_option]} label="Delivery Options">
+        <:radio value="pickup">Pickup</:radio>
+        <:radio value="delivery">Delivery</:radio>
+        <:radio value="both">Both</:radio>
       </.radio_group>
-      </div>
       <div class="cancellation-policy">
-        <.input type="textarea" field={@form[:cancellation_policy]} label={gettext("Cancellation Policy")} />
+        <.input
+          type="textarea"
+          field={@form[:cancellation_policy]}
+          label={gettext("Cancellation Policy")}
+        />
       </div>
       <div class="action">
         <.button type="submit" class="submit" phx-disable-with={gettext("Saving...")}>
@@ -90,7 +96,8 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   end
 
   def handle_event("validate", %{"merchant_location" => location_params}, socket) do
-    changeset = MerchantLocations.change_merchant_location(socket.assigns.location, location_params)
+    changeset =
+      MerchantLocations.change_merchant_location(socket.assigns.location, location_params)
 
     assign(socket, :form, to_form(changeset, action: :validate))
     |> noreply()
