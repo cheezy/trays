@@ -9,6 +9,8 @@ defmodule Trays.ModifierGroup do
     field :maximum, :integer
     field :minimum, :integer
 
+    has_many :modifiers, Trays.Modifier
+
     timestamps(type: :utc_datetime)
   end
 

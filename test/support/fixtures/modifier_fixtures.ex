@@ -10,6 +10,7 @@ defmodule Trays.ModifierFixtures do
   def valid_modifier(attrs \\ %{}) do
     Enum.into(attrs, %{
       name: unique_name(),
+      modifier_group_id: "2"
     })
   end
 

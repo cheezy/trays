@@ -11,13 +11,15 @@ defmodule Trays.Modifier do
     field :vegetarian, :boolean, default: false
     field :nut_free, :boolean, default: false
 
+    belongs_to :modifier_group, Trays.ModifierGroup
+
     timestamps(type: :utc_datetime)
   end
 
   @doc false
   def changeset(modifier, attrs) do
     modifier
-    |> cast(attrs, [:name, :gluten_free, :vegan, :vegetarian, :nut_free])
-    |> validate_required([:name])
+    |> cast(attrs, [:name, :gluten_free, :vegan, :vegetarian, :nut_free, :modifier_group_id])
+    |> validate_required([:name, :modifier_group_id])
   end
 end

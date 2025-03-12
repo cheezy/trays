@@ -17,6 +17,7 @@ defmodule Trays.ModifierTest do
        %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
     valid_attributes
     |> assert_require_field(changeset_fn, :name)
+    |> assert_require_field(changeset_fn, :modifier_group_id)
   end
 
 
