@@ -13,7 +13,8 @@ defmodule Trays.ModifierGroupFixtures do
     Enum.into(attrs, %{
       name: unique_name(),
       minimum: valid_minimum(),
-      maximum: valid_maximum()
+      maximum: valid_maximum(),
+      merchant_id: 3
     })
   end
 

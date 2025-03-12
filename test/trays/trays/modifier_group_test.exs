@@ -17,8 +17,7 @@ defmodule Trays.ModifierGroupTest do
        %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
     valid_attributes
     |> assert_require_field(changeset_fn, :name)
-    |> assert_require_field(changeset_fn, :minimum)
-    |> assert_require_field(changeset_fn, :maximum)
+    |> assert_require_field(changeset_fn, :merchant_id)
   end
 
 

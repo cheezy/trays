@@ -6,10 +6,11 @@ defmodule Trays.ModifierGroup do
 
   schema "modifier_group" do
     field :name, :string
-    field :maximum, :integer
-    field :minimum, :integer
+    field :maximum, :integer, default: 0
+    field :minimum, :integer, default: 0
 
     has_many :modifiers, Trays.Modifier
+    belongs_to :merchant, Trays.Merchant
 
     timestamps(type: :utc_datetime)
   end
@@ -17,7 +18,7 @@ defmodule Trays.ModifierGroup do
   @doc false
   def changeset(modifier_group, attrs) do
     modifier_group
-    |> cast(attrs, [:name, :minimum, :maximum])
-    |> validate_required([:name, :minimum, :maximum])
+    |> cast(attrs, [:name, :minimum, :maximum, :merchant_id])
+    |> validate_required([:name, :merchant_id])
   end
 end

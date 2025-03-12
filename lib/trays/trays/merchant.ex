@@ -15,6 +15,7 @@ defmodule Trays.Merchant do
 
     has_many :merchant_locations, Trays.MerchantLocation
     has_many :products, Trays.Product
+    has_many :modifier_groups, Trays.ModifierGroup
     belongs_to :contact, Trays.Accounts.User
 
     timestamps(type: :utc_datetime)
