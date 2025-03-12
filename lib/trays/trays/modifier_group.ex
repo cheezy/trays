@@ -21,4 +21,8 @@ defmodule Trays.ModifierGroup do
     |> cast(attrs, [:name, :minimum, :maximum, :merchant_id])
     |> validate_required([:name, :merchant_id])
   end
+
+  def required?(modifier_group) do
+    modifier_group.minimum >= 1
+  end
 end

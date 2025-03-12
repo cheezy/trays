@@ -20,5 +20,9 @@ defmodule Trays.ModifierGroupTest do
     |> assert_require_field(changeset_fn, :merchant_id)
   end
 
-
+  test "should be required when the minimum number of modifiers is at least 1" do
+    assert ModifierGroup.required?(%ModifierGroup{minimum: 0}) == false
+    assert ModifierGroup.required?(%ModifierGroup{minimum: 1}) == true
+    assert ModifierGroup.required?(%ModifierGroup{minimum: 2}) == true
+  end
 end
