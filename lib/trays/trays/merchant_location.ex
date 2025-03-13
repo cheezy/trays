@@ -29,6 +29,8 @@ defmodule Trays.MerchantLocation do
     belongs_to :merchant, Trays.Merchant
     belongs_to :contact, Trays.Accounts.User
 
+    has_many :hours_of_delivery, Trays.HoursOfDelivery
+
     timestamps(type: :utc_datetime)
   end
 
