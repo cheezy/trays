@@ -14,6 +14,7 @@ defmodule Trays.Admin.MerchantLocations do
 
   def change_merchant_location(%MerchantLocation{} = location, attrs \\ %{}) do
     MerchantLocation.changeset(location, attrs)
+    |> Ecto.Changeset.cast_assoc(:hours_of_delivery, required: false)
   end
 
   def create_merchant_location(merchant_id, attrs \\ %{}) do

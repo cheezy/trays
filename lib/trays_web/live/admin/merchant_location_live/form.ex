@@ -14,7 +14,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   end
 
   defp apply_action(socket, :new, %{"merchant_id" => merchant_id}) do
-    location = %MerchantLocation{}
+    location = %MerchantLocation{hours_of_delivery: []}
     changeset = MerchantLocations.change_merchant_location(location)
 
     socket
@@ -25,7 +25,11 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   end
 
   defp apply_action(socket, :edit, %{"id" => id, "merchant_id" => merchant_id}) do
-    location = MerchantLocations.get_merchant_location_with_merchant!(id)
+    location =
+      MerchantLocations.get_merchant_location_with_merchant!(id)
+      |> Trays.Repo.preload(:hours_of_delivery)
+
+
     changeset = MerchantLocations.change_merchant_location(location)
 
     socket
@@ -97,15 +101,19 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
 
   def handle_event("validate", %{"merchant_location" => location_params}, socket) do
     changeset =
-      MerchantLocations.change_merchant_location(socket.assigns.location, location_params)
+      socket.assigns.location
+      |> MerchantLocations.change_merchant_location(location_params)
+      |> Map.put(:action, :validate)
 
-    assign(socket, :form, to_form(changeset, action: :validate))
+    assign(socket, :form, to_form(changeset))
     |> noreply()
   end
+
 
   def handle_event("save", %{"merchant_location" => location_params}, socket) do
     contact = socket.assigns.current_user
     location_params = Map.put(location_params, "contact_id", contact.id)
+
     save_merchant(socket, socket.assigns.live_action, location_params)
   end
 
