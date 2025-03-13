@@ -71,5 +71,6 @@ defmodule Trays.MerchantLocation do
     |> validate_number(:prep_time, greater_than: 23, less_than: 337) #for now prep time is between 24 hours and 2 weeks
     |> validate_length(:cancellation_policy, max: 200)
     |> validate_length(:special_instruct, max: 200)
+    |> cast_assoc(:hours_of_delivery, required: false)
   end
 end

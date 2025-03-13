@@ -5,7 +5,7 @@ defmodule Trays.Admin.MerchantLocations do
   alias Trays.MerchantLocation
 
   def get_merchant_location_with_merchant!(id) do
-    Repo.get!(MerchantLocation, id) |> Repo.preload(:merchant)
+    Repo.get!(MerchantLocation, id) |> Repo.preload([:merchant, :hours_of_delivery])
   end
 
   def get_merchant_location!(id) do
