@@ -18,4 +18,15 @@ defmodule Trays.ProductModifierTest do
     |> assert_require_field(context.changeset_fn, :product_id)
     |> assert_require_field(context.changeset_fn, :modifier_id)
   end
+
+  test "should require price to be greater or equal to zero",
+      %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
+    changeset = changeset_with(changeset_fn, valid_attributes, :price, Money.new(0, :CAD))
+    assert changeset.valid? == true
+    changeset = changeset_with(changeset_fn, valid_attributes, :price, Money.new(1, :CAD))
+    assert changeset.valid? == true
+
+    changeset_with(changeset_fn, valid_attributes, :price, Money.new(-1, :CAD))
+    |> assert_validation_error_on(:price, "must be zero or greater")
+  end
 end
