@@ -12,6 +12,7 @@ defmodule Trays.Modifier do
     field :nut_free, :boolean, default: false
 
     belongs_to :modifier_group, Trays.ModifierGroup
+    has_many :product_modifiers, Trays.ProductModifier
 
     timestamps(type: :utc_datetime)
   end

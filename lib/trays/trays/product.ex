@@ -16,11 +16,8 @@ defmodule Trays.Product do
     field :vegetarian, :boolean, default: false
     field :nut_free, :boolean, default: false
 
-    # Should category have the relationship to Merchant and then
-    # products reside under the category?
-    
-
     belongs_to :merchant, Trays.Merchant
+    has_many :product_modifiers, Trays.ProductModifier
 
     timestamps(type: :utc_datetime)
   end
