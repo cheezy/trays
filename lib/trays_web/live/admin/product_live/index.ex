@@ -31,6 +31,9 @@ defmodule TraysWeb.Admin.ProductLive.Index do
           </.link>
         </:actions>
       </.header>
+      <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant}"}>
+        {gettext("Back to Merchant")}
+      </.back>
       <.table id="products" rows={@streams.products}>
         <:col :let={{_, product}}>
           <img src={product.image_path} width="60" />

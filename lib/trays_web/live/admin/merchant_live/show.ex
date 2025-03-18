@@ -64,6 +64,15 @@ defmodule TraysWeb.Admin.MerchantLive.Show do
       </:actions>
       <:actions>
         <.link
+          navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/modifier_groups"}
+          id="manage_modifier_groups_btn"
+          class="button"
+        >
+          {gettext("Manage Modifier Groups")}
+        </.link>
+      </:actions>
+      <:actions>
+        <.link
           navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/locations/new"}
           id="new_location_btn"
           class="button"
