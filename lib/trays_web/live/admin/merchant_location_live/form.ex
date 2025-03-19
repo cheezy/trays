@@ -87,6 +87,9 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
           label={gettext("Cancellation Policy")}
         />
       </div>
+      <div class="hours-of-delivery">
+
+      </div>
       <div class="action">
         <.button type="submit" class="submit" phx-disable-with={gettext("Saving...")}>
           {gettext("Save Merchant Location")}
@@ -144,4 +147,16 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
         |> noreply()
     end
   end
+
+  #defp day_options do
+  #  [
+  #    {"Monday", "Monday"},
+  #    {"Tuesday", "Tuesday"},
+  #    {"Wednesday", "Wednesday"},
+  #    {"Thursday", "Thursday"},
+  #    {"Friday", "Friday"},
+  #    {"Saturday", "Saturday"},
+  #    {"Sunday", "Sunday"}
+  #  ]
+  #end
 end

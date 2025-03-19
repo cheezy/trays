@@ -9,7 +9,7 @@ defmodule Trays.HoursOfDelivery do
     field :day, :string
     field :start_time, :time
     field :end_time, :time
-    field :open, :boolean, default: false
+    field :open, :boolean, default: false #add to the fixture and make it required
 
     belongs_to :merchant_location, Trays.MerchantLocation
 
