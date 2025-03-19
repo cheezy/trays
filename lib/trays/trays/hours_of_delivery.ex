@@ -9,6 +9,7 @@ defmodule Trays.HoursOfDelivery do
     field :day, :string
     field :start_time, :time
     field :end_time, :time
+    field :open, :boolean, default: false
 
     belongs_to :merchant_location, Trays.MerchantLocation
 
@@ -18,7 +19,16 @@ defmodule Trays.HoursOfDelivery do
   @doc false
   def changeset(hours_of_delivery, attrs) do
     hours_of_delivery
-    |> cast(attrs, [:day, :start_time, :end_time])
-    |> validate_required([:day, :start_time, :end_time])
+    |> cast(attrs, [
+      :day,
+      :start_time,
+      :end_time,
+      :open
+    ])
+    |> validate_required([
+      :day,
+      :start_time,
+      :end_time
+    ])
   end
 end
