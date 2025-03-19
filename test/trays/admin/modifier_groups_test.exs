@@ -60,4 +60,10 @@ defmodule Trays.Admin.ModifierGroupsTest do
     {:ok, updated} = ModifierGroups.update_modifier_group(modifier_group, attrs)
     assert updated.name == attrs.name
   end
+
+  test "should delete a modifier group", %{merchant: merchant} do
+    modifier_group = ModifierGroupFixtures.modifier_group_fixture(%{merchant_id: merchant.id})
+    ModifierGroups.delete_modifier_group(modifier_group)
+    assert Repo.get(ModifierGroup, modifier_group.id) == nil
+  end
 end

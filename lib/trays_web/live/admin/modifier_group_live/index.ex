@@ -65,4 +65,10 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Index do
 
     """
   end
+
+  def handle_event("delete", %{"id" => id}, socket) do
+    modifier_group = ModifierGroups.get_modifier_group!(id)
+    {:ok, _} = ModifierGroups.delete_modifier_group(modifier_group)
+    {:noreply, stream_delete(socket, :modifier_groups, modifier_group)}
+  end
 end

@@ -49,11 +49,8 @@ defmodule TraysWeb.Admin.MerchantLive.IndexTest do
     assert html =~ "Edit Merchant"
   end
 
-  test "should delete an existing Merchant", %{conn: conn, user: user, merchant: merchant} do
-    {:ok, view, _html} =
-      conn
-      |> log_in_user(user)
-      |> live(@route)
+  test "should delete an existing Merchant", %{conn: conn, merchant: merchant} do
+    {:ok, view, _html} = live(conn, @route)
 
     view
     |> element(".delete-merchant")

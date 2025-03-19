@@ -35,4 +35,8 @@ defmodule Trays.Admin.ModifierGroups do
     |> ModifierGroup.changeset(attrs)
     |> Repo.update()
   end
+
+  def delete_modifier_group(%ModifierGroup{} = modifier_group) do
+    Repo.delete(modifier_group)
+  end
 end
