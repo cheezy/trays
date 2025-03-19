@@ -20,6 +20,7 @@ defmodule Trays.ModifierGroup do
     modifier_group
     |> cast(attrs, [:name, :minimum, :maximum, :merchant_id])
     |> validate_required([:name, :merchant_id])
+    |> assoc_constraint(:merchant)
   end
 
   def required?(modifier_group) do

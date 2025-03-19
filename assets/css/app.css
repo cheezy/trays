@@ -134,6 +134,11 @@
     @apply text-sm font-semibold text-zinc-800;
   }
 
+  /* Admin.ModifierGroupLive.Form */
+  #modifier-groups-form .modifier-group-min-max {
+    @apply grid grid-cols-2 gap-4 mb-6 align-top;
+  }
+
   /* Image Upload Component */
 
   #image-upload .label {

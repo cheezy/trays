@@ -18,6 +18,12 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Index do
     <div class="modifier-groups-index">
       <.header>
         {@page_title}
+        <:actions>
+          <.link navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/modifier_groups/new"}
+              id="new_modifier_group_btn" class="button">
+            {gettext("New Modifier Group")}
+          </.link>
+        </:actions>
       </.header>
     </div>
     <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}"}>
@@ -33,6 +39,25 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Index do
       <:col :let={{_, modifier_groups}} label={gettext("Maximum")}>
         {modifier_groups.maximum}
       </:col>
+      <:action :let={{_, modifier_groups}}>
+        <.link
+          navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/modifier_groups/#{modifier_groups.id}/edit"}
+          class="edit-modifier-group"
+        >
+          <.icon name="hero-pencil-square" class="h-4 w-4" />
+        </.link>
+      </:action>
+      <:action :let={{_, modifier_groups}}>
+        <.link
+          phx-click="delete"
+          phx-value-id={modifier_groups.id}
+          phx-disable-with={gettext("Deleting...")}
+          data-confirm={gettext("Are you sure?")}
+          class="delete-modifier-group"
+        >
+          <.icon name="hero-trash" class="h-4 w-4" />
+        </.link>
+      </:action>
     </.table>
     <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}"}>
       {gettext("Back to Merchant")}
