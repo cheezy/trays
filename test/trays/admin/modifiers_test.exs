@@ -27,4 +27,15 @@ defmodule Trays.Admin.ModifiersTest do
     changeset = Modifiers.change_modifier(%Modifier{})
     assert changeset.action == nil
   end
+
+  test "should write a modifier to the database", %{modifier_group: modifier_group} do
+    attrs = ModifierFixtures.valid_modifier(%{modifier_group_id: modifier_group.id})
+    {:ok, modifier} = Modifiers.create_modifier(modifier_group.id, attrs)
+    assert modifier.name == attrs.name
+  end
+
+  test "should update a modifier", %{modifier: modifier} do
+    {:ok, modifier} = Modifiers.update_modifier(modifier, %{name: "updated name"})
+    assert modifier.name == "updated name"
+  end
 end

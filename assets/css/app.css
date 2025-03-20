@@ -140,6 +140,12 @@
   }
 
   
+  /* Admin.ModifierLive.Form */
+  #modifier-form .modifier-options {
+    @apply grid grid-cols-4 gap-4 mb-6 mt-6 align-top text-sm font-semibold text-zinc-800;
+  }
+
+
   /* Admin.ModifierGroupLive.Show */
   .modifier-group-show .modifier-group {
     @apply grid md:grid-cols-3 gap-x-4 mb-10;

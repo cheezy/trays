@@ -22,5 +22,6 @@ defmodule Trays.Modifier do
     modifier
     |> cast(attrs, [:name, :gluten_free, :vegan, :vegetarian, :nut_free, :modifier_group_id])
     |> validate_required([:name, :modifier_group_id])
+    |> validate_length(:name, min: 8, max: 100)
   end
 end
