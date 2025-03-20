@@ -32,6 +32,7 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Show do
       <.modifiers
         modifiers={@modifier_group.modifiers}
         merchant_id={@merchant_id}
+        modifier_group_id={@modifier_group.id}
         locale={@locale}
       />
     </div>
@@ -46,8 +47,8 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Show do
     <.header>
       <:actions>
         <.link
-          navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/modifier_groups"}
-          id="add_modifier_btn"
+          navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/modifier_groups/#{@modifier_group_id}/modifier/new"}
+          id="add-modifier-btn"
           class="button"
         >
           {gettext("Add Modifier")}
@@ -70,6 +71,27 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Show do
       <:col :let={modifier} label={gettext("Nut Free")}>
         {modifier.nut_free}
       </:col>
+      <:action :let={modifier}>
+        <.link
+          navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}/modifier_groups/#{@modifier_group_id}/modifier/#{modifier.id}/edit"}
+          class="edit-modifier"
+          id={"edit-modifier-#{modifier.id}"}
+        >
+          <.icon name="hero-pencil-square" class="h-4 w-4" />
+        </.link>
+      </:action>
+      <:action :let={location}>
+        <.link
+          phx-click="delete"
+          phx-value-id={location.id}
+          phx-disable-with={gettext("Deleting...")}
+          data-confirm={gettext("Are you sure?")}
+          class="delete-merchant-location"
+        >
+          <.icon name="hero-trash" class="h-4 w-4" />
+        </.link>
+      </:action>
+
     </.table>
     """
   end

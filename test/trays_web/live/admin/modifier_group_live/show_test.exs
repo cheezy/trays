@@ -35,4 +35,30 @@ defmodule TraysWeb.Admin.ModiferGrouplive.ShowTest do
       assert html =~ mod.name
     end)
   end
+
+  test "should navigate to create a new modifier",
+       %{conn: conn, merchant: merchant, modifier_group: modifier_group} do
+    {:ok, view, _html} = live(conn, "/en/admin/merchants/#{merchant.id}/modifier_groups/#{modifier_group.id}")
+
+    {:ok, _, html} =
+      view
+      |> element("#add-modifier-btn")
+      |> render_click()
+      |> follow_redirect(conn)
+
+    assert html =~ "New Modifier"
+  end
+
+  test "should navigate to edit an existing modifier",
+       %{conn: conn, merchant: merchant, modifier_group: modifier_group, modifiers: modifiers} do
+    {:ok, view, _html} = live(conn, "/en/admin/merchants/#{merchant.id}/modifier_groups/#{modifier_group.id}")
+    
+    {:ok, _, html} =
+      view
+      |> element("#edit-modifier-#{List.first(modifiers).id}")
+      |> render_click()
+      |> follow_redirect(conn)
+
+    assert html =~ "Edit Modifier"
+  end
 end

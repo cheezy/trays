@@ -48,7 +48,7 @@ defmodule Trays.Admin.ModifierGroupsTest do
     assert retrieved.modifiers == modifiers
   end
 
-  test "should return an empty changeset for a form" do
+  test "should create an empty changeset for a form" do
     changeset = ModifierGroups.change_modifier_group(%ModifierGroup{})
     assert changeset.action == nil
   end

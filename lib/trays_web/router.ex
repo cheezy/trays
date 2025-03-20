@@ -74,6 +74,9 @@ defmodule TraysWeb.Router do
       live "/admin/merchants/:merchant_id/modifier_groups/new", Admin.ModifierGroupLive.Form, :new
       live "/admin/merchants/:merchant_id/modifier_groups/:id/edit", Admin.ModifierGroupLive.Form, :edit
       live "/admin/merchants/:merchant_id/modifier_groups/:id", Admin.ModifierGroupLive.Show
+
+      live "/admin/merchants/:merchant_id/modifier_groups/:modifier_group_id/modifier/new", Admin.ModifierLive.Form, :new
+      live "/admin/merchants/:merchant_id/modifier_groups/:modifier_group_id/modifier/:id/edit", Admin.ModifierLive.Form, :edit
     end
   end
 
