@@ -2,6 +2,7 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Show do
   use TraysWeb, :live_view
 
   alias Trays.Admin.ModifierGroups
+  alias Trays.Admin.Modifiers
 
   @moduledoc false
 
@@ -80,13 +81,14 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Show do
           <.icon name="hero-pencil-square" class="h-4 w-4" />
         </.link>
       </:action>
-      <:action :let={location}>
+      <:action :let={modifier}>
         <.link
           phx-click="delete"
-          phx-value-id={location.id}
+          phx-value-id={modifier.id}
           phx-disable-with={gettext("Deleting...")}
           data-confirm={gettext("Are you sure?")}
-          class="delete-merchant-location"
+          class="delete-modifier"
+          id={"delete-modifier-#{modifier.id}"}
         >
           <.icon name="hero-trash" class="h-4 w-4" />
         </.link>
@@ -95,4 +97,14 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Show do
     </.table>
     """
   end
+
+  def handle_event("delete", %{"id" => id}, socket) do
+    modifier = Modifiers.get_modifier!(id)
+    {:ok, _} = Modifiers.delete_modifier(modifier)
+    modifier_group =
+      ModifierGroups.get_modifier_group_with_modifiers!(socket.assigns.modifier_group.id)
+
+    {:noreply, assign(socket, :modifier_group, modifier_group)}
+  end
+
 end

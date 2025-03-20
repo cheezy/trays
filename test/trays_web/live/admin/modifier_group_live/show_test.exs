@@ -5,6 +5,8 @@ defmodule TraysWeb.Admin.ModiferGrouplive.ShowTest do
   alias Trays.MerchantFixtures
   alias Trays.ModifierGroupFixtures
   alias Trays.ModifierFixtures
+  alias Trays.Modifier
+  alias Trays.Repo
   import Phoenix.LiveViewTest
   
   @moduledoc false
@@ -61,4 +63,17 @@ defmodule TraysWeb.Admin.ModiferGrouplive.ShowTest do
 
     assert html =~ "Edit Modifier"
   end
+
+  test "should delete an existing modifier",
+       %{conn: conn, merchant: merchant, modifier_group: modifier_group, modifiers: modifiers} do
+    {:ok, view, _html} = live(conn, "/en/admin/merchants/#{merchant.id}/modifier_groups/#{modifier_group.id}")
+
+    id = List.first(modifiers).id
+    view
+    |> element("#delete-modifier-#{id}")
+    |> render_click()
+
+    assert Repo.get(Modifier, id) == nil
+  end
+
 end

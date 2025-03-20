@@ -7,6 +7,7 @@ defmodule Trays.Admin.ModifiersTest do
   alias Trays.AccountsFixtures
   alias Trays.MerchantFixtures
   alias Trays.Modifier
+  alias Trays.Repo
 
   @moduledoc false
 
@@ -37,5 +38,10 @@ defmodule Trays.Admin.ModifiersTest do
   test "should update a modifier", %{modifier: modifier} do
     {:ok, modifier} = Modifiers.update_modifier(modifier, %{name: "updated name"})
     assert modifier.name == "updated name"
+  end
+
+  test "should delete a modifier", %{modifier: modifier} do
+    Modifiers.delete_modifier(modifier)
+    assert Repo.get(Modifier, modifier.id) == nil
   end
 end

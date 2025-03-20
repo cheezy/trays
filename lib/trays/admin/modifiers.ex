@@ -24,4 +24,8 @@ defmodule Trays.Admin.Modifiers do
     |> Modifier.changeset(attrs)
     |> Repo.update()
   end
+
+  def delete_modifier(%Modifier{} = modifier) do
+    Repo.delete(modifier)
+  end
 end
