@@ -20,6 +20,10 @@ defmodule Trays.Admin.ModifierGroups do
     Repo.get!(ModifierGroup, id)
   end
 
+  def get_modifier_group_with_modifiers!(id) do
+    get_modifier_group!(id) |> Repo.preload(:modifiers)
+  end
+
   def change_modifier_group(%ModifierGroup{} = modifier_group, attrs \\ %{}) do
     ModifierGroup.changeset(modifier_group, attrs)
   end

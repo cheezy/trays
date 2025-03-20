@@ -139,6 +139,29 @@
     @apply grid grid-cols-2 gap-4 mb-6 align-top;
   }
 
+  
+  /* Admin.ModifierGroupLive.Show */
+  .modifier-group-show .modifier-group {
+    @apply grid md:grid-cols-3 gap-x-4 mb-10;
+  }
+
+  .modifier-group-show .modifier-group section {
+    @apply md:col-span-2 space-y-5;
+  }
+
+  .modifier-group-show .modifier-group section header {
+    @apply flex justify-between items-start;
+  }
+
+  .modifier-group-show .modifier-group section header h2 {
+    @apply flex items-center gap-2 text-2xl font-semibold text-gray-900;
+  }
+
+  .modifier-group-show .modifier-group section header h3 {
+    @apply text-xl text-gray-500;
+  }
+
+
   /* Image Upload Component */
 
   #image-upload .label {

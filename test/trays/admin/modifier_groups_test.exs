@@ -41,6 +41,13 @@ defmodule Trays.Admin.ModifierGroupsTest do
     assert retrieved.name == modifier_group.name
   end
 
+  test "should retrieve a modifier group with its' modifiers",
+      %{modifier_group: modifier_group, modifiers: modifiers} do
+    retrieved = ModifierGroups.get_modifier_group_with_modifiers!(modifier_group.id)
+    assert retrieved.name == modifier_group.name
+    assert retrieved.modifiers == modifiers
+  end
+
   test "should return an empty changeset for a form" do
     changeset = ModifierGroups.change_modifier_group(%ModifierGroup{})
     assert changeset.action == nil

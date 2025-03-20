@@ -29,7 +29,11 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Index do
     <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}"}>
       {gettext("Back to Merchant")}
     </.back>
-    <.table id="modifier_groups" rows={@streams.modifier_groups}>
+    <.table
+        id="modifier_groups"
+        rows={@streams.modifier_groups}
+        row_click={fn {_, modifier_groups} -> JS.navigate(~p"/#{@locale}/admin/merchants/#{@merchant_id}/modifier_groups/#{modifier_groups.id}") end}
+    >
       <:col :let={{_, modifier_groups}} label={gettext("Name")}>
         {modifier_groups.name}
       </:col>
@@ -62,7 +66,6 @@ defmodule TraysWeb.Admin.ModifierGroupLive.Index do
     <.back navigate={~p"/#{@locale}/admin/merchants/#{@merchant_id}"}>
       {gettext("Back to Merchant")}
     </.back>
-
     """
   end
 
