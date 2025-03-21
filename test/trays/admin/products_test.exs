@@ -6,6 +6,9 @@ defmodule Trays.AdminProductsTest do
   alias Trays.AccountsFixtures
   alias Trays.MerchantFixtures
   alias Trays.ProductFixtures
+  alias Trays.ProductModifierFixtures
+  alias Trays.ModifierGroupFixtures
+  alias Trays.ModifierFixtures
 
   @moduledoc false
 
@@ -30,6 +33,18 @@ defmodule Trays.AdminProductsTest do
     retrieved = Products.get_product!(product.id)
     assert product.name == retrieved.name
     assert product.description == retrieved.description
+  end
+
+  test "should retrieve a product and its' product modifiers",
+       %{merchant: merchant, product: product} do
+    modifier_group = ModifierGroupFixtures.modifier_group_fixture(%{merchant_id: merchant.id})
+    modifier = ModifierFixtures.modifier_fixture(%{modifier_group_id: modifier_group.id})
+    product_modifier = ProductModifierFixtures.product_modifier_fixture(product, modifier)
+
+    retrieved = Products.get_product_with_product_modifiers!(product.id)
+    assert product.name == retrieved.name
+    prod_mods = retrieved.product_modifiers
+    assert product_modifier.price == List.first(prod_mods).price
   end
 
   test "should create a valid changeset that can be used by a form" do

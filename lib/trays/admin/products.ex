@@ -24,6 +24,11 @@ defmodule Trays.Admin.Products do
     Repo.get!(Product, id)
   end
 
+  def get_product_with_product_modifiers!(id) do
+    get_product!(id)
+    |> Repo.preload(:product_modifiers)
+  end
+
   def change_product(%Product{} = product, attrs \\ %{}) do
     Product.changeset(product, attrs)
   end
