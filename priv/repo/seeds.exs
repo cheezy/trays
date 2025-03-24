@@ -16,6 +16,7 @@ alias Trays.Modifier
 alias Trays.ModifierGroup
 alias Trays.Product
 alias Trays.MerchantLocation
+alias Trays.HoursOfDelivery
 alias Trays.Merchant
 alias Trays.Accounts.User
 
@@ -23,6 +24,7 @@ Repo.delete_all(ProductModifier)
 Repo.delete_all(Modifier)
 Repo.delete_all(ModifierGroup)
 Repo.delete_all(Product)
+Repo.delete_all(HoursOfDelivery)
 Repo.delete_all(MerchantLocation)
 Repo.delete_all(Merchant)
 Repo.delete_all(User)

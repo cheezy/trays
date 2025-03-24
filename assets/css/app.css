@@ -117,6 +117,14 @@
     @apply col-span-2;
   }
 
+  #merchant-location-form .hours-of-delivery {
+      @apply grid grid-cols-3 gap-4 align-top;
+    }
+
+  #merchant-location-form .days {
+    @apply text-2xl;
+  }
+
   #merchant-location-form .action {
     @apply pt-4;
   }

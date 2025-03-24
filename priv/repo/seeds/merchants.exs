@@ -2,6 +2,20 @@ alias Trays.Repo
 alias Trays.Merchant
 alias Trays.MerchantLocation
 alias Trays.Accounts
+alias Trays.HoursOfDelivery
+
+defmodule MerchantsSeeds do
+  def insert_hours(day, location) do
+    %HoursOfDelivery {
+      day: day,
+      start_time: ~T[08:00:00],
+      end_time: ~T[16:00:00],
+      open: true,
+      merchant_location: location
+    }
+    |> Repo.insert!()
+  end
+end
 
 debbie = Accounts.get_user_by_email("debbie@trays.ca")
 mike = Accounts.get_user_by_email("mike@trays.ca")
@@ -20,7 +34,7 @@ apd =
   }
   |> Repo.insert!()
 
-%MerchantLocation{
+front = %MerchantLocation{
   street1: "81 Front Street E",
   city: "Toronto",
   province: "ON",
@@ -35,7 +49,15 @@ apd =
 }
 |> Repo.insert!()
 
-%MerchantLocation{
+MerchantsSeeds.insert_hours(:monday, front)
+MerchantsSeeds.insert_hours(:tuesday, front)
+MerchantsSeeds.insert_hours(:wednesday, front)
+MerchantsSeeds.insert_hours(:thursday, front)
+MerchantsSeeds.insert_hours(:friday, front)
+MerchantsSeeds.insert_hours(:saturday, front)
+MerchantsSeeds.insert_hours(:sunday, front)
+
+bay = %MerchantLocation{
   street1: "222 Bay",
   city: "Toronto",
   province: "ON",
@@ -49,6 +71,15 @@ apd =
   special_instruct: "Enter from Bay, then take the escalator down."
 }
 |> Repo.insert!()
+# add seven hours of delivery for bay
+MerchantsSeeds.insert_hours(:monday, bay)
+MerchantsSeeds.insert_hours(:tuesday, bay)
+MerchantsSeeds.insert_hours(:wednesday, bay)
+MerchantsSeeds.insert_hours(:thursday, bay)
+MerchantsSeeds.insert_hours(:friday, bay)
+MerchantsSeeds.insert_hours(:saturday, bay)
+MerchantsSeeds.insert_hours(:sunday, bay)
+
 
 %Merchant{
   name: "Miku",

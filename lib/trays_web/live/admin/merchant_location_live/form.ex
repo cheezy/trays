@@ -27,8 +27,6 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   defp apply_action(socket, :edit, %{"id" => id, "merchant_id" => merchant_id}) do
     location =
       MerchantLocations.get_merchant_location_with_merchant!(id)
-      |> Trays.Repo.preload(:hours_of_delivery)
-
 
     changeset = MerchantLocations.change_merchant_location(location)
 
@@ -88,7 +86,9 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
         />
       </div>
       <div class="hours-of-delivery">
-
+        <.inputs_for :let={day} field={@form[:hours_of_delivery]}>
+          <.hours_of_delivery day={day} />
+        </.inputs_for>
       </div>
       <div class="action">
         <.button type="submit" class="submit" phx-disable-with={gettext("Saving...")}>
@@ -102,6 +102,16 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
     """
   end
 
+  def hours_of_delivery(assigns) do
+    ~H"""
+    <div class="days">
+      <span>{String.capitalize("#{@day[:day].value}")}</span>
+    </div>
+    <.input field={@day[:start_time]} label={gettext("Start Time")} />
+    <.input field={@day[:end_time]} label={gettext("End Time")} />
+    """
+  end
+
   def handle_event("validate", %{"merchant_location" => location_params}, socket) do
     changeset =
       socket.assigns.location
@@ -111,7 +121,6 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
     assign(socket, :form, to_form(changeset))
     |> noreply()
   end
-
 
   def handle_event("save", %{"merchant_location" => location_params}, socket) do
     contact = socket.assigns.current_user
@@ -148,7 +157,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
     end
   end
 
-  #defp day_options do
+  # defp day_options do
   #  [
   #    {"Monday", "Monday"},
   #    {"Tuesday", "Tuesday"},
@@ -158,5 +167,5 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   #    {"Saturday", "Saturday"},
   #    {"Sunday", "Sunday"}
   #  ]
-  #end
+  # end
 end

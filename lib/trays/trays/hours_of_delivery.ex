@@ -6,7 +6,7 @@ defmodule Trays.HoursOfDelivery do
   import Ecto.Changeset
 
   schema "hours_of_delivery" do
-    field :day, :string
+    field :day, Ecto.Enum, values: [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday]
     field :start_time, :time
     field :end_time, :time
     field :open, :boolean, default: false #add to the fixture and make it required
@@ -31,4 +31,7 @@ defmodule Trays.HoursOfDelivery do
       :end_time
     ])
   end
+
+
+  #write form tests for hours of delivery
 end
