@@ -107,8 +107,12 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
     <div class="days">
       <span>{String.capitalize("#{@day[:day].value}")}</span>
     </div>
-    <.input field={@day[:start_time]} label={gettext("Start Time")} />
-    <.input field={@day[:end_time]} label={gettext("End Time")} />
+    <div class="start-time">
+        <.input field={@day[:start_time]} aria-label={gettext("Start Time")} />
+    </div>
+    <div class="stop-time">
+        <.input field={@day[:end_time]} aria-label={gettext("End Time")} />
+    </div>
     """
   end
 
