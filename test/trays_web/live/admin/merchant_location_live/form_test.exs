@@ -39,7 +39,15 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
           "delivery_option" => "pickup",
           "prep_time" => 24,
           "cancellation_policy" => "new cancellation policy",
-          "special_instruct" => "instructions to get to location"
+          "special_instruct" => "instructions to get to location",
+          "hours_of_delivery" => %{
+            "0" => %{
+              "_persistent_id" => "0",
+              "day" => "monday",
+              "end_time" => "19:00:00",
+              "start_time" => "08:00:00"
+             }
+          }
         }
       })
 

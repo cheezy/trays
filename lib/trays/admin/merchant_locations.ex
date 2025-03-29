@@ -18,7 +18,7 @@ defmodule Trays.Admin.MerchantLocations do
   end
 
   def create_merchant_location(merchant_id, attrs \\ %{}) do
-    %MerchantLocation{merchant_id: merchant_id}
+    %MerchantLocation{merchant_id: merchant_id, hours_of_delivery: []}
     |> MerchantLocation.changeset(attrs)
     |> Repo.insert()
   end

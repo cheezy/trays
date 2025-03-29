@@ -5,6 +5,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
 
   alias Trays.Admin.MerchantLocations
   alias Trays.MerchantLocation
+  alias Trays.HoursOfDelivery
 
   def mount(params, _session, socket) do
     socket
@@ -14,7 +15,14 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   end
 
   defp apply_action(socket, :new, %{"merchant_id" => merchant_id}) do
-    location = %MerchantLocation{hours_of_delivery: []}
+    location = %MerchantLocation{
+      merchant_id: merchant_id,
+      hours_of_delivery: [%HoursOfDelivery{
+        day: "monday",
+        start_time: nil,
+        end_time: nil
+      }]
+    }
     changeset = MerchantLocations.change_merchant_location(location)
 
     socket
@@ -106,6 +114,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
     ~H"""
     <div class="days">
       <span>{String.capitalize("#{@day[:day].value}")}</span>
+      <.input field={@day[:day]} type="hidden" />
     </div>
     <div class="start-time">
         <.input field={@day[:start_time]} aria-label={gettext("Start Time")} />
@@ -160,16 +169,4 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
         |> noreply()
     end
   end
-
-  # defp day_options do
-  #  [
-  #    {"Monday", "Monday"},
-  #    {"Tuesday", "Tuesday"},
-  #    {"Wednesday", "Wednesday"},
-  #    {"Thursday", "Thursday"},
-  #    {"Friday", "Friday"},
-  #    {"Saturday", "Saturday"},
-  #    {"Sunday", "Sunday"}
-  #  ]
-  # end
 end
