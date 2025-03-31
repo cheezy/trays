@@ -42,11 +42,40 @@ defmodule TraysWeb.Admin.MerchantLocationLive.FormTest do
           "special_instruct" => "instructions to get to location",
           "hours_of_delivery" => %{
             "0" => %{
-              "_persistent_id" => "0",
               "day" => "monday",
               "end_time" => "19:00:00",
               "start_time" => "08:00:00"
-             }
+             },
+            "1" => %{
+              "day" => "tuesday",
+              "start_time" => "08:00:00",
+              "end_time" => "19:00:00"
+            },
+            "2" => %{
+              "day" => "wednesday",
+              "start_time" => "08:00:00",
+              "end_time" => "19:00:00"
+            },
+            "3" => %{
+              "day" => "thursday",
+              "start_time" => "08:00:00",
+              "end_time" => "19:00:00"
+            },
+            "4" => %{
+              "day" => "friday",
+              "start_time" => "08:00:00",
+              "end_time" => "19:00:00"
+            },
+            "5" => %{
+              "day" => "saturday",
+              "start_time" => "08:00:00",
+              "end_time" => "19:00:00"
+            },
+            "6" => %{
+              "day" => "sunday",
+              "start_time" => "08:00:00",
+              "end_time" => "19:00:00"
+            }
           }
         }
       })

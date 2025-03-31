@@ -15,14 +15,20 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
   end
 
   defp apply_action(socket, :new, %{"merchant_id" => merchant_id}) do
+    days_of_week = ~w(monday tuesday wednesday thursday friday saturday sunday)
+
     location = %MerchantLocation{
       merchant_id: merchant_id,
-      hours_of_delivery: [%HoursOfDelivery{
-        day: "monday",
-        start_time: nil,
-        end_time: nil
-      }]
+      hours_of_delivery:
+        Enum.map(days_of_week, fn day ->
+          %HoursOfDelivery{
+            day: day,
+            start_time: nil,
+            end_time: nil
+          }
+        end)
     }
+
     changeset = MerchantLocations.change_merchant_location(location)
 
     socket
@@ -31,6 +37,7 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
     |> assign(:location, location)
     |> assign(:merchant_id, merchant_id)
   end
+
 
   defp apply_action(socket, :edit, %{"id" => id, "merchant_id" => merchant_id}) do
     location =
@@ -92,6 +99,17 @@ defmodule TraysWeb.Admin.MerchantLocationLive.Form do
           field={@form[:cancellation_policy]}
           label={gettext("Cancellation Policy")}
         />
+      </div>
+      <div class="delivery-labels">
+        <div class="day-label">
+            Day
+        </div>
+        <div class="start-label">
+            Start Time
+        </div>
+      <div class="end-label">
+            End Time
+        </div>
       </div>
       <div class="hours-of-delivery">
         <.inputs_for :let={day} field={@form[:hours_of_delivery]}>

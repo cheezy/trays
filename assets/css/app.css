@@ -117,9 +117,29 @@
     @apply col-span-2;
   }
 
-  #merchant-location-form .hours-of-delivery {
+   #merchant-location-form .delivery-labels {
       @apply grid grid-cols-5 gap-4 align-top;
     }
+
+  #merchant-location-form .delivery-labels {
+    @apply text-2xl font-semibold;
+  }
+
+  #merchant-location-form .hours-of-delivery {
+      @apply grid grid-cols-5 gap-4 align-top;
+  }
+
+  #merchant-location-form .day-label {
+      @apply col-span-1 text-2xl font-semibold;
+  }
+
+  #merchant-location-form .start-label {
+        @apply col-span-2 text-2xl font-semibold;
+  }
+
+  #merchant-location-form .end-label {
+          @apply col-span-2 text-2xl font-semibold;
+  }
 
   #merchant-location-form .days {
     @apply col-span-1 text-2xl flex items-center justify-start font-semibold;
