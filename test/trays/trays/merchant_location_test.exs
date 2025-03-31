@@ -142,6 +142,15 @@ defmodule Trays.MerchantLocationTest do
     |> assert_validation_error_on(:special_instruct, "is invalid")
   end
 
+  #test "require a correct start time",
+  #     %{valid_attributes: valid_attributes, changeset_fn: changeset_fn} do
+  #  changeset = changeset_with(changeset_fn, valid_attributes, :start_time, ~T[08:00:00])
+  #  assert changeset.valid? == true
+  #
+  #  changeset_with(changeset_fn, valid_attributes, :start_time, ~T[08:60:00])
+  #  |> assert_validation_error_on(:start_time, "is invalid")
+  #end
+
   defp assert_is_valid_postal_code(changeset_fn, postal_code, valid_attributes) do
     changeset = changeset_with(changeset_fn, valid_attributes, :postal_code, postal_code)
     assert changeset.valid? == true

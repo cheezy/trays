@@ -2,6 +2,8 @@ defmodule Trays.MerchantLocationFixtures do
   @moduledoc false
 
   alias Trays.Admin.MerchantLocations
+  alias Trays.HoursOfDelivery
+  alias Trays.Repo
 
   def valid_street1(), do: "123 Yonge Street"
   def valid_street2(), do: "Unit 1500"
@@ -29,9 +31,74 @@ defmodule Trays.MerchantLocationFixtures do
     })
   end
 
+  def valid_hours_of_delivery_attrs(merchant_location_id) do
+    [
+      %{
+        day: :monday,
+        start_time: ~T[09:00:00],
+        end_time: ~T[17:00:00],
+        open: true,
+        merchant_location_id: merchant_location_id
+      },
+      %{
+        day: :tuesday,
+        start_time: ~T[09:00:00],
+        end_time: ~T[17:00:00],
+        open: true,
+        merchant_location_id: merchant_location_id
+      },
+      %{
+        day: :wednesday,
+        start_time: ~T[09:00:00],
+        end_time: ~T[17:00:00],
+        open: true,
+        merchant_location_id: merchant_location_id
+      },
+      %{
+        day: :thursday,
+        start_time: ~T[09:00:00],
+        end_time: ~T[17:00:00],
+        open: true,
+        merchant_location_id: merchant_location_id
+      },
+      %{
+        day: :friday,
+        start_time: ~T[09:00:00],
+        end_time: ~T[17:00:00],
+        open: true,
+        merchant_location_id: merchant_location_id
+      },
+      %{
+        day: :saturday,
+        start_time: ~T[09:00:00],
+        end_time: ~T[17:00:00],
+        open: true,
+        merchant_location_id: merchant_location_id
+      },
+      %{
+        day: :sunday,
+        start_time: ~T[09:00:00],
+        end_time: ~T[17:00:00],
+        open: true,
+        merchant_location_id: merchant_location_id
+      }
+    ]
+  end
+
   def merchant_location_fixture(merchant, attrs \\ %{}) do
     location_attrs = valid_merchant_location_attrs(attrs)
-    {:ok, merchant_location} = MerchantLocations.create_merchant_location(merchant.id, location_attrs)
+
+    {:ok, merchant_location} =
+      MerchantLocations.create_merchant_location(merchant.id, location_attrs)
+
+    hours_of_delivery_attrs = valid_hours_of_delivery_attrs(merchant_location.id)
+
+    Enum.each(hours_of_delivery_attrs, fn attrs ->
+      %HoursOfDelivery{}
+      |> HoursOfDelivery.changeset(attrs)
+      |> Repo.insert!()
+    end)
+
     merchant_location
   end
 end

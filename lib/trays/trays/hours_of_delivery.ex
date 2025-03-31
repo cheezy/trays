@@ -31,7 +31,4 @@ defmodule Trays.HoursOfDelivery do
       :end_time
     ])
   end
-
-
-  #write form tests for hours of delivery
 end
